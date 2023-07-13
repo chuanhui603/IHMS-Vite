@@ -8,18 +8,13 @@
             if (spinnerElement) {
                 spinnerElement.classList.remove('show');
             }
-        }, 1);
+        }, 100);
     };
     spinner();
 
 
-    var script = document.createElement('script');
-    script.src = '../lib/wow/wow.min.js';
-    script.onload = function () {
-        // Initiate the wowjs
-        new WOW().init();
-    };
-    document.body.appendChild(script);
+      
+
 
     // Fixed Navbar
     window.addEventListener('scroll', function () {
