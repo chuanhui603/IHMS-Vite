@@ -1,8 +1,9 @@
 <script>
-import 'bootstrap/dist/css/bootstrap.min.css' 
-import 'bootstrap/dist/js/bootstrap.min.js'
+import './css/bootstrap.min.css'
 import './js/main.js'
 import './css/style.css'
+// import './lib/animate/animate.min.css'
+// import './lib/owlcarousel/assets/owl.carousel.min.css'
 </script>
 
 <template>
@@ -852,5 +853,8 @@ import './css/style.css'
 </template>
 
 <style>
+
+
+
 
 </style>
