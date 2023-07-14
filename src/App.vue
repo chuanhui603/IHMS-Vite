@@ -6,9 +6,9 @@ import NavBar from './components/NavBar.vue'
 import {onMounted} from 'vue'
     name: 'app',
     onMounted(()=>{
-        this.$nextTick(() => {
-            new WOW().init()
-        })
+        
+        new WOW().init()
+       
       })
 </script>
 <style lang="css" src="./css/bootstrap.min.css"></style>
