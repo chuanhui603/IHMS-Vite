@@ -27,8 +27,7 @@ import {onMounted} from 'vue'
         <NavBar></NavBar>
         <!-- Navbar End -->
         <!-- 內容 -->
-        <router-view></router-view>
-
+        <router-view></router-view>           
 
         <!-- Footer Start -->
         <div class="container-fluid bg-dark footer mt-5 p-3 wow fadeIn" data-wow-delay="0.1s">
