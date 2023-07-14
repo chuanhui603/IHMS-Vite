@@ -1,306 +1,34 @@
-<script>
+<script setup>
 import 'bootstrap/dist/js/bootstrap.min.js'
 import './js/main.js'
 import { WOW } from 'wowjs/dist/wow.min.js'
-export default {
+import NavBar from './components/NavBar.vue'
+import {onMounted} from 'vue'
     name: 'app',
-    mounted() {
+    onMounted(()=>{
         this.$nextTick(() => {
             new WOW().init()
         })
-    },
-}
-
+      })
 </script>
-
 <style lang="css" src="./css/bootstrap.min.css"></style>
-
 <style lang="css" src="./css/style.css"></style>
-
 <style lang="css" src="wowjs/css/libs/animate.css"></style>
+
 <template>
     <div class="backimg">
+         <!-- Spinner start -->
         <div id="spinner"
             class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
             <div class="spinner-border text-primary" role="status"></div>
         </div>
         <!-- Spinner End -->
-
-
-
         <!-- Navbar Start -->
-        <div class="container-fluid fixed-top px-0 wow fadeIn" data-wow-delay="0.1s">
-            <!-- <div class="top-bar row gx-0 align-items-center d-none d-lg-flex">
-                <div class="col-lg-6 px-5 text-start">
-                    <small><i class="fa fa-map-marker-alt me-2"></i>123 Street, New York, USA</small>
-                    <small class="ms-4"><i class="fa fa-envelope me-2"></i>info@example.com</small>
-                </div>
-                <div class="col-lg-6 px-5 text-end">
-                    <small>Follow us:</small>
-                    <a class="text-body ms-3" href=""><i class="fab fa-facebook-f"></i></a>
-                    <a class="text-body ms-3" href=""><i class="fab fa-twitter"></i></a>
-                    <a class="text-body ms-3" href=""><i class="fab fa-linkedin-in"></i></a>
-                    <a class="text-body ms-3" href=""><i class="fab fa-instagram"></i></a>
-                </div>
-            </div> -->
-
-            <nav class="navbar navbar-expand-lg navbar-light py-lg-0 px-lg-5 wow fadeIn" data-wow-delay="0.1s">
-                <a href="index.html" class="navbar-brand ms-4 ms-lg-0">
-                    <h1 class="fw-bold text-warning m-0">I<span class="text-secondary ">H</span>MS</h1>
-                </a>
-                <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse"
-                    data-bs-target="#navbarCollapse">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <div class="navbar-nav p-4 p-lg-0">
-                        <a href="index.html" class="nav-item nav-link active">首頁</a>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">會員專區</a>
-                            <div class="dropdown-menu m-0">
-                                <a href="blog.html" class="dropdown-item">計畫總覽</a>
-                                <a href="feature.html" class="dropdown-item">購買紀錄</a>
-                                <a href="testimonial.html" class="dropdown-item">點數紀錄</a>
-                                <a href="404.html" class="dropdown-item">會員設定</a>
-                            </div>
-                        </div>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">課程專區</a>
-                            <div class="dropdown-menu m-0">
-                                <a href="blog.html" class="dropdown-item">欄位1</a>
-                                <a href="feature.html" class="dropdown-item">欄位2</a>
-                                <a href="testimonial.html" class="dropdown-item">欄位3</a>
-                            </div>
-                        </div>
-                        <a href="contact.html" class="nav-item nav-link">討論區</a>
-                    </div>
-                    <div class="d-none d-lg-flex ms-auto">
-                        <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
-                            <small class="fa fa-search text-body"></small>
-                        </a>
-                        <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
-                            <small class="fa fa-user text-body"></small>
-                        </a>
-                        <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
-                            <small class="fa fa-shopping-bag text-body"></small>
-                        </a>
-
-                        <!--登入前展示 登入後隱藏 -->
-
-                        <!-- <a href="#" class="ms-3 p-1 text-body"></i>登入</a> -->
-
-
-                        <!--登入前隱藏 登入後展示 -->
-                        <div class=" ms-3 p-1">點數: <span>$150.00</span></div>
-                    </div>
-                </div>
-            </nav>
-        </div>
+        <NavBar></NavBar>
         <!-- Navbar End -->
+        <!-- 內容 -->
+        <router-view></router-view>
 
-
-        <!-- Carousel Start -->
-        <div class="container-fluid p-0 mb-5 wow fadeIn" data-wow-delay="0.1s">
-            <div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img class="w-100" src="./img/bg-health.jpg" alt="Image" style="height: 100vh;">
-                        <div class="carousel-caption">
-                            <div class="container">
-                                <div class="row justify-content-start">
-                                    <div class="col-lg-7">
-                                        <h1 class="display-2 mb-5 animated slideInDown">幫想文案</h1>
-                                        <a href="" class="btn btn-primary rounded-pill py-sm-3 px-sm-5">開始計畫</a>
-                                        <a href="" class="btn btn-secondary rounded-pill py-sm-3 px-sm-5 ms-3">查詢計畫</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- <div class="carousel-item">
-                        <img class="w-100" src="img/carousel-2.jpg" alt="Image">
-                        <div class="carousel-caption">
-                            <div class="container">
-                                <div class="row justify-content-start">
-                                    <div class="col-lg-7">
-                                        <h1 class="display-2 mb-5 animated slideInDown">Natural Food Is Always Healthy</h1>
-                                        <a href="" class="btn btn-primary rounded-pill py-sm-3 px-sm-5">Products</a>
-                                        <a href="" class="btn btn-secondary rounded-pill py-sm-3 px-sm-5 ms-3">Services</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
-                </div>
-                <!-- <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#header-carousel" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button> -->
-            </div>
-        </div>
-        <!-- Carousel End -->
-
-
-
-        <!-- Product Start -->
-        <div class="container-xxl py-5">
-            <div class="container">
-                <div class="row g-0 gx-5 align-items-end">
-                    <div class="col-lg-6">
-                        <div class="section-header text-start mb-5 wow fadeInUp" data-wow-delay="0.1s"
-                            style="max-width: 500px;">
-                            <h1 class="display-5 mb-3">熱量一覽</h1>
-                            <p>Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed rebum vero dolor
-                                duo.</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 text-start text-lg-end wow slideInRight" data-wow-delay="0.1s">
-                        <ul class="nav nav-pills d-inline-flex justify-content-end mb-5">
-                            <li class="nav-item me-2">
-                                <a class="btn btn-outline-primary border-2 active" data-bs-toggle="pill"
-                                    href="#tab-1">Vegetable</a>
-                            </li>
-                            <li class="nav-item me-2">
-                                <a class="btn btn-outline-primary border-2" data-bs-toggle="pill" href="#tab-2">Fruits </a>
-                            </li>
-                            <li class="nav-item me-0">
-                                <a class="btn btn-outline-primary border-2" data-bs-toggle="pill" href="#tab-3">Fresh</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="tab-content">
-                    <div id="tab-1" class="tab-pane fade show p-0 active">
-                        <div class="row g-4">
-                            <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s" v-for="item in 8">
-                                <div class="product-item">
-                                    <div class="position-relative bg-light overflow-hidden">
-                                        <img class="img-fluid w-100" src="./img/product-1.jpg" alt="">
-                                        <div
-                                            class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
-                                            New</div>
-                                    </div>
-                                    <div class="text-center p-4">
-                                        <a class="d-block h5 mb-2" href="">{{ products }}</a>
-                                        <span class="text-primary me-1">{$19.00}</span>
-                                        <span class="text-body text-decoration-line-through">$29.00</span>
-                                    </div>
-                                    <div class="d-flex border-top">
-                                        <small class="w-50 text-center border-end py-2">
-                                            <a class="text-body" href=""><i class="fa fa-eye text-primary me-2"></i>View
-                                                detail</a>
-                                        </small>
-                                        <small class="w-50 text-center py-2">
-                                            <a class="text-body" href=""><i
-                                                    class="fa fa-shopping-bag text-primary me-2"></i>Add to cart</a>
-                                        </small>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
-                                <a class="btn btn-primary rounded-pill py-3 px-5" href="">瀏覽更多資訊</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="tab-2" class="tab-pane fade show p-0">
-                        <div class="row g-4">
-                            <div class="col-xl-3 col-lg-4 col-md-6" v-for="item in 8">
-                                <div class="product-item">
-                                    <div class="position-relative bg-light overflow-hidden">
-                                        <img class="img-fluid w-100" src="./img/product-1.jpg" alt="">
-                                        <div
-                                            class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
-                                            New
-                                        </div>
-                                    </div>
-                                    <div class="text-center p-4">
-                                        <a class="d-block h5 mb-2" href="">Fresh Tomato</a>
-                                        <span class="text-primary me-1">$19.00</span>
-                                        <span class="text-body text-decoration-line-through">$29.00</span>
-                                    </div>
-                                    <div class="d-flex border-top">
-                                        <small class="w-50 text-center border-end py-2">
-                                            <a class="text-body" href=""><i class="fa fa-eye text-primary me-2"></i>View
-                                                detail</a>
-                                        </small>
-                                        <small class="w-50 text-center py-2">
-                                            <a class="text-body" href=""><i
-                                                    class="fa fa-shopping-bag text-primary me-2"></i>Add to cart</a>
-                                        </small>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 text-center">
-                                <a class="btn btn-primary rounded-pill py-3 px-5" href="">瀏覽更多資訊</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="tab-3" class="tab-pane fade show p-0">
-                        <div class="row g-4">
-                            <div class="col-xl-3 col-lg-4 col-md-6" v-for="item in 8">
-                                <div class="product-item">
-                                    <div class="position-relative bg-light overflow-hidden">
-                                        <img class="img-fluid w-100" src="./img/product-1.jpg" alt="">
-                                        <div
-                                            class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
-                                            New</div>
-                                    </div>
-                                    <div class="text-center p-4">
-                                        <a class="d-block h5 mb-2" href="">Fresh Tomato</a>
-                                        <span class="text-primary me-1">$19.00</span>
-                                        <span class="text-body text-decoration-line-through">$29.00</span>
-                                    </div>
-                                    <div class="d-flex border-top">
-                                        <small class="w-50 text-center border-end py-2">
-                                            <a class="text-body" href=""><i class="fa fa-eye text-primary me-2"></i>View
-                                                detail</a>
-                                        </small>
-                                        <small class="w-50 text-center py-2">
-                                            <a class="text-body" href=""><i
-                                                    class="fa fa-shopping-bag text-primary me-2"></i>Add to cart</a>
-                                        </small>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 text-center">
-                                <a class="btn btn-primary rounded-pill py-3 px-5" href="">瀏覽更多資訊</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Product End -->
-
-        <!-- Blog Start -->
-        <div class="container-xxl py-5">
-            <div class="container">
-                <div class="section-header text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s"
-                    style="max-width: 500px;">
-                    <h1 class="display-5 mb-3">最新 討論</h1>
-                    <p>Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed rebum vero dolor duo.</p>
-                </div>
-                <div class="row g-4">
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s" v-for="blog in 3">
-                        <img class="img-fluid" src="./img/blog-1.jpg" alt="">
-                        <div class="bg-light p-4">
-                            <a class="d-block h5 lh-base mb-4" href="">How to cultivate organic fruits and vegetables in own
-                                firm</a>
-                            <div class="text-muted border-top pt-4">
-                                <small class="me-3"><i class="fa fa-user text-primary me-2"></i>Admin</small>
-                                <small class="me-3"><i class="fa fa-calendar text-primary me-2"></i>01 Jan, 2045</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Blog End -->
 
         <!-- Footer Start -->
         <div class="container-fluid bg-dark footer mt-5 p-3 wow fadeIn" data-wow-delay="0.1s">
