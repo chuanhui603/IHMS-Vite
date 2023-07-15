@@ -89,7 +89,7 @@
                                             New</div>
                                     </div>
                                     <div class="text-center p-4">
-                                        <a class="d-block h5 mb-2" href="">{{ products }}</a>
+                                        <a class="d-block h5 mb-2" href="">Fresh Tomato</a>
                                         <span class="text-primary me-1">{$19.00}</span>
                                         <span class="text-body text-decoration-line-through">$29.00</span>
                                     </div>

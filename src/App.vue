@@ -1,16 +1,13 @@
 <script setup>
 import 'bootstrap/dist/js/bootstrap.min.js'
 import './js/main.js'
+import './js/test.js'
 import { WOW } from 'wowjs/dist/wow.min.js'
-import NavBar from './components/NavBar.vue'
-import {onMounted} from 'vue'
-    name: 'app',
-    onMounted(()=>{
-        
-        new WOW().init()
-       
-      })
+import NavBar from './components/NavBar.vue'   
+new WOW().init()
 </script>
+
+
 <style lang="css" src="./css/bootstrap.min.css"></style>
 <style lang="css" src="./css/style.css"></style>
 <style lang="css" src="wowjs/css/libs/animate.css"></style>
@@ -29,8 +26,8 @@ import {onMounted} from 'vue'
         <!-- 內容 -->
         <router-view></router-view>           
 
-        <!-- Footer Start -->
-        <div class="container-fluid bg-dark footer mt-5 p-3 wow fadeIn" data-wow-delay="0.1s">
+        <!-- 尾頁 Start -->
+        <div class="container-fluid bg-dark footer p-3 wow fadeIn" data-wow-delay="0.1s">
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 text-center text-md-start mt-3 mb-md-0">
@@ -43,13 +40,13 @@ import {onMounted} from 'vue'
                     </div>
                 </div>
             </div>
-            <!-- Footer End -->
+            <!-- 尾頁 End -->
         </div>
 
-        <!-- Back to Top -->
+        <!-- 從頭開始 -->
         <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top pt-2"><i
                 class="bi bi-arrow-up"></i></a>
-        <!-- Back to Top -->
+        <!-- 從頭開始 -->
 
     </div>
 </template>
