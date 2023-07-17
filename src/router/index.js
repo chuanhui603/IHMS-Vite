@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Plan from '../views/PlanView.vue'
 import Home from '../views/HomeView.vue'
+import Announcement from '../views/AnnouncementList.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -20,6 +21,11 @@ const router = createRouter({
       //   {path:'us',component:AboutUs,},
       //   {path:'others',component:AboutOthers,},
       //   ],
+    },
+    {
+      path: '/announcements',
+      name: 'AnnouncementList',
+      component: Announcement
     }
   ]
 })

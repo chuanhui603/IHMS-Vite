@@ -29,7 +29,9 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav p-4 p-lg-0">
+                        
                         <RouterLink to="/" class="nav-item nav-link active">首頁</RouterLink>
+                        <RouterLink to="/announcements" class="nav-item nav-link active">公告</RouterLink>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">會員專區</a>
                             <div class="dropdown-menu m-0">
@@ -48,6 +50,8 @@
                             </div>
                         </div>
                         <a href="contact.html" class="nav-item nav-link">討論區</a>
+                        
+
                     </div>
                     <div class="d-none d-lg-flex ms-auto">
                         <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
