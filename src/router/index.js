@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Plan from '../views/PlanView.vue'
 import Home from '../views/HomeView.vue'
+import PlanCreate from '../views/PlanCreate.vue'
+import PlanDetail from '../views/PlanDetail.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -16,10 +18,10 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: Plan,
-      // children:[
-      //   {path:'us',component:AboutUs,},
-      //   {path:'others',component:AboutOthers,},
-      //   ],
+      children:[
+        {path:'create',component:PlanCreate,},
+        {path:'/plan/:planID?',component:PlanDetail,},
+        ],
     }
   ]
 })

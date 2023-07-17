@@ -1,37 +1,63 @@
 <script setup>
 import plansidebar from '../components/PlansideBar.vue'
 import BarChart from '../components/BarChart.vue'
-const loadProducts = async (e) => {
-    console.log(e)
-    const res = await fetch(`https://localhost:7127/api/Plans/${e}`)
-    const datas = await res.json()
-    console.log(datas)
-
+import LineChart from '../components/LineChart.vue'
+import PieChart from '../components/PieChart.vue'
+import { ref } from 'vue'
+const plans = ref([])
+const loadPlansTopFive = async (id) => {
+  const res = await fetch(`https://localhost:7127/api/plans/member/${id}`)
+  const datas = await res.json()
+  plans.value = datas.slice(0, 5)
 }
-
+loadPlansTopFive(6)
 
 </script>
     
 <template>
-    <div class="container-xxl" style="height: 100vh;margin-top: 79px;">
-        <!-- 內容  -->
-        <div class="row">
-            <!-- sidebar -->
-            <plansidebar></plansidebar>
-            <div class="col-lg-9" >
-              <BarChart></BarChart>
-                <button type="button" @click="loadProducts(1)">AJAX測試</button>
+  <div class="container-xxl mb-2" style="height: 100vh;margin-top: 79px;">
+    <!-- 內容  -->
+    <div class="row ">
+      <!-- sidebar -->
+      <div class="col-lg-3" style="height: 100vh;border:1px solid">
+        <plansidebar :plans="plans"></plansidebar>
+      </div>
+      <div class="col-lg-9 ">
+        <router-view></router-view> 
+
+        <!-- <div class="row justify-content-center">
+          <div class="chart">
+            <BarChart></BarChart>
+          </div>
+          <div class="row mt-5">
+            <div class="col-lg-6">
+              <div class="chart">
+                <LineChart></LineChart>
+              </div>
             </div>
-        </div>
+            <div class="col-lg-6">
+              <div class="chart">
+                <PieChart></PieChart>
+              </div>
+            </div>
+          </div>
+        </div> -->
+
+      </div>
     </div>
+  </div>
 </template>
 
 <style scoped>
+.chart {
+  width: 70%;
+}
+
 .col-lg-3 {
-    width: 20%;
+  width: 20%;
 }
 
 .col-lg-9 {
-    width: 80%;
+  width: 80%;
 }
 </style>
