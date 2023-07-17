@@ -1,5 +1,6 @@
 <script setup>
    import { RouterLink, RouterView } from 'vue-router'
+
 </script>
 
 <template>
@@ -54,7 +55,7 @@
 
                     </div>
                     <div class="d-none d-lg-flex ms-auto">
-                        <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
+                        <a class="btn-sm-square bg-white rounded-circle ms-3" href="#">
                             <small class="fa fa-search text-body"></small>
                         </a>
                         <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
