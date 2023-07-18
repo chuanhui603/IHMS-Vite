@@ -3,7 +3,6 @@ const props = defineProps({
     plans: Array
 })
 const id =6
-
 const listsearch = async (search) => {
     if (search != '') {
         const res = await fetch(`https://localhost:7127/api/plans/member/${id}/search/${search}`)
@@ -15,7 +14,6 @@ const listsearch = async (search) => {
         const datas = await res.json()
         props.plans.value = datas
     }
-
 }
 
 </script>
@@ -41,7 +39,7 @@ const listsearch = async (search) => {
                 <div>
                     <ul class="menulist nav mt-2">
                         <li v-for="{ pname, planId } in plans" :key="planId" class="mt-2 mb-2">
-                            <router-link :to="`/plan/${planId}`" class="routerbtn">{{ pname }}</router-link>
+                            <router-link :to="`/plan/${planId}`" class="routerbtn" >{{ pname }}</router-link>
                         </li>
                     </ul>
                 </div>
