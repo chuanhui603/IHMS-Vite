@@ -2,10 +2,20 @@
 const props = defineProps({
     plans: Array
 })
-let searchstr = ``
-const listsearch = async (id,search) => {
-    const res = await fetch(`https://localhost:7127/api/plans/member/${id}/${search}`)
-    const datas = await res.json()
+const id =6
+
+const listsearch = async (search) => {
+    if (search != '') {
+        const res = await fetch(`https://localhost:7127/api/plans/member/${id}/search/${search}`)
+        const datas = await res.json()
+        console.log(datas)
+        props.plans.value = datas
+    }else{
+        const res = await fetch(`https://localhost:7127/api/plans/member/${id}`)
+        const datas = await res.json()
+        props.plans.value = datas
+    }
+
 }
 
 </script>
@@ -26,7 +36,7 @@ const listsearch = async (id,search) => {
                     <router-link to="/plan/create" class="btn btn-primary">New</router-link>
                 </div>
                 <div class="menusearch">
-                    <input type="text" :value="searchstr" placeholder="search" @input="listsearch(6,value)">
+                    <input type="text" v-model="search" placeholder="search" @input="listsearch(search)">
                 </div>
                 <div>
                     <ul class="menulist nav mt-2">
@@ -98,7 +108,8 @@ const listsearch = async (id,search) => {
     border: 1px solid;
     border-radius: 8%;
 }
-.routerbtn{
+
+.routerbtn {
     display: block;
     width: 100%;
 }
