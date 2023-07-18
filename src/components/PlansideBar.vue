@@ -2,8 +2,8 @@
 const props = defineProps({
     plans: Array
 })
-let searchstr =`search`
-const listsearch=async (value)=>{
+let searchstr = ``
+const listsearch = async (id,search) => {
     const res = await fetch(`https://localhost:7127/api/plans/member/${id}/${search}`)
     const datas = await res.json()
 }
@@ -26,12 +26,12 @@ const listsearch=async (value)=>{
                     <router-link to="/plan/create" class="btn btn-primary">New</router-link>
                 </div>
                 <div class="menusearch">
-                    <input type="text" :value="searchstr" @input="listsearch(value)">
+                    <input type="text" :value="searchstr" placeholder="search" @input="listsearch(6,value)">
                 </div>
                 <div>
                     <ul class="menulist nav mt-2">
-                        <li v-for="{pname,planId} in plans" :key="planId" class=" mt-2 mb-2 btn">
-                            <router-link :to="`/plan/${planId}`">{{pname}}</router-link>
+                        <li v-for="{ pname, planId } in plans" :key="planId" class="mt-2 mb-2">
+                            <router-link :to="`/plan/${planId}`" class="routerbtn">{{ pname }}</router-link>
                         </li>
                     </ul>
                 </div>
@@ -81,6 +81,7 @@ const listsearch=async (value)=>{
     width: 100%;
     border-radius: 5%;
     color: #ccc;
+    padding: 3px;
 }
 
 .menulist {
@@ -95,5 +96,10 @@ const listsearch=async (value)=>{
     width: 100%;
     text-align: center;
     border: 1px solid;
+    border-radius: 8%;
+}
+.routerbtn{
+    display: block;
+    width: 100%;
 }
 </style>
