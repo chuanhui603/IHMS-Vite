@@ -49,7 +49,6 @@ new WOW().init()
                 class="bi bi-arrow-up"></i></a>
         <!-- 從頭開始 -->
 
->>>>>>> 39985529888a2b08b7a091f6630910c58c75c947
     </div>
   </template>
   
