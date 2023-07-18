@@ -8,7 +8,6 @@ import NavBar from './components/NavBar.vue'
 new WOW().init()
 </script>
 
-
 <style lang="css" src="./css/bootstrap.min.css"></style>
 <style lang="css" src="./css/style.css"></style>
 <style lang="css" src="wowjs/css/libs/animate.css"></style>
@@ -48,8 +47,6 @@ new WOW().init()
         <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top pt-2"><i
                 class="bi bi-arrow-up"></i></a>
         <!-- 從頭開始 -->
-
->>>>>>> 39985529888a2b08b7a091f6630910c58c75c947
     </div>
   </template>
   
@@ -75,9 +72,3 @@ new WOW().init()
     },
   };
   </script>
-  
-  <style lang="css">
-  @import './css/bootstrap.min.css';
-  @import './css/style.css';
-  </style>
-  
