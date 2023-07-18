@@ -1,6 +1,5 @@
 <template>
-    <br><br><br><br>
-    <div class="container">
+    <div class="container" style="margin-top: 100px;">
       <h1>公告列表</h1><br>
       <ul>
         <li v-for="announcement in sortedAnnouncements" :key="announcement.announcementId">
