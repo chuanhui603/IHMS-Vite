@@ -37,7 +37,8 @@
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">會員專區</a>
                             <div class="dropdown-menu m-0">
                                 <RouterLink to="/plan" class="dropdown-item">計畫總覽</RouterLink>
-                                <a href="feature.html" class="dropdown-item">購買紀錄</a>
+                                <RouterLink to="/orders" class="dropdown-item">購買紀錄</RouterLink>
+                                
                                 <a href="testimonial.html" class="dropdown-item">點數紀錄</a>
                                 <a href="404.html" class="dropdown-item">會員設定</a>
                             </div>
