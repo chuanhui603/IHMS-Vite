@@ -2,6 +2,11 @@
 const props = defineProps({
     plans: Array
 })
+let searchstr =`search`
+const listsearch=async (value)=>{
+    const res = await fetch(`https://localhost:7127/api/plans/member/${id}/${search}`)
+    const datas = await res.json()
+}
 
 </script>
 
@@ -21,11 +26,11 @@ const props = defineProps({
                     <router-link to="/plan/create" class="btn btn-primary">New</router-link>
                 </div>
                 <div class="menusearch">
-                    <input type="text" value="" @input="listsearch(value)">
+                    <input type="text" :value="searchstr" @input="listsearch(value)">
                 </div>
                 <div>
                     <ul class="menulist nav mt-2">
-                        <li v-for="{pname} in plans" :key="planId" class=" mt-2 mb-2 btn">
+                        <li v-for="{pname,planId} in plans" :key="planId" class=" mt-2 mb-2 btn">
                             <router-link :to="`/plan/${planId}`">{{pname}}</router-link>
                         </li>
                     </ul>
@@ -75,6 +80,7 @@ const props = defineProps({
 .menusearch input {
     width: 100%;
     border-radius: 5%;
+    color: #ccc;
 }
 
 .menulist {

@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Plan from '../views/PlanView.vue'
 import Home from '../views/HomeView.vue'
+import ChartView from '../views/ChartView.vue'
 import PlanCreate from '../views/PlanCreate.vue'
 import PlanDetail from '../views/PlanDetail.vue'
 const router = createRouter({
@@ -19,6 +20,7 @@ const router = createRouter({
       // which is lazy-loaded when the route is visited.
       component: Plan,
       children:[
+        {path:'chart',component:ChartView,},
         {path:'create',component:PlanCreate,},
         {path:'/plan/:planID?',component:PlanDetail,},
         ],
