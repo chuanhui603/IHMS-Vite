@@ -24,6 +24,7 @@ const onCreate = async () => {
     const {planId} = data.value
     router.push({
         path:`/plan/${planId}`,
+        params:planId
     })
 }
 </script> 

@@ -22,7 +22,10 @@ const router = createRouter({
       children:[
         {path:'chart',component:ChartView,},
         {path:'create',component:PlanCreate,},
-        {path:'/plan/:planID?',component:PlanDetail,},
+        {path:'/plan/:planID/',
+        component:PlanDetail,
+      
+        },
         ],
     }
   ]

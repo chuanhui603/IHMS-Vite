@@ -9,10 +9,8 @@ const loadPlansTopFive = async (id) => {
     const res = await fetch(`https://localhost:7127/api/plans/member/${id}/5`)
     const datas = await res.json()
     plans.value = datas
-    console.log(plans)
 }
 loadPlansTopFive(6)
-console.log(plans)
 
 //動態搜尋變更plan
 const listsearch = async (search) => {
