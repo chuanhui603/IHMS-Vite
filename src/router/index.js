@@ -5,6 +5,7 @@ import Announcement from '../views/AnnouncementList.vue'
 import AnnouncementView from '../views/AnnouncementView.vue';
 import MessageBoardList from '../views/MessageBoardList.vue';
 import MessageBoardRelease from '../views/MessageBoardRelese.vue';
+import MessageBoardDetail from '../views/MessageBoardDetail.vue';
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -45,6 +46,12 @@ const router = createRouter({
       path: '/message-board-release',
       name: 'MessageBoardRelease',
       component: MessageBoardRelease
+    },
+    {
+      path: '/message-board/:messageId', 
+      name: 'MessageBoardDetail',
+      component: MessageBoardDetail,
+      props: true
     },
     
   ]
