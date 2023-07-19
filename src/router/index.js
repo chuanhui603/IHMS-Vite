@@ -4,6 +4,8 @@ import Home from '../views/HomeView.vue'
 import ChartView from '../views/ChartView.vue'
 import PlanCreate from '../views/PlanCreate.vue'
 import PlanDetail from '../views/PlanDetail.vue'
+import DietList from '../views/DietList.vue'
+import SportList from '../views/SportList.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -22,10 +24,9 @@ const router = createRouter({
       children:[
         {path:'chart',component:ChartView,},
         {path:'create',component:PlanCreate,},
-        {path:'/plan/:planID/',
-        component:PlanDetail,
-      
-        },
+        {path:'/plan/:planID/',component:PlanDetail,},
+        {path:'diet/:planID/',component:DietList,},
+        {path:'sport/:planID/',component:SportList,},
         ],
     }
   ]

@@ -3,7 +3,7 @@ import {ref} from 'vue'
 const plans = ref([])
 //test 會員id 6
 const id =6
-
+const search = ref('')
 //讀取前五筆資料
 const loadPlansTopFive = async (id) => {
     const res = await fetch(`https://localhost:7127/api/plans/member/${id}/5`)
@@ -13,9 +13,10 @@ const loadPlansTopFive = async (id) => {
 loadPlansTopFive(6)
 
 //動態搜尋變更plan
-const listsearch = async (search) => {
-    if (search != '') {
-        const res = await fetch(`https://localhost:7127/api/plans/member/${id}/search/${search}`)
+const listsearch = async () => {
+   
+    if (search.value != '') {
+        const res = await fetch(`https://localhost:7127/api/plans/member/${id}/search/${search.value}`)
         const datas = await res.json()
         plans.value = datas
         console.log(datas)
@@ -46,7 +47,7 @@ const listsearch = async (search) => {
                     <router-link to="/plan/create" class="btn btn-primary">New</router-link>
                 </div>
                 <div class="menusearch">
-                    <input type="text" v-model="search" placeholder="search" @input="listsearch(search)">
+                    <input type="text" v-model="search" placeholder="search" @input="listsearch()">
                 </div>
                 <div>
                     <ul class="menulist nav mt-2">
