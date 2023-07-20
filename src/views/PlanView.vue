@@ -1,5 +1,7 @@
 <script setup>
 import plansidebar from '../components/PlansideBar.vue'
+
+
 </script>
     
 <template>
@@ -11,7 +13,9 @@ import plansidebar from '../components/PlansideBar.vue'
                 <plansidebar :plans="plans"></plansidebar>
             </div>
             <div class="col-lg-9 ">
-                <router-view></router-view>
+             
+            <router-view></router-view>
+
             </div>
         </div>
     </div>
