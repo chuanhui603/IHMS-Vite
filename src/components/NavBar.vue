@@ -63,7 +63,8 @@
                             <small class="fa fa-user text-body"></small>
                         </a>
                         <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
-                            <small class="fa fa-shopping-bag text-body"></small>
+                            <RouterLink to="/Cart" small class="fa fa-shopping-bag text-body"></RouterLink>
+                           
                         </a>
 
                         <!--登入前展示 登入後隱藏 -->
