@@ -3,6 +3,7 @@ import Plan from '../views/PlanView.vue'
 import Home from '../views/HomeView.vue'
 import Announcement from '../views/AnnouncementList.vue'
 import Order from '../views/Orders.vue'
+import Detail from '../views/Detail.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -31,8 +32,13 @@ const router = createRouter({
     {
       path: '/orders',
       name: 'orders',
-      component: Order
+      component: Order,
+      children:[
+        {path:'detail',component:detail,},
+        
+        ],
     }
+    
   ]
 })
 

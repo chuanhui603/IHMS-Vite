@@ -4,7 +4,7 @@ import 'bootstrap/dist/js/bootstrap.min.js'
 import './js/main.js'
 import './js/test.js'
 import { WOW } from 'wowjs/dist/wow.min.js'
-import NavBar from './components/NavBar.vue'   
+import NavBar from './components/NavBar.vue' 
 new WOW().init()
 </script>
 
