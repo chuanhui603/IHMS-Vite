@@ -41,6 +41,7 @@ const router = createRouter({
         
         ],
     },
+    
     {
       path: '/PointRecord',
       name: 'PointRecord',
@@ -51,6 +52,7 @@ const router = createRouter({
       name: 'Cart',
       component: Cart
     }
+    
     
   ]
 })
