@@ -20,9 +20,11 @@
                 </select>
             </div>
             <div class="form-group">
+                <br />
                 <label for="images">上傳圖片</label>
                 <input type="file" id="images" ref="images" @change="onFileChange" multiple>
             </div>
+            <br />
             <div v-if="message.images.length > 0">
                 <h5>已選擇的圖片檔案：</h5>
                 <ul>
@@ -51,32 +53,32 @@ export default {
         };
     },
     methods: {
-        onFileChange(event) {
-            this.message.images = [...event.target.files];
-        },
-        async submitMessage() {
-            try {
-                const formData = new FormData();
-                formData.append('title', this.message.title);
-                formData.append('contents', this.message.contents);
-                formData.append('category', this.message.category);
-                formData.append('member_id', this.message.member_id);
+    onFileChange(event) {
+        this.message.images = [...event.target.files];
+    },
+    async submitMessage() {
+        try {
+            const formData = new FormData();
+            formData.append('title', this.message.title);
+            formData.append('contents', this.message.contents);
+            formData.append('category', this.message.category);
+            formData.append('member_id', this.message.member_id);
 
-                this.message.images.forEach((image) => {
-                    formData.append('images', image);
-                });
+            this.message.images.forEach((image) => {
+                formData.append('images', image);
+            });
 
-                await axios.post('https://localhost:7127/api/MessageBoard/CreateMessage', formData, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data'
-                    }
-                });
-                this.$router.go(-1);
-            } catch (error) {
-                console.error('發布留言失敗：', error);
-            }
+            await axios.post('https://localhost:7127/api/MessageBoard/CreateMessage', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+            this.$router.go(-1);
+        } catch (error) {
+            console.error('發布留言失敗：', error);
         }
     }
+}
 };
 </script>
   

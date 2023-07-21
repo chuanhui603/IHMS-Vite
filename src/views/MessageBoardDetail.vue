@@ -13,21 +13,20 @@
     <div class="container comments-section">
         <h2>留言</h2>
         <div v-for="(comment, index) in comments" :key="index" class="comment">
-            <p>{{ formatDate(comment.time) }}</p>
+            <p>
+                {{ (index + 1) + 'F' }}
+                <span class="time">{{ formatDate(comment.time) }}</span><!-- 顯示樓層時間 -->
+            </p>
             <p>{{ comment.contents }}</p>
-            
         </div>
         <h3>新增留言</h3>
-        
         <textarea v-model="newComment"></textarea>
         <button @click="postComment">提交留言</button>
         <p></p>
-        <input type="file" @change="onFileChange">
-        
-        <br/><br/>
+        <br /><br />
     </div>
 </template>
-
+  
 <script>
 import axios from 'axios';
 
@@ -38,7 +37,6 @@ export default {
             images: [],
             comments: [],
             newComment: '',
-            newImage: null,
         };
     },
     methods: {
@@ -50,45 +48,44 @@ export default {
                 day: '2-digit',
                 hour: '2-digit',
                 minute: '2-digit',
+                hour12: true,
             });
         },
         getImageUrl(imageName) {
-            console.log(`https://localhost:7127/api/Image/${this.message.message_id}/images/${imageName}`); 
+            console.log(`https://localhost:7127/api/Image/${this.message.message_id}/images/${imageName}`);
             if (imageName) {
                 return `https://localhost:7127/api/Image/${this.message.message_id}/images/${imageName}`;
             } else {
-                return ''; 
+                return '';
             }
         },
-        onFileChange(event) {
-            this.newImage = event.target.files[0];
-        },
-        async postComment() {
-    if (this.newComment) {
-        try {
-            const formData = new FormData();
-            formData.append('message_id', this.message.message_id);
-            formData.append('Contents', this.newComment);
-            formData.append('member_id', 2);
-            if (this.newImage) {
-                formData.append('image', this.newImage);
+        postComment() {
+            if (this.newComment) {
+                this.submitComment();
             }
-            
-            console.log('Submitting comment:', formData);
-            await axios.post(`https://localhost:7127/api/MessageBoardDetails`, formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            });
+        },
+        async submitComment() {
+            try {
+                let commentData = {
+                    message_id: this.message.message_id,
+                    Contents: this.newComment,
+                    member_id: 2
+                };
 
-            this.newComment = '';
-            this.newImage = null;
-            await this.fetchComments();
-        } catch (error) {
-            console.error('留言提交失敗：', error);
-        }
-    }
-},
+                console.log('Submitting comment:', commentData);
+
+                await axios.post(`https://localhost:7127/api/MessageBoardDetails`, commentData, {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                this.newComment = '';
+                this.fetchComments();
+            } catch (error) {
+                console.error('留言提交失敗：', error);
+            }
+        },
         async fetchComments() {
             try {
                 const response = await axios.get(`https://localhost:7127/api/MessageBoardDetails/${this.message.message_id}`);
@@ -99,7 +96,7 @@ export default {
         },
     },
     async created() {
-        console.log("created method started");  
+        console.log("created method started");
         let messageId = this.$route.params.messageId;
         try {
             let response = await axios.get(`https://localhost:7127/api/MessageBoard/${messageId}`);
@@ -107,7 +104,7 @@ export default {
             this.message = response.data;
 
             if (this.message.message_id) {
-                console.log("Getting images for message with ID: ", this.message.message_id);  
+                console.log("Getting images for message with ID: ", this.message.message_id);
                 let imageResponse = await axios.get(`https://localhost:7127/api/Image/${this.message.message_id}/images`);
                 console.log("Image response received: ", imageResponse);
                 this.images = imageResponse.data;
@@ -120,14 +117,15 @@ export default {
         }
     },
 };
-</script>
 
+</script>
+  
 <style scoped>
 .message-container {
     border: 1px solid #ddd;
     padding: 20px;
     border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .message-container h1 {
@@ -172,4 +170,15 @@ export default {
     margin-top: 20px;
     border-radius: 5px;
 }
+
+.comment p {
+    margin-bottom: 6px;
+    /* 設定段落間的下方間距 */
+}
+
+.comment .time {
+    margin-left: 12px;
+    /* 設定時間與樓層之間的左邊間距 */
+}
 </style>
+  
