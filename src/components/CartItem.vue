@@ -24,8 +24,7 @@
     
 <script setup>
     const prop = defineProps({    
-        cart: Array, // 聲明 orders 的類型   
-       
+        cart: Array,
   });
 </script>
     

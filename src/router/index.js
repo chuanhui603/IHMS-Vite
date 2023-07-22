@@ -37,7 +37,8 @@ const router = createRouter({
       name: 'orders',
       component: Orders,
       children:[
-        {path:'/detail',component:Detail,},
+        {path:'/detail/:orderId',component:Detail},
+        
         
         ],
     },
