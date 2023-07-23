@@ -1,6 +1,16 @@
 <script setup>
 import plansidebar from '../components/PlansideBar.vue'
-
+import {ref} from'vue'
+const plans = ref([])
+//test 會員id 6
+const id =6
+//讀取前五筆資料
+const loadPlansTopFive = async (id) => {
+    const res = await fetch(`https://localhost:7127/api/plans/member/${id}/5`)
+    const datas = await res.json()
+    plans.value = datas
+}
+loadPlansTopFive(6)
 
 </script>
     

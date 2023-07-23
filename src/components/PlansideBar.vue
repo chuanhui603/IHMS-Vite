@@ -1,16 +1,10 @@
 <script setup>
 import {ref} from 'vue'
-const plans = ref([])
-//test 會員id 6
-const id =6
+const prop = defineProps({
+    plans:Array
+})
 const search = ref('')
-//讀取前五筆資料
-const loadPlansTopFive = async (id) => {
-    const res = await fetch(`https://localhost:7127/api/plans/member/${id}/5`)
-    const datas = await res.json()
-    plans.value = datas
-}
-loadPlansTopFive(6)
+
 
 //動態搜尋變更plan
 const listsearch = async () => {
