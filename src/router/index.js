@@ -3,9 +3,8 @@ import Plan from '../views/PlanView.vue'
 import Home from '../views/HomeView.vue'
 import Announcement from '../views/AnnouncementList.vue'
 import Orders from '../views/Orders.vue'
-import Detail from '../views/Detail.vue'
 import PointRecord from '../views/PointRecord.vue'
-import Cart from '../views/Cart.vue'
+import BuyPoint from '../views/BuyPoint.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -36,11 +35,7 @@ const router = createRouter({
       path: '/orders',
       name: 'orders',
       component: Orders,
-      children:[
-        {path:'/detail/:orderId',component:Detail},
-        
-        
-        ],
+     
     },
     
     {
@@ -49,9 +44,9 @@ const router = createRouter({
       component: PointRecord
     },
     {
-      path: '/Cart',
-      name: 'Cart',
-      component: Cart
+      path: '/BuyPoint',
+      name: 'BuyPoint',
+      component: BuyPoint
     }
     
     

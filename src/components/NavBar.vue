@@ -63,7 +63,7 @@
                             <small class="fa fa-user text-body"></small>
                         </a>
                         <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
-                            <RouterLink to="/Cart" small class="fa fa-shopping-bag text-body"></RouterLink>
+                            <RouterLink to="/BuyPoint" small class="fa fa-shopping-bag text-body"></RouterLink>
                            
                         </a>
 
