@@ -53,32 +53,46 @@ export default {
         };
     },
     methods: {
-    onFileChange(event) {
-        this.message.images = [...event.target.files];
-    },
-    async submitMessage() {
-        try {
-            const formData = new FormData();
-            formData.append('title', this.message.title);
-            formData.append('contents', this.message.contents);
-            formData.append('category', this.message.category);
-            formData.append('member_id', this.message.member_id);
-
-            this.message.images.forEach((image) => {
-                formData.append('images', image);
-            });
-
-            await axios.post('https://localhost:7127/api/MessageBoard/CreateMessage', formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            });
+        cancelRelease() {
             this.$router.go(-1);
-        } catch (error) {
-            console.error('發布留言失敗：', error);
+        },
+        onFileChange(event) {
+            const validImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
+            const selectedImages = [...event.target.files];
+
+            for (let image of selectedImages) {
+                if (!validImageTypes.includes(image.type)) {
+                    alert('檔案格式必須為 GIF, JPEG, or PNG');
+                    this.$refs.images.value = null;  // 清空檔案選擇器
+                    return;
+                }
+            }
+
+            this.message.images = selectedImages;
+        },
+        async submitMessage() {
+            try {
+                const formData = new FormData();
+                formData.append('title', this.message.title);
+                formData.append('contents', this.message.contents);
+                formData.append('category', this.message.category);
+                formData.append('member_id', this.message.member_id);
+
+                this.message.images.forEach((image) => {
+                    formData.append('images', image);
+                });
+
+                await axios.post('https://localhost:7127/api/MessageBoard/CreateMessage', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                });
+                this.$router.go(-1);
+            } catch (error) {
+                console.error('發布留言失敗：', error);
+            }
         }
     }
-}
 };
 </script>
   

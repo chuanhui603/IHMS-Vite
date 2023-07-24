@@ -1,8 +1,8 @@
 <template>
     <div class="container" style="margin-top: 100px;">
       <h1>{{ announcement.title }}</h1>
-      <p>{{ announcement.contents }}</p>
       <p>{{ formatTime(announcement.time) }}</p>
+      <p>{{ announcement.contents }}</p>
       <img v-if="announcement.image" :src="getImageUrl(announcement.image)" alt="Announcement Image" />
     </div>
   </template>

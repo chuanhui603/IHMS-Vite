@@ -4,7 +4,7 @@
         <p>分類：{{ message.category }}</p>
         <p>時間：{{ formatDate(message.time) }}</p>
         <p>內容：{{ message.contents }}</p>
-        <h2>相關圖片：</h2>
+
         <div v-if="images.length > 0">
             <img v-for="(image, index) in images" :key="index" :src="getImageUrl(image)" :alt="'Image ' + index" />
         </div>
