@@ -6,7 +6,7 @@
                                 <option value="健身">健身</option>
                                 <option value="有氧">有氧</option>
                         </select>
-
+                        
                         <input type="text" placeholder="組數" v-model="sportdetail.Frequency" required>
                         <input type="text" placeholder="運動時間" v-model="sportdetail.Sporttime" required>
                         <input type="file" @change="ImgAdd" multiple>
@@ -16,20 +16,16 @@
                 </div>
         </form>
 
+<div class=""></div>
 
         <div v-if="sportdetail.Img.length > 0">
-                <h5>已選擇的圖片檔案：</h5>
-                <div v-for="(image, index) in imgList" :key="index">
-                        <p>{{ sportdetail.Img[index].name }}</p>
-                        <img :src="image" width="100" height="100">
-                        <button @click="imgDelete(index)">刪除相片</button>
-                </div>
-
+                <Carousel :imgList="sportdetail.Img"></Carousel>
         </div>
 </template>
         
 <script setup>
 import { ref, computed } from 'vue';
+import Carousel from '../components/Carousel.vue';
 const data = ref([])
 const date = new Date();
 let imgUrl = ref([])
