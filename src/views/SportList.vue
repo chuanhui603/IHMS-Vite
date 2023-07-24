@@ -16,7 +16,6 @@
                 </div>
         </form>
 
-<div class=""></div>
 
         <div v-if="sportdetail.Img.length > 0">
                 <Carousel :imgList="sportdetail.Img"></Carousel>
@@ -48,10 +47,6 @@ const loadMethod = async (sportId) => {
 }
 loadMethod(1)
 
-const typeChange = (e) => {
-        console.log(e.target.value)
-        sportdetail.value.type = e.target.value
-}
 
 const ImgAdd = (e) => {
         sportdetail.value.Img.push(...e.target.files)
