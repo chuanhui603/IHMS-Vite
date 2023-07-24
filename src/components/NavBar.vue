@@ -1,5 +1,16 @@
 <script setup>
    import { RouterLink, RouterView } from 'vue-router'
+   
+//    import { ref } from 'vue';
+
+//    // Vue的data
+//     const currentPoints = ref(150);
+
+//     // 監聽來自子組件的自定義事件 'updatePoints'，並更新點數顯示
+//     const updatePoints = (newPoints) => {
+//     currentPoints.value = newPoints;
+//     }
+
 
 </script>
 
@@ -72,6 +83,7 @@
                         <!-- <a href="#" class="ms-3 p-1 text-body"></i>登入</a> -->
 
                         <!--登入前隱藏 登入後展示 -->
+                        <!-- <div class="ms-3 p-1">點數: <span>${currentPoints.value.toFixed(2)}</span></div> -->
                         <div class=" ms-3 p-1">點數: <span>$150.00</span></div>
                     </div>
                 </div>

@@ -12,11 +12,11 @@
     <tbody>
         <tr v-for="{pointrecordId, count, memberId, bankNumber,createtime} in PointRecords" :key="PointrecordId">
                     
-            <td>{{pointrecordId}}</td>
-            <td>{{count}}</td>
-            <td>{{memberId}}</td>
-            <td>{{bankNumber}}</td>
-            <td>{{createtime}}</td>
+            <td>{{ pointrecordId }}</td>
+            <td>{{ count}}</td>
+            <td>{{ memberId}}</td>
+            <td>{{ bankNumber}}</td>
+            <td>{{ createtime}}</td>
         </tr>
         </tbody>
     </table>
