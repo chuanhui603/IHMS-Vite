@@ -4,7 +4,7 @@
             <input type="text" placeholder="食物名稱" v-model="dietdetail.Dname" required>
             <input type="text" placeholder="食物種類" v-model="dietdetail.Type" required>
             <input type="text" placeholder="熱量" v-model="dietdetail.Calories" required>
-            <input type="file" @change="ImgAdd" >
+            <input type="file" @change="ImgAdd" multiple>
             <textarea v-model="dietdetail.Decription"></textarea>
             <button type="submit">修改</button>
             <button type="button" @click="cancelReturn()">取消</button>

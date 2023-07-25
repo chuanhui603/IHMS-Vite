@@ -6,6 +6,7 @@ import PlanCreate from '../views/PlanCreate.vue'
 import PlanDetail from '../views/PlanDetail.vue'
 import DietList from '../views/DietList.vue'
 import SportList from '../views/SportList.vue'
+import login from '../views/Login.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -28,6 +29,11 @@ const router = createRouter({
         {path:'diet/:planID/',component:DietList,},
         {path:'sport/:planID/',component:SportList,},
         ],
+    },
+    {
+      path:'/login',
+      name: 'login',
+      component: login
     }
   ]
 })

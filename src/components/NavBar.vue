@@ -1,4 +1,5 @@
 <script setup>
+import '../js/Login.js'
 </script>
 
 <template>
@@ -52,9 +53,8 @@
                         <a class="btn-sm-square bg-white rounded-circle ms-3" href="#">
                             <small class="fa fa-search text-body"></small>
                         </a>
-                        <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
-                            <small class="fa fa-user text-body"></small>
-                        </a>
+                        <a href="https://localhost:7127/Login/Login" class="btn-sm-square bg-white rounded-circle ms-3" > <small class="fa fa-user text-body"></small></a>
+                           
                         <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
                             <small class="fa fa-shopping-bag text-body"></small>
                         </a>

@@ -8,7 +8,6 @@ const planUpdated = ref(false);
 const router = useRouter()
 
 //test 會員id 6
-const id =6
 //讀取前五筆資料
 const loadPlansTopFive = async (id) => {
     const res = await fetch(`https://localhost:7127/api/plans/member/${id}/5`)
@@ -16,7 +15,6 @@ const loadPlansTopFive = async (id) => {
     plans.value = datas
 }
 loadPlansTopFive(6)
-
 // 在父組件中註冊 'plan-Update' 事件監聽器
 router.afterEach(() => {
   // 路由更改時觸發 'plan-Update' 事件
@@ -26,11 +24,11 @@ router.afterEach(() => {
   }
 });
 
-
-
 </script>
     
 <template>
+
+
     <div class="container-xxl mb-2" style="height: 100vh;margin-top: 79px;">
         <!-- 內容  -->
         <div class="row ">

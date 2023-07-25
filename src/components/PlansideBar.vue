@@ -3,20 +3,20 @@ import { ref } from 'vue'
 const prop = defineProps({
     plans: Array
 })
+const list =ref(prop.plans) 
 const search = ref('')
-let plans = ref(prop.plans)
 
 //動態搜尋變更plan
 const listsearch = async (id) => {
     if (search.value != '') {
         const res = await fetch(`https://localhost:7127/api/plans/member/${id}/search/${search.value}`)
         const datas = await res.json()
-        plans.value = datas
+        list.value = datas
 
     } else {
         const res = await fetch(`https://localhost:7127/api/plans/member/${id}/5`)
         const datas = await res.json()
-        plans.value = datas
+        list.value = datas
     }
 }
 
@@ -43,7 +43,7 @@ const listsearch = async (id) => {
                 <el-scrollbar height="400px">
                     <div>
                         <ul class="menulist nav mt-2">
-                            <li v-for="{ pname, planId } in plans" :key="planId" class="mt-2 mb-2">
+                            <li v-for="{ pname, planId } in list" :key="planId" class="mt-2 mb-2">
                                 <router-link class="linkBox" :to="`/plan/${planId}`">
                                     <el-button color="#626aef" plain>{{pname }}</el-button>
                                 </router-link>
