@@ -3,6 +3,7 @@ import { useRouter } from 'vue-router'
 import { ref } from 'vue'
 const router = useRouter()
 const data = ref([])
+const emit = defineEmits(['plan-Update'])
 const newPlan = {
     pname: '',
     memberid: 6,
@@ -20,6 +21,9 @@ const onCreate = async () => {
         },
         body: JSON.stringify(newPlan),
     })
+
+    emit('plan-Update')
+
     data.value = await res.json()
     const {planId} = data.value
     router.push({

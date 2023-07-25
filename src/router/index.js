@@ -31,5 +31,9 @@ const router = createRouter({
     }
   ]
 })
-
+// {path:'/plan/:planID/',component:PlanDetail,
+// children:[
+//   {path:'diet/:dietID/',component:DietList,},
+//   {path:'sport/:sportID/',component:SportList,},
+// ]},             
 export default router

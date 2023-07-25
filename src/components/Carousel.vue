@@ -3,7 +3,7 @@
     <el-carousel-item v-for="(image, index) in imgList" :key="index">
       <p>{{ prop.imgList[index].name }}</p>
       <img :src="image" width="100" height="100">
-      <button @click="imgDelete()">刪除相片</button>
+      <button @click="imgDelete(index)">刪除相片</button>
     </el-carousel-item>
   </el-carousel>
 </template>
@@ -12,6 +12,11 @@
 const prop = defineProps({
   imgList: Array
 })
+
+const emit = defineEmits(['img-delete'])
+const imgDelete =(index)=>{
+  emit("img-delete",index);
+}
 console.log(prop.imgList[0])
 </script>
 

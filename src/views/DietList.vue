@@ -11,7 +11,7 @@
         </div>
     </form>
     <div v-if="dietdetail.Img.length > 0">
-        <Carousel :imgList="dietdetail.Img"></Carousel>
+        <Carousel :imgList="dietdetail.Img" @img-delete="imgDelete"></Carousel>
     </div>
 </template>
     
@@ -21,7 +21,6 @@ import Carousel from '../components/Carousel.vue';
 const data = ref([])
 const date = new Date()
 let imgUrl = ref([])
-console.log(date)
 //回傳資料
 const dietdetail = ref({
     DietDetailId: 1,
@@ -44,7 +43,6 @@ const dietdetail = ref({
 
 const ImgAdd = (e) => {
     dietdetail.value.Img.push(...e.target.files)
-    console.log(dietdetail.value.Img)
     for (let i = 0; i < dietdetail.value.Img.length; i++) {
         const file = e.target.files[i];
         if (file) {
@@ -56,7 +54,6 @@ const ImgAdd = (e) => {
         }
 
     }
-    console.log(imgUrl)
 }
 
 
@@ -93,6 +90,11 @@ const detailEdit = async () => {
                 console.log(err);
         }
         )
+
+        router.push({
+                path: `/plan/chart`,
+        })
+
 }
 
 

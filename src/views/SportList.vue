@@ -6,25 +6,27 @@
                                 <option value="健身">健身</option>
                                 <option value="有氧">有氧</option>
                         </select>
-                        
+
                         <input type="text" placeholder="組數" v-model="sportdetail.Frequency" required>
                         <input type="text" placeholder="運動時間" v-model="sportdetail.Sporttime" required>
                         <input type="file" @change="ImgAdd" multiple>
                         <textarea v-model="sportdetail.Description"></textarea>
-                        <button type="submit" >修改</button>
+                        <button type="submit">修改</button>
                         <button @click="cancelReturn">返回</button>
                 </div>
         </form>
 
 
         <div v-if="sportdetail.Img.length > 0">
-                <Carousel :imgList="sportdetail.Img"></Carousel>
+                <Carousel :imgList="sportdetail.Img" @Img-Delete="imgDelete"></Carousel>
         </div>
 </template>
         
 <script setup>
 import { ref, computed } from 'vue';
+import { useRouter } from 'vue-router';
 import Carousel from '../components/Carousel.vue';
+const router = useRouter()
 const data = ref([])
 const date = new Date();
 let imgUrl = ref([])
@@ -50,7 +52,6 @@ loadMethod(1)
 
 const ImgAdd = (e) => {
         sportdetail.value.Img.push(...e.target.files)
-        console.log(sportdetail.value.Img)
         for (let i = 0; i < sportdetail.value.Img.length; i++) {
                 const file = e.target.files[i];
                 if (file) {
@@ -60,9 +61,7 @@ const ImgAdd = (e) => {
                         };
                         reader.readAsDataURL(file);
                 }
-
         }
-        console.log(imgUrl)
 }
 
 const imgDelete = (index) => {
@@ -78,7 +77,7 @@ const detailEdit = async () => {
 
         const formData = new FormData()
         formData.append('SportDetailId', sportdetail.value.SportDetailId)
-      
+
         formData.append('SportId', sportdetail.value.SportId)
         formData.append('Sname', sportdetail.value.Sname)
         formData.append('Type', sportdetail.value.Type)
@@ -90,15 +89,20 @@ const detailEdit = async () => {
         })
         formData.append('Registerdate', sportdetail.value.Registerdate)
 
-        
+
         const API_URL = `https://localhost:7127/api/plans/sportdetail/edit`
         const res = await fetch(API_URL, {
-                method: 'PUT',             
+                method: 'PUT',
                 body: formData,
         }).catch(err => {
                 console.log(err);
         }
         )
+
+        router.push({
+                path: `/plan/chart`,
+        })
+
 }
 
 const cancelReturn = () => {
