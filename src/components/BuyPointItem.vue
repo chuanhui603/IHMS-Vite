@@ -22,7 +22,7 @@
               <label for="total" class="form-label">總數量：</label>
               <input type="text" id="total" class="form-control" :value="totalQuantity" readonly>
             </div>
-            <button type="submit" class="btn btn-primary" @click="submitForm">提交</button>
+            <button type="submit" class="btn btn-primary certain" @click="submitForm" >提交</button>
           </form>
         </div>
       </div>
@@ -68,6 +68,12 @@
     padding: 5px 10px;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .certain{
+    margin: 10px;
+    padding: 8px;
+
   }
   
   

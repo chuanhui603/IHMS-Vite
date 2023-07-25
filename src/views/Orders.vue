@@ -2,7 +2,7 @@
     <div  class="container" style="margin-top: 100px;">
       <h1>訂單</h1><br>
         <div class="row">           
-          <div class="col-9">
+          <div class="col-13">
             <OrderItems :orders="orders"></OrderItems> <!-- 通过props传递order属性 -->
             
           </div>         

@@ -27,9 +27,17 @@
         PointRecords: Array
         
     });
+    // console.log(prop);
     
 </script>
     
 <style scoped>
+
+table th, table td {
+   /* 可以自行調整各欄位的寬度百分比 */
+  text-align: center; /* 如果您希望文字居中對齊，加上這個屬性 */
+  padding: 8px; /* 設定內距，可以自行調整 */
+}
+
     
 </style>

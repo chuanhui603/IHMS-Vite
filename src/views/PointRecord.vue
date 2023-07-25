@@ -1,8 +1,8 @@
 <template>
-    <div class="container"      style="margin-top: 100px;">
+    <div class="container" style="margin-top: 100px;">
       <h1>點數紀錄</h1><br>      
       <div class="row">           
-        <div class="col-9">
+        <div class="col-13">
           <PointRecordItem :PointRecords="PointRecords"></PointRecordItem> 
         </div>  
            
