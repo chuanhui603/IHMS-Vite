@@ -1,12 +1,13 @@
 <template>
-    <div class="container mt-5">
+    <div class="container mt-3">
       <div class="row">
         <!-- 圖片與金額 -->
         <div class="col-md-6">
           <div class="coin-card">
             
-            <img src="img/coin.jpg" class="coin-img" alt="Coin Image">
-            <div class="coin-amount">500元</div>
+            <img src="IHMS-VUE-模板/img/coin.jpg" class="coin-img" alt="Coin Image">
+            <!-- <img src="src/img/coin_image.jpg" class="coin-img" alt="Coin Image"> -->
+            <div class="coin-amount">500元 / 張</div>
             
           </div>
         </div>
@@ -54,6 +55,7 @@
     padding: 10px;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
   }
   
   .coin-img {
@@ -62,9 +64,9 @@
   
   .coin-amount {
     position: absolute;
-    bottom: 10px;
+    top: 10px;
     left: 10px;
-    background-color: #fff;
+    background-color: pink;
     padding: 5px 10px;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);

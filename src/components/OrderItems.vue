@@ -10,11 +10,11 @@
           <!-- <th>已取消原因</th> -->
           <th style="width: 150px">訂單時間</th>
           <th style="width: 180px">明細</th>
-          <th style="width: 80px">刪除</th>
+          <!-- <th style="width: 80px">刪除</th> -->
         </tr>
       </thead>
       <tbody>
-        <tr v-for="{orderId, ordernumber, memberId,pointstotal, state, createtime, coach, course, member}
+        <tr v-for="{orderId, ordernumber, memberId,pointstotal, state, createtime, coach, course, member, schedule}
  in orders" :key="orderId">
         
           <td>{{ orderId }}</td>
@@ -27,9 +27,9 @@
                    
           <td style="weight:50px">
             <!-- 呈現教練資料 -->
-            <!-- <ul>
-              <li v-for="c in coach">教練: {{ c.memberId}} </li>
-            </ul> -->
+            <ul>
+              <li v-for="c in coach">教練ID: {{ c.memberId}} </li>
+            </ul>
             <ul>
               <li v-for="m in member">教練名字: {{ m.name}} </li>
             </ul>
@@ -38,10 +38,20 @@
             <ul>
               <li v-for="c in course">課程名稱: {{ c.coursename }}</li>
             </ul>
+
+            <!-- 呈現課程時間 -->
+            <ul>
+              <li v-for="s in schedule">課程時間: {{ s.startTime }}</li>
+            </ul>
+
+             <!-- 呈現課程費用 -->
+             <ul>
+              <li v-for="s in schedule">課程費用: {{ s.point}}</li>
+            </ul>
           </td>
-          <td style="weight:100px">
+          <!-- <td style="weight:100px">
           <button @click="deleteOrder(orderId)" class="delete-button">刪除</button>
-          </td>
+          </td> -->
           
         </tr>
       </tbody>
