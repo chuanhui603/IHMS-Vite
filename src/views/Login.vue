@@ -13,12 +13,14 @@
                                     <p class="text-white-50 mb-5">請輸入您的帳號與密碼!</p>
 
                                     <div class="form-outline form-white mb-4">
-                                        <input type="text" id="Account" v-model="account" class="form-control form-control-lg" />
+                                        <input type="text" id="Account" v-model="LoginData.Account"
+                                            class="form-control form-control-lg" />
                                         <label class="form-label" for="Account">帳號</label>
                                     </div>
 
                                     <div class="form-outline form-white mb-4">
-                                        <input type="password" id="Password" v-mode="password" class="form-control form-control-lg" />
+                                        <input type="password" id="Password" v-model="LoginData.Password"
+                                            class="form-control form-control-lg" />
                                         <label class="form-label" for="Password">密碼</label>
                                     </div>
 
@@ -48,84 +50,39 @@
     </header>
 </template>
 <script setup>
-import {ref} from 'vue'
-const account = ref('')
-const password = ref('')
-const Login =async ()=> {   
+import { useRouter } from 'vue-router'
+const LoginData = 
+    {
+        Account: '',
+        Password: ''
+    }
+
+const Router = useRouter()
+const Login = async () => {
     try {
         const baseAddress = `https://localhost:7127/api/Members/Login`;
         const res = await fetch(baseAddress, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'content-type': 'application/json'
             },
-            body: JSON.stringify({ Account: account, Password: password })
+            body: JSON.stringify(LoginData),
         });
-
-        if (res.ok) {
+        if (res.ok) { 
             const member = await res.json();
             // 登入成功
             alert(`歡迎來到IHMS健康管理平台，${member.name}！`);
             // 將會員資訊存入 localStorage
             localStorage.setItem('currentMember', JSON.stringify(member));
-            console.log('這裡是A');
-           
-            // 從localStorage中取出JSON格式的會員資料字串
-            const savedMemberJSON = localStorage.getItem('currentMember');
-            console.log(savedMemberJSON);
-            // 檢查是否有取得會員資料
-            if (savedMemberJSON) {
-                console.log('這裡是A');
-                try {
-                    // 將JSON字串轉換為JavaScript物件
-                    const savedMember = JSON.parse(savedMemberJSON);
-                    console.log(savedMemberJSON);
-
-                    // 在這裡可以使用savedMember物件進行你需要的操作
-                    document.getElementById("name").value = "test";                    
-                    document.getElementById("email").value = savedMember.email;
-                    document.getElementById("phone").value = savedMember.phone;
-                    document.getElementById("account").value = savedMember.account;
-                    document.getElementById("password").value = savedMember.password;
-                    document.getElementById("birthday").value = savedMember.birthday;
-                    document.getElementById("gender").value = savedMember.gender;
-                    document.getElementById("maritalStatus").value = savedMember.maritalStatus;
-                    document.getElementById("nickname").value = savedMember.nickname;
-                    document.getElementById("avatarimage").value = savedMember.avatarimage;
-                    document.getElementById("residentialcity").value = savedMember.residentialcity;
-                    document.getElementById("permission").value = savedMember.permission;
-                    document.getElementById("occupation").value = savedMember.occupation;
-                    document.getElementById("diseasedescription").value = savedMember.diseasedescription;
-                    document.getElementById("allergydescription").value = savedMember.allergydescription;
-                    document.getElementById("logintime").value = savedMember.logintime;                  
-
-                    // // 當按下"更新資料"按鈕時，觸發更新會員資料的功能
-                    // const updateButton = document.getElementById("updateButton");
-                    // updateButton.addEventListener("click", () => {
-                    //     // 假設你有一個函數來處理會員資料的更新
-                    //     // 這裡示範一個名為updateMemberData的函數
-                    //     updateMemberData(savedMember);
-                    // });                 
-                } catch (error) {
-                    // 若轉換失敗或資料有誤，處理錯誤情況
-                    console.error('無效的會員資料:', error);
-                }
-            } else {
-                // 若沒有取得會員資料，處理未登入情況
-                console.log('尚未登入');
-            }
-             // 重新載入頁面
-            // location.reload();
+            // 回到首頁    
+            Router.push('/')
         } else {
             // 登入失敗
             alert('帳號或密碼不正確，請重新登入！');
         }
     } catch (error) {
         alert('發生錯誤，請稍後再試！');
-        console.error(error);
-    }    
+    }
 }
 </script>
-<style>
-    
-</style>
+<style></style>

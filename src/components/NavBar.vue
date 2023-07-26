@@ -1,5 +1,14 @@
 <script setup>
-import '../js/Login.js'
+import {useRouter} from 'vue-router'
+const router =useRouter()
+const prop = defineProps({
+    isLogin:Boolean
+})
+const memberLogOut =() =>{
+    localStorage.removeItem('currentMember')
+    router.push('/')
+}
+
 </script>
 
 <template>
@@ -50,21 +59,22 @@ import '../js/Login.js'
                         <a href="contact.html" class="nav-item nav-link">討論區</a>
                     </div>
                     <div class="d-none d-lg-flex ms-auto">
-                        <a class="btn-sm-square bg-white rounded-circle ms-3" href="#">
+                        <a v-if="isLogin" class="btn-sm-square bg-white rounded-circle ms-3" href="#">
                             <small class="fa fa-search text-body"></small>
                         </a>
-                        <a href="https://localhost:7127/Login/Login" class="btn-sm-square bg-white rounded-circle ms-3" > <small class="fa fa-user text-body"></small></a>
+                        
+                        <a href="#" v-if="isLogin"  class="btn-sm-square bg-white rounded-circle ms-3" > <small class="fa fa-user text-body"></small></a>
                            
-                        <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
+                        <a class="btn-sm-square bg-white rounded-circle ms-3" href="#">
                             <small class="fa fa-shopping-bag text-body"></small>
                         </a>
 
                         <!--登入前展示 登入後隱藏 -->
 
-                        <!-- <a href="#" class="ms-3 p-1 text-body"></i>登入</a> -->
-
+                        <router-link to="/login" v-if="!isLogin" class="ms-3 p-1 text-body">登入</router-link> 
+                        <router-link to="/" v-if="isLogin" @click="memberLogOut" class="ms-3 p-1 text-body">登出</router-link> 
                         <!--登入前隱藏 登入後展示 -->
-                        <div class=" ms-3 p-1">點數: <span>$150.00</span></div>
+                        <div v-if="isLogin" class=" ms-3 p-1">點數: <span>$150.00</span></div>
                     </div>
                 </div>
             </nav>

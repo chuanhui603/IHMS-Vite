@@ -28,7 +28,11 @@ const router = createRouter({
         {path:'/plan/:planID/',component:PlanDetail,},
         {path:'diet/:planID/',component:DietList,},
         {path:'sport/:planID/',component:SportList,},
-        ],
+        ],beforeEnter:(to, from) => {
+          if(!localStorage.getItem('currentMember')){
+            return {name:'login'}
+          }          
+        },
     },
     {
       path:'/login',

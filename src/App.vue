@@ -2,9 +2,25 @@
 import 'bootstrap/dist/js/bootstrap.min.js'
 import './js/main.js'
 import './js/test.js'
-import { WOW } from 'wowjs/dist/wow.min.js'
-import NavBar from './components/NavBar.vue'   
-new WOW().init()
+import NavBar from './components/NavBar.vue'
+import {ref} from 'vue'
+import {useRouter} from 'vue-router'
+const router = useRouter()
+const isLogin =ref(false);
+const memberItems=ref({})  
+const isLoginCheck=()=>{
+    if(localStorage.getItem('currentMember')){
+        memberItems.value = localStorage.getItem('currentMember')
+        isLogin.value=true
+    }else{
+        isLogin.value=false
+    }
+}
+router.afterEach(() => {   
+  // 路由更改時觸發 'isLoginCheck' 事件 
+    isLoginCheck()
+});
+
 </script>
 
 
@@ -21,7 +37,7 @@ new WOW().init()
         </div>
         <!-- Spinner End -->
         <!-- Navbar Start -->
-        <NavBar></NavBar>
+        <NavBar  :isLogin="isLogin" ></NavBar>
         <!-- Navbar End -->
         <!-- 內容 -->
         <router-view></router-view>           
