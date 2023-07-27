@@ -14,8 +14,8 @@
         <h2>留言</h2>
         <div v-for="(comment, index) in comments" :key="index" class="comment">
             <p>
-                {{ (index + 1) + 'F' }}
-                <span class="time">{{ formatDate(comment.time) }}</span><!-- 顯示樓層時間 -->
+                {{ (index + 1) + 'F' }}   作者：{{ comment.authorName }}
+                   <span class="time">{{ formatDate(comment.time) }}</span><!-- 顯示樓層時間 -->
             </p>
             <p>{{ comment.contents }}</p>
         </div>
@@ -37,6 +37,7 @@ export default {
             images: [],
             comments: [],
             newComment: '',
+            memberId: null, //新增的屬性
         };
     },
     methods: {
@@ -69,7 +70,7 @@ export default {
                 let commentData = {
                     message_id: this.message.message_id,
                     Contents: this.newComment,
-                    member_id: 2
+                    member_id: this.memberId //從 data 中取得的會員 id
                 };
 
                 console.log('Submitting comment:', commentData);
@@ -89,6 +90,7 @@ export default {
         async fetchComments() {
             try {
                 const response = await axios.get(`https://localhost:7127/api/MessageBoardDetails/${this.message.message_id}`);
+                console.log("Fetch Comments Response: ", response);  // 这一行是新添加的
                 this.comments = response.data;
             } catch (error) {
                 console.error('獲取留言失敗：', error);
@@ -98,6 +100,12 @@ export default {
     async created() {
         console.log("created method started");
         let messageId = this.$route.params.messageId;
+
+        let currentMember = JSON.parse(localStorage.getItem('currentMember')); //從 localStorage 取得會員資訊
+        if (currentMember && currentMember.memberId) {
+            this.memberId = currentMember.memberId; //從會員資訊中取得會員 id
+        }
+
         try {
             let response = await axios.get(`https://localhost:7127/api/MessageBoard/${messageId}`);
             console.log("Message response received: ", response);
@@ -117,7 +125,6 @@ export default {
         }
     },
 };
-
 </script>
   
 <style scoped>
@@ -181,4 +188,3 @@ export default {
     /* 設定時間與樓層之間的左邊間距 */
 }
 </style>
-  

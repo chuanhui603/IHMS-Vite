@@ -2,28 +2,43 @@
     <div class="container" style="margin-top: 100px;">
         <div class="message-board-container">
             <div class="category-sidebar">
-        <h3>分類</h3>
-        <ul>
-            <li><button @click="selectCategory('全部文章')" class="btn" :class="{ 'btn-primary': selectedCategory === '全部文章', 'btn-default': selectedCategory !== '全部文章' }">查看全部文章</button></li>
-            <li><button @click="selectCategory('飲食')" class="btn" :class="{ 'btn-primary': selectedCategory === '飲食', 'btn-default': selectedCategory !== '飲食' }">飲食</button></li>
-            <li><button @click="selectCategory('閒聊')" class="btn" :class="{ 'btn-primary': selectedCategory === '閒聊', 'btn-default': selectedCategory !== '閒聊' }">閒聊</button></li>
-            <li><button @click="selectCategory('器材')" class="btn" :class="{ 'btn-primary': selectedCategory === '器材', 'btn-default': selectedCategory !== '器材' }">器材</button></li>
-            <li><button @click="selectCategory('場地')" class="btn" :class="{ 'btn-primary': selectedCategory === '場地', 'btn-default': selectedCategory !== '場地' }">場地</button></li>
-        </ul>
-    </div>
+                <h3>分類</h3>
+                <ul>
+                    <li><button @click="selectCategory('全部文章')" class="btn"
+                            :class="{ 'btn-primary': selectedCategory === '全部文章', 'btn-default': selectedCategory !== '全部文章' }">查看全部文章</button>
+                    </li>
+                    <li><button @click="selectCategory('飲食')" class="btn"
+                            :class="{ 'btn-primary': selectedCategory === '飲食', 'btn-default': selectedCategory !== '飲食' }">飲食</button>
+                    </li>
+                    <li><button @click="selectCategory('閒聊')" class="btn"
+                            :class="{ 'btn-primary': selectedCategory === '閒聊', 'btn-default': selectedCategory !== '閒聊' }">閒聊</button>
+                    </li>
+                    <li><button @click="selectCategory('器材')" class="btn"
+                            :class="{ 'btn-primary': selectedCategory === '器材', 'btn-default': selectedCategory !== '器材' }">器材</button>
+                    </li>
+                    <li><button @click="selectCategory('場地')" class="btn"
+                            :class="{ 'btn-primary': selectedCategory === '場地', 'btn-default': selectedCategory !== '場地' }">場地</button>
+                    </li>
+                </ul>
+            </div>
 
             <div class="content">
                 <div class="header-section">
-            <h2>目前分類：{{ selectedCategory }}</h2>
-            <router-link to="/message-board-release" class="btn btn-info publish-button">發布文章</router-link>
-        </div>
+                    <h2>目前分類：{{ selectedCategory }}</h2>
+                    <router-link to="/message-board-release" class="btn btn-info publish-button">發布文章</router-link>
+                </div>
                 <div v-for="message in paginatedMessages" :key="message.message_id" class="message-item">
                     <p class="message-divider"></p>
                     <div class="message-info">
-                        <router-link :to="`/message-board/${message.message_id}`" class="message-title">
-                            {{ message.category }}．{{ message.title }}．{{ formatDate(message.time) }}
-                        </router-link>
-                        <p>內容預覽：{{ message.contents.slice(0, 50) }}{{ message.contents.length > 50 ? '...' : '' }}</p>
+                        <div class="content-section">
+                            <router-link :to="`/message-board/${message.message_id}`" class="message-title">
+                                {{ message.category }}．{{ message.title }}
+                            </router-link>
+                            <p>內容預覽：{{ message.contents.slice(0, 50) }}{{ message.contents.length > 50 ? '...' : '' }}</p>
+                        </div>
+                        <div class="meta">
+                            <p>發布者：{{ message.name }}  日期:{{ formatDate(message.time) }}</p>
+                        </div>
                     </div>
                 </div>
 
@@ -76,6 +91,9 @@ export default {
             // 分頁處理：取得目前頁面應該顯示的留言資料
             const startIndex = (this.currentPage - 1) * this.pageSize;
             const endIndex = startIndex + this.pageSize;
+            const paginatedMessages = this.filteredMessages.slice(startIndex, endIndex);
+
+            console.log(paginatedMessages);
             return this.filteredMessages.slice(startIndex, endIndex);
         },
     },
@@ -141,6 +159,7 @@ export default {
     font-size: 16px;
     text-align: right;
 }
+
 .btn {
     margin: 5px 0;
     display: block;
@@ -150,15 +169,36 @@ export default {
     background-color: #f8f9fa;
     color: #212529;
 }
+
 .publish-button {
     max-width: 150px;
     /* 發布文章按鈕寬度 */
 }
+
 .header-section {
     display: flex;
     justify-content: space-between;
-    align-items: center; /* 使元素在垂直方向上居中對齊 */
+    align-items: center;
+    /* 使元素在垂直方向上居中對齊 */
+
+}
+.message-info {
+    display: flex;
+    justify-content: space-between;
 }
 
+.content-section {
+    flex-grow: 1;
+}
+
+.message-title {
+    margin-right: 10px; /* or any value you prefer */
+}
+
+.meta {
+    text-align: right;
+    flex-shrink: 0;
+    padding-left: 20px; /* for a little spacing, adjust to your preference */
+}
 </style>
   

@@ -47,10 +47,21 @@ export default {
                 title: '',
                 contents: '',
                 category: '飲食',
-                member_id: 1,
+                member_id: '',
                 images: []
             }
         };
+    },
+    created() {
+
+        const currentMember = JSON.parse(localStorage.getItem('currentMember'));
+        console.log(currentMember); // 這將在控制台打印當前會員的資訊
+        if (currentMember && currentMember.memberId) {
+            this.message.member_id = currentMember.memberId;
+        } else {
+            alert('您尚未登入，無法發布留言！');
+            this.$router.push('/login');
+        }
     },
     methods: {
         cancelRelease() {
@@ -71,6 +82,7 @@ export default {
             this.message.images = selectedImages;
         },
         async submitMessage() {
+            console.log('submitMessage 被調用了，member_id 的值為：', this.message.member_id);
             try {
                 const formData = new FormData();
                 formData.append('title', this.message.title);
@@ -95,4 +107,3 @@ export default {
     }
 };
 </script>
-  

@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import testmember from '../views/testmember.vue'
 import Plan from '../views/PlanView.vue'
 import Home from '../views/HomeView.vue'
+import Login from '../views/Login.vue'
 import Announcement from '../views/AnnouncementList.vue'
 import AnnouncementView from '../views/AnnouncementView.vue';
 import MessageBoardList from '../views/MessageBoardList.vue';
@@ -65,6 +66,11 @@ const router = createRouter({
       path: '/ai-question',
       name: 'AIquestion',
       component: AIquestion,
+    },
+    {
+      path: '/Login',
+      name: 'Login',
+      component: Login,
     },
     
   ]
