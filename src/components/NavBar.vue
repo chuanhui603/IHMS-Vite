@@ -33,7 +33,8 @@ import { RouterLink, RouterView } from 'vue-router'
                     <RouterLink to="/" class="nav-item nav-link active">首頁</RouterLink>
                     <RouterLink to="/announcements" class="nav-item nav-link active">公告</RouterLink>
                     <RouterLink to="/MessageBoardList" class="nav-item nav-link active">討論區</RouterLink>
-
+                    <RouterLink to="/ai-question" class="nav-item nav-link active">AI問答</RouterLink>
+                    <RouterLink to="/testmember" class="nav-item nav-link active">會員測試</RouterLink>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">會員專區</a>
                         <div class="dropdown-menu m-0">

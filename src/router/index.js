@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import testmember from '../views/testmember.vue'
 import Plan from '../views/PlanView.vue'
 import Home from '../views/HomeView.vue'
 import Announcement from '../views/AnnouncementList.vue'
@@ -6,6 +7,7 @@ import AnnouncementView from '../views/AnnouncementView.vue';
 import MessageBoardList from '../views/MessageBoardList.vue';
 import MessageBoardRelease from '../views/MessageBoardRelese.vue';
 import MessageBoardDetail from '../views/MessageBoardDetail.vue';
+import AIquestion from '../views/AIquestion.vue';
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -52,6 +54,17 @@ const router = createRouter({
       name: 'MessageBoardDetail',
       component: MessageBoardDetail,
       props: true
+    },
+    {
+      path: '/testmember/:memberId?', 
+      name: 'testmember',
+      component: testmember,
+      props: true,
+    },
+    {
+      path: '/ai-question',
+      name: 'AIquestion',
+      component: AIquestion,
     },
     
   ]
