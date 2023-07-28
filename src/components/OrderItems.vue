@@ -1,5 +1,9 @@
 <template>
-    <table class="table table-bordered">
+  <div class="text-end">
+    <!-- Add the search input field -->
+    <input v-model="searchText" placeholder="Search..." style="margin: 10px;" />
+    <input type="submit" value="查詢" class="btn btn-primary" />
+    <table class="table table-bordered"></table>
       <thead>
         <tr>
           <th style="width: 50px">訂單ID</th>
@@ -56,15 +60,18 @@
         </tr>
       </tbody>
     </table>
-  </template>
+  </div>
+</template>
   
   <script setup>
-  import { defineProps } from 'vue';     
+  import { defineProps , ref} from 'vue';     
   
  
   const prop = defineProps({    
       orders: Array, // 聲明 orders 的類型
   });
+
+  const searchText = ref('');
 
 
   const deleteOrder = async (orderId) => {
