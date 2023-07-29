@@ -25,24 +25,25 @@
     orders.value = datas;  
 
     // for (const order of orders.value) {
-    //   const scheduleData = await fetch(`https://127.0.0.1:7127/api/SchedulesDTO/GetOrderDetailByOrderid/${order.orderId}`);
+    //   const scheduleData = await fetch(`https://localhost:7127/api/SchedulesDTO/GetOrderDetailByOrderid/${order.orderId}`);
     //   const schedule = await scheduleData.json();
     //   order.schedule = schedule
 
+      //CoursesDTO
       for (const order of orders.value) {
-      const courseData = await fetch(`https://127.0.0.1:7127/api/CoursesDTO/GetCourseByOrderid/${order.orderId}`);
+      const courseData = await fetch(`https://localhost:7127/api/CoursesDTO/GetCourseByOrderid/${order.orderId}`);
       const course = await courseData.json();
       order.course = course
 
         //CoachesDTO
         for (const order of orders.value) {
-        const coachData = await fetch(`https://127.0.0.1:7127/api/CoachesDTO/GetCoachByOrderid/${order.orderId}`);
+        const coachData = await fetch(`https://localhost:7127/api/CoachesDTO/GetCoachByOrderid/${order.orderId}`);
         const coach = await coachData.json();
         order.coach = coach
         
           //MembersDTO找出教練名字
           for (const order of orders.value) {
-          const memberData = await fetch(`https://127.0.0.1:7127/api/MembersDTO/GetMemberByOrderid/${order.orderId}`);
+          const memberData = await fetch(`https://localhost:7127/api/MembersDTO/GetMemberByOrderid/${order.orderId}`);
           const member = await memberData.json();
           order.member = member
 
