@@ -1,58 +1,26 @@
-<template>
-    <form method="post" @submit.prevent="detailEdit()">
-        <div>
-            <input type="text" placeholder="食物名稱" v-model="dietdetail.Dname" required>
-            <input type="text" placeholder="食物種類" v-model="dietdetail.Type" required>
-            <input type="text" placeholder="熱量" v-model="dietdetail.Calories" required>
-            <input type="file" @change="ImgAdd" multiple>
-            <textarea v-model="dietdetail.Decription"></textarea>
-            <button type="submit">修改</button>
-            <button type="button" @click="cancelReturn()">取消</button>
-        </div>
-    </form>
-    <div v-if="dietdetail.Img.length > 0">
-        <Carousel :imgList="dietdetail.Img" @img-delete="imgDelete"></Carousel>
-    </div>
-</template>
-    
 <script setup>
 import { ref, computed } from 'vue';
 import Carousel from '../components/Carousel.vue';
-const data = ref([])
+const prop = defineProps({
+    dialogEditVisible:Boolean,
+    dietdetailId:Number
+})
+const {dietdetailId} = prop
+const emit = defineEmits();
+const dialogEditUpdate = () => {
+  emit('dialogEditUpdate', false); // Send the new value to the parent component
+};
+
 const date = new Date()
 let imgUrl = ref([])
 //回傳資料
 const dietdetail = ref({
-    DietDetailId: 1,
+    DietDetailId: 0,
     DietId: 2,
     Dname: '',
     Type: '',
     Calories: 0,
     Decription: '',
-<<<<<<< HEAD:src/views/DietDetail.vue
-    Img: '',
-}
-const loadMethod = async () => {
-    const API_URL = `https://localhost:7127/api/plans/diets/dietdetail/1`
-    const res = await fetch(API_URL)
-  diet = await res.json()
-}
-loadMethod()
-
-
-const editMethod = async () => {
-    const API_URL = `https://localhost:7127/api/plans/diets/dietdetail/1`
-    const res = await fetch(API_URL, {
-        method: 'PUT',
-        headers: {
-            'content-type': 'application/json'
-        },
-        body: JSON.stringify(diet),
-    }).catch(err => {
-        console.log(err);
-    }
-    )
-=======
     Img: [],
     Registerdate: `${date.toLocaleDateString()}`,
 })
@@ -76,7 +44,6 @@ const ImgAdd = (e) => {
             };
             reader.readAsDataURL(file);
         }
-
     }
 }
 
@@ -88,57 +55,98 @@ const imgDelete = (index) => {
 
 
 const imgList = computed(() =>
-dietdetail.value.Img.map((_, index) => imgUrl.value[index]
-        ));
+    dietdetail.value.Img.map((_, index) => imgUrl.value[index]
+    ));
 
-
-const detailEdit = async () => {
+const onCreate =async () => {
     const formData = new FormData()
-        formData.append('DietDetailId', dietdetail.value.DietDetailId)
-        formData.append('DietId', dietdetail.value.DietId)
-        formData.append('Dname', dietdetail.value.Dname)
-        formData.append('Type', dietdetail.value.Type)
-        formData.append('Calories', dietdetail.value.Calories)
-        formData.append('Description', dietdetail.value.Description)
-        dietdetail.value.Img.forEach((img) => {
-                formData.append('Img', img)
-        })
-        formData.append('Registerdate', dietdetail.value.Registerdate)
-
-        
-        const API_URL = `https://localhost:7127/api/plans/dietdetail/edit`
-        const res = await fetch(API_URL, {
-                method: 'PUT',             
-                body: formData,
-        }).catch(err => {
-                console.log(err);
-        }
-        )
-
-        router.push({
-                path: `/plan/chart`,
-        })
-
->>>>>>> 19c77e9e903f44796bda2fe3eb4736cba5b0dc37:src/views/DietList.vue
+    formData.append('DietId', dietdetail.value.DietId)
+    formData.append('Dname', dietdetail.value.Dname)
+    formData.append('Type', dietdetail.value.Type)
+    formData.append('Calories', dietdetail.value.Calories)
+    formData.append('Description', dietdetail.value.Decription)
+    dietdetail.value.Img.forEach((img) => {
+        formData.append('Img', img)
+    })
+    formData.append('Registerdate', dietdetail.value.Registerdate)
+    const API_URL = `https://localhost:7127/api/plans/dietdetail`
+    const res = await fetch(API_URL, {
+        method: 'POST',
+        body: formData,
+    })
+    .catch(err => {
+        console.log(err);
+    })
+    if(res.ok){
+        dialogEditUpdate()
+    }
 }
 
+const onEdit = async () => {
+    const formData = new FormData()
+    formData.append('DietDetailId', dietdetail.value.DietDetailId)
+    formData.append('DietId', dietdetail.value.DietId)
+    formData.append('Dname', dietdetail.value.Dname)
+    formData.append('Type', dietdetail.value.Type)
+    formData.append('Calories', dietdetail.value.Calories)
+    formData.append('Description', dietdetail.value.Decription)
+    dietdetail.value.Img.forEach((img) => {
+        formData.append('Img', img)
+    })
+    formData.append('Registerdate', dietdetail.value.Registerdate)
+    const API_URL = `https://localhost:7127/api/plans/dietdetail/edit`
+    const res = await fetch(API_URL, {
+        method: 'PUT',
+        body: formData,
 
+    })
+    .catch(err => {
+        console.log(err);
+    })
+    if(res.ok){
+        dialogEditUpdate()
+    }
+}
+
+const cancelReturn =()=>{
+    dialogEditUpdate()
+}
 </script>
-    
-<<<<<<< HEAD:src/views/DietDetail.vue
-
-
 <template>
-    <div>
-        <input type="text" placeholder="食物名稱" v-model="diet.Dname" class="border:1px solid">
-        <input type="text" placeholder="食物種類" v-model="diet.Type" class="border:1px solid">
-        <input type="text" placeholder="熱量" v-model="diet.Calories" class="border:1px solid">
-        <input type="text" placeholder="圖片" v-model="diet.Img">
-        <textarea v-model="diet.Decription"></textarea>
-        <v-btn @click="editMethod()">修改</v-btn>
-    </div>
+    <el-form label-width="100px" style="max-width: 460px">
+
+        <el-form-item label="食物分類">
+            <el-select v-model="dietdetail.Type" placeholder="請選擇分類">
+                <el-option label="全榖雜糧類" value="全榖雜糧類 " />
+                <el-option label="豆魚蛋肉類" value="豆魚蛋肉類" />
+                <el-option label="乳品類" value="乳品類" />
+                <el-option label="蔬菜類" value="蔬菜類" />
+                <el-option label="水果類" value="水果類" />
+                <el-option label="油脂與堅果種子類" value="油脂與堅果種子類" />
+            </el-select>
+        </el-form-item>
+        <el-form-item label="食物名稱">
+            <el-input v-model="dietdetail.Dname" />
+        </el-form-item>
+        <el-form-item label="熱量">
+            <el-input v-model="dietdetail.Calories" style="width: 15%;" />
+        </el-form-item>
+        <el-form-item label="敘述">
+            <el-input v-model="dietdetail.Decription" />
+        </el-form-item>
+        <el-form-item label="選擇圖片">
+            <input type="file" @change="ImgAdd" multiple>
+        </el-form-item>
+        <div v-if="dietdetail.Img.length > 0">
+            <Carousel :imgList="dietdetail.Img" @img-delete="imgDelete"></Carousel>
+        </div>
+        <div class="btnset">
+            <el-button v-if="dietdetailId" @click="onEdit" class="mt-4">修改</el-button>
+            <el-button v-else @click="onCreate" class="mt-4">創建</el-button>
+            <el-button class="mt-4" @click="cancelReturn">取消</el-button>
+        </div>
+
+    </el-form>
 </template>
-   
-=======
->>>>>>> 19c77e9e903f44796bda2fe3eb4736cba5b0dc37:src/views/DietList.vue
+    
 <style></style>

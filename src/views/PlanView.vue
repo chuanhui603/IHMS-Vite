@@ -1,46 +1,69 @@
 <script setup>
 import plansidebar from '../components/PlansideBar.vue'
-import {useRouter} from 'vue-router'
-import {ref} from'vue'
-const plans = ref([])
-// 創建 ref 變量來存儲計劃更新狀態
-const planUpdated = ref(false);
+import plandetail from '../views/PlanDetail.vue'
+import listview from '../views/ListView.vue'
+import { useRouter } from 'vue-router'
+import { ref } from 'vue'
+const isPlans = ref(false)
 const router = useRouter()
-
-//test 會員id 6
+// 在組件中註冊事件監聽器
+const { memberId } = JSON.parse(localStorage.getItem('currentMember'))
+const planitems = ref()
+const pId = ref()
+const sportdate = ref('')
 //讀取前五筆資料
-const loadPlansTopFive = async (id) => {
-    const res = await fetch(`https://localhost:7127/api/plans/member/${id}/5`)
+// const loadPlansTopFive = async () => {
+//     const res = await fetch(`https://localhost:7127/api/plans/member/${memberId}/5`)
+//     const datas = await res.json()
+//     plans.value = datas
+// }
+const loadPlans = async () => {
+    const api_URL = `https://localhost:7127/api/plans/member/${memberId}`
+    const res = await fetch(api_URL)
     const datas = await res.json()
-    plans.value = datas
+    sessionStorage.setItem("plans", JSON.stringify(datas));
+    planitems = await sessionStorage.getItem("plans")
+    const { planId } = planitems
+    pId = planId
 }
-loadPlansTopFive(6)
-// 在父組件中註冊 'plan-Update' 事件監聽器
-router.afterEach(() => {
-  // 路由更改時觸發 'plan-Update' 事件
-  planUpdated.value = true
-  if(planUpdated.value){
-    loadPlansTopFive(6)
-  }
-});
+(async () => {
+    await loadPlans()
+    await loadsportdate()
+})()
+const loadsportdate = async () => {
+    const api_URL = `https://localhost:7127/api/plans/sport/${pId}`
+    const res = await fetch(api_URL)
+    const datas = await res.json()
+    sportdate.value = datas
+}
 
 </script>
     
 <template>
-
-
-    <div class="container-xxl mb-2" style="height: 100vh;margin-top: 79px;">
+    <div class="container-xxl mb-2" style="margin-top: 79px;">
         <!-- 內容  -->
         <div class="row ">
             <!-- sidebar -->
-            <div class="col-lg-3" style="height: 100vh;border:1px solid">
-                <plansidebar :plans="plans"></plansidebar>
+            <div class="col-lg-3" style="height: 100vh;border:1px solid;position:sticky; top:79px">
+                <plansidebar></plansidebar>
             </div>
-            <div class="col-lg-9 ">             
-            <router-view></router-view>
+
+            <div class="col-lg-9 ">
+                <div class="row">
+                    <div v-if="isPlans">
+                        <el-empty>
+                            <el-button type="primary">Button</el-button>
+                        </el-empty>
+                    </div>
+                    <plandetail v-else></plandetail>
+                </div>
+                <div class="row">
+                    <listview></listview>
+                </div>
             </div>
         </div>
     </div>
+
 </template>
 
 <style scoped>

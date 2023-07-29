@@ -1,71 +1,52 @@
 <script setup>
 import { useRoute, useRouter } from 'vue-router'
-import { Edit, Back, DeleteFilled } from '@element-plus/icons-vue'
+import { Edit,  DeleteFilled } from '@element-plus/icons-vue'
+import { ref } from 'vue'
 import Calender from '../components/calender.vue';
-const route = useRoute()
-const router = useRouter()
-const { planID } = route.params
+import PlanChart from '../components/planChart.vue';
+import PlanCreate from '../views/PlanCreate.vue';
+const planDialogEditVisible = ref(false)
+const isCalender = ref(false)
+const isoverview = ref(true)
 const emit = defineEmits(['plan-Update'])
 
-
-const planDelete = async (id) => {
-    const isDelete = confirm('確定刪除計畫?')
-    if (isDelete) {
-        const API_URL = `https://localhost:7127/api/Plans/${id}`
-        const res = await fetch(API_URL, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-        })
-
-        emit('plan-Update')
-        router.push({
-            path: `/plan/chart`,
-        })
+const pageSwich = (e) => {
+    if (e.target.innerText == "行事曆") {
+        isCalender.value = true
+        isoverview.value = false
     }
+    if (e.target.innerText == "總覽") {
+        isCalender.value = false
+        isoverview.value = true
+    }
+
 }
-
-const changeDiet = () => {
-    router.push({
-        path: `/plan/diet/${planID}`,
-    })
-}
-
-
-const changeSport = () => {
-    router.push({
-        path: `/plan/sport/${planID}`,
-    })
-}
-
-const planBack = () => {
-    router.push({
-        path: `/plan/chart`,
-    })
+const dialogEditUpdate = (value) => {
+    planDialogEditVisible.value = value
 }
 </script>
 
-<!-- 計畫完成度
-開始日期 ~ 截止日期
-喝水量表 -->
-
 <template>
     <div>
-        <div> <el-link id="retrunBtn" style="margin-top: 3px;" :icon="Back" @click="planBack"></el-link>
-            <el-button id="deleteBtn" :icon="DeleteFilled" @click="planDelete(planID)">刪除計畫</el-button>
+        <div class="row justify-content-center">
+            <div class="col-lg-3 offset-lg-4">
+                <el-button :icon="Edit" @click="pageSwich">總覽</el-button>
+                <el-button :icon="Edit" @click="pageSwich">行事曆</el-button>
+            </div>
+            <div class="col-lg-2 offset-lg-2">
+                <el-button id="editBtn" :icon="DeleteFilled" @click="planDialogEditVisible = true">更改設定</el-button>
+            </div>
         </div>
-
-        <div>
-            <el-button :icon="Edit" @click="changeDiet">飲食</el-button>
-            <el-button :icon="Edit" @click="changeSport">運動</el-button>
-            <el-button :icon="Edit" @click="changeDiet">總覽</el-button>
-            <el-button :icon="Edit" @click="changeSport">運動</el-button>
-
+        <div v-if="isoverview" id="Chart">
+            <PlanChart></PlanChart>
         </div>
-        <Calender></Calender>
-
+        <div v-if="isCalender" id="Calender">
+            <Calender></Calender>
+        </div>
     </div>
+    <el-dialog v-model="planDialogEditVisible" title="更改設定" width="30%">
+        <PlanCreate :dialogEditVisible="planDialogEditVisible" @dialogEditUpdate="dialogEditUpdate(value)"></PlanCreate>
+    </el-dialog>
 </template>
 
 <style scoped>
@@ -76,12 +57,27 @@ const planBack = () => {
 #retrunBtn {
     width: 25px;
     height: 25px;
-    float: left;
     border: 1px solid black;
     border-radius: 50%;
 }
 
-#deleteBtn {
-    float: right;
+#editBtn {
+    width: 90px;
+}
+
+#Chart {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+#Calender {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
 }
 </style>
