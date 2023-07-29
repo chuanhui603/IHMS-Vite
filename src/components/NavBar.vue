@@ -41,7 +41,14 @@ const memberLogOut =() =>{
                         <RouterLink to="/" class="nav-item nav-link active">首頁</RouterLink>
                         <RouterLink to="/announcements" class="nav-item nav-link active">公告</RouterLink>
                     <RouterLink to="/MessageBoardList" class="nav-item nav-link active">討論區</RouterLink>
-                    <RouterLink to="/ai-question" class="nav-item nav-link active">AI問答</RouterLink>
+                    <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">客服</a>
+                            <div class="dropdown-menu m-0">
+                                <RouterLink to="/custom-service" class="dropdown-item">回報客服</RouterLink>
+                                <RouterLink to="/custom-service-List" class="dropdown-item">客服回應</RouterLink>
+                            </div>
+                        </div>
+                    
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">會員專區</a>
                             <div class="dropdown-menu m-0">
