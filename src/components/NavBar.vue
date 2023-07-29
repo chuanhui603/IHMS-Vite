@@ -1,16 +1,13 @@
 <script setup>
-   import { RouterLink, RouterView } from 'vue-router'
-   
-//    import { ref } from 'vue';
-
-//    // Vue的data
-//     const currentPoints = ref(150);
-
-//     // 監聽來自子組件的自定義事件 'updatePoints'，並更新點數顯示
-//     const updatePoints = (newPoints) => {
-//     currentPoints.value = newPoints;
-//     }
-
+import {useRouter} from 'vue-router'
+const router =useRouter()
+const prop = defineProps({
+    isLogin:Boolean
+})
+const memberLogOut =() =>{
+    localStorage.removeItem('currentMember')
+    router.push('/')
+}
 
 </script>
 
@@ -41,16 +38,13 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav p-4 p-lg-0">
-                        
                         <RouterLink to="/" class="nav-item nav-link active">首頁</RouterLink>
-                        <RouterLink to="/announcements" class="nav-item nav-link active">公告</RouterLink>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">會員專區</a>
                             <div class="dropdown-menu m-0">
-                                <RouterLink to="/plan" class="dropdown-item">計畫總覽</RouterLink>
+                                <RouterLink to="/plan/chart" class="dropdown-item">計畫總覽</RouterLink>
                                 <RouterLink to="/orders" class="dropdown-item">購買紀錄</RouterLink>
                                 <RouterLink to="/PointRecord" class="dropdown-item">點數紀錄</RouterLink>
-                                
                                 <a href="404.html" class="dropdown-item">會員設定</a>
                             </div>
                         </div>
@@ -63,28 +57,24 @@
                             </div>
                         </div>
                         <a href="contact.html" class="nav-item nav-link">討論區</a>
-                        
-
                     </div>
                     <div class="d-none d-lg-flex ms-auto">
-                        <a class="btn-sm-square bg-white rounded-circle ms-3" href="#">
+                        <a v-if="isLogin" class="btn-sm-square bg-white rounded-circle ms-3" href="#">
                             <small class="fa fa-search text-body"></small>
                         </a>
-                        <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
-                            <small class="fa fa-user text-body"></small>
-                        </a>
+                        
+                        <a href="#" v-if="isLogin"  class="btn-sm-square bg-white rounded-circle ms-3" > <small class="fa fa-user text-body"></small></a>
+                           
                         <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
                             <RouterLink to="/BuyPoint" small class="fa fa-shopping-bag text-body"></RouterLink>
-                           
                         </a>
 
                         <!--登入前展示 登入後隱藏 -->
 
-                        <!-- <a href="#" class="ms-3 p-1 text-body"></i>登入</a> -->
-
+                        <router-link to="/login" v-if="!isLogin" class="ms-3 p-1 text-body">登入</router-link> 
+                        <router-link to="/" v-if="isLogin" @click="memberLogOut" class="ms-3 p-1 text-body">登出</router-link> 
                         <!--登入前隱藏 登入後展示 -->
-                        <!-- <div class="ms-3 p-1">點數: <span>${currentPoints.value.toFixed(2)}</span></div> -->
-                        <div class=" ms-3 p-1">點數: <span>$150.00</span></div>
+                        <div v-if="isLogin" class=" ms-3 p-1">點數: <span>$150.00</span></div>
                     </div>
                 </div>
             </nav>
