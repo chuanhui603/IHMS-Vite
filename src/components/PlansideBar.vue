@@ -67,14 +67,14 @@ const listsearch = async (sportid) => {
     <div class="nav nav-pills">
         <div class="planmenu">
             <div class="memberimg">
-                <img src="../img/testimonial-1.jpg" alt="">
+                <img src="../img/testimonial-1.jpg" alt="hahaha">
                 <p><a href="">Judy Lin</a></p>
             </div>
             <div class="row m-3 ">
-                <div class="col-9 menutitle">
+                <div class="col-7 offset-lg-2 text-center menutitle" style="padding-left: 5px;">
                     <p>今日 行程</p>
                 </div>
-                <div class="col-3 menubtn">
+                <div class="col-1 menubtn">
                     <el-button :icon="Edit" @click="dialogEditVisible = true"></el-button>
                 </div>
                 <div class="menusearch">
@@ -82,32 +82,29 @@ const listsearch = async (sportid) => {
                 </div>
                 <el-scrollbar height="400px">
                     <div>
-
                         <ul class="menulist nav mt-2">
 
                             <li v-for="{ sname, sportDetailId,isdone,time } in list" :key="sportDetailId" class="mt-2 mb-2">
                                 <el-button color="#626aef"  @click="dialogLoadUpdate(sportDetailId)">
                                     {{ sname }}{{time}}
                                 </el-button>
-                                
                                 <div id="changebtn">
-
                                     <el-button type="primary" @click="detailComplete(sportDetailId)" :icon="Select" />
                                     <el-button type="primary" @click="detailDelete(sportDetailId)" :icon="CloseBold" />
                                 </div>
                             </li>
-                            <el-dialog v-model="dialogEditVisible" title="更改設定" width="30%">
-                                <SportDetail :datas="sportdatas" :dialogEditVisible="dialogEditVisible"
-                                    @dialogEditUpdate="dialogEditUpdate(value)">
-                                </SportDetail>
-                            </el-dialog>
+                          
                         </ul>
                     </div>
                 </el-scrollbar>
             </div>
         </div>
     </div>
-
+    <el-dialog v-model="dialogEditVisible" title="更改設定" width="30%">
+                                <SportDetail :datas="sportdatas" :dialogEditVisible="dialogEditVisible"
+                                    @dialogEditUpdate="dialogEditUpdate(value)">
+                                </SportDetail>
+                            </el-dialog>
     <el-dialog v-model="dialogCreateVisible" title="更改設定" width="30%">
         <SportDetail :dialogEditVisible="dialogCreateVisible" @dialogEditUpdate="dialogCreateUpdate(value)">
         </SportDetail>

@@ -1,34 +1,49 @@
 <template >
     <div>
-        <el-button :icon="Edit" @click="pageSwich">飲食</el-button>
-        <el-button :icon="Edit" @click="pageSwich">運動</el-button>
+        <el-button-group>
+            <el-button :icon="Edit" @click="pageSwich(true)">飲食</el-button>
+            <el-button :icon="Edit" @click="pageSwich(false)">運動</el-button>
+        </el-button-group>
     </div>
 
-    <el-table :data="tableData" style="width: 100%">
-        <el-table-column fixed prop="date" label="Date" width="150" />
-        <el-table-column prop="name" label="Name" width="120" />
-        <el-table-column prop="state" label="State" width="120" />
-        <el-table-column prop="city" label="City" width="120" />
-        <el-table-column prop="address" label="Address" width="600" />
-        <el-table-column prop="zip" label="Zip" width="120" />
-        <el-table-column fixed="right" label="Operations" width="120">
+    <el-table :data="dietData" height="400" style="width: 100%;" v-if="isDiet">
+        <el-table-column fixed prop="date" label="食物名稱" width="150" />
+        <el-table-column prop="name" label="種類" width="120" />
+        <el-table-column prop="state" label="熱量" width="120" />
+        <el-table-column prop="city" label="紀錄時間" width="120" />
+        <el-table-column prop="address" label="圖片" width="600" />       
+        <el-table-column fixed="right" label="編輯" width="120">
             <template #default>
-                <el-button link type="primary" size="small" @click="handleClick">Detail</el-button>
                 <el-button link type="primary" size="small">Edit</el-button>
+                <el-button link type="primary" size="small" @click="handleClick">Delete</el-button>             
+            </template>
+        </el-table-column>
+    </el-table>
+    <el-table :data="sportData" height="400" style="width: 100%;" v-else>
+        <el-table-column fixed prop="date" label="運動名稱" width="150" />
+        <el-table-column prop="name" label="分類" width="120" />
+        <el-table-column prop="state" label="運動日期" width="120" />
+        <el-table-column prop="city" label="紀錄時間" width="120" />   
+        <el-table-column prop="city" label="完成確認" width="120" />   
+        <el-table-column fixed="right" label="編輯" width="120">
+            <template #default>
+                <el-button link type="primary" size="small">Edit</el-button>
+                <el-button link type="primary" size="small" @click="handleClick">Delete</el-button>             
             </template>
         </el-table-column>
     </el-table>
 </template>
 <script  setup>
+import {ref} from 'vue'
 const handleClick = () => {
     console.log('click')
 }
+const isDiet =ref(true)
 
-
-const pageSwich= ()=>{
-    
+const pageSwich = (boolen) => {
+    isDiet.value =boolen
 }
-const tableData = [
+const dietData = [
     {
         date: '2016-05-03',
         name: 'Tom',

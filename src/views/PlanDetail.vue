@@ -1,6 +1,6 @@
 <script setup>
 import { useRoute, useRouter } from 'vue-router'
-import { Edit,  DeleteFilled } from '@element-plus/icons-vue'
+import { Edit, DeleteFilled } from '@element-plus/icons-vue'
 import { ref } from 'vue'
 import Calender from '../components/calender.vue';
 import PlanChart from '../components/planChart.vue';
@@ -30,8 +30,10 @@ const dialogEditUpdate = (value) => {
     <div>
         <div class="row justify-content-center">
             <div class="col-lg-3 offset-lg-4">
-                <el-button :icon="Edit" @click="pageSwich">總覽</el-button>
-                <el-button :icon="Edit" @click="pageSwich">行事曆</el-button>
+                <el-button-group>
+                    <el-button :icon="Edit" @click="pageSwich">總覽</el-button>
+                    <el-button :icon="Edit" @click="pageSwich">行事曆</el-button>
+                </el-button-group>
             </div>
             <div class="col-lg-2 offset-lg-2">
                 <el-button id="editBtn" :icon="DeleteFilled" @click="planDialogEditVisible = true">更改設定</el-button>

@@ -25,8 +25,12 @@
     data() {
       return {
         chartData: {
-          labels: [ 'January', 'February', 'March' ],
-          datasets: [ { data: [40, 20, 12] } ]
+          labels: [ 'Sunday', 'Monday', 'Tuesday','Wednesday','Thursday','Friday','Saturday' ],
+          datasets: [{ 
+            label: 'Calories',
+            data: [2030, 1988, 2033,1865,2133,1977,2231] ,
+            backgroundColor: '#f87979',
+          }]
         },
         chartOptions: {
           responsive: true
