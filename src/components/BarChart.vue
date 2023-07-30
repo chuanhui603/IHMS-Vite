@@ -1,0 +1,41 @@
+<template>
+  <div>
+    <Bar
+      id="my-chart-id"
+      :options="chartOptions"
+      :data="chartData"
+    />
+  </div> 
+  </template>
+    <style scoped>
+    div {
+         border:1px solid
+         
+        }      
+</style>
+  <script>
+  import { Bar } from 'vue-chartjs'
+  import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
+  
+  ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
+  
+  export default {
+    name: 'BarChart',
+    components: { Bar },
+    data() {
+      return {
+        chartData: {
+          labels: [ 'Sunday', 'Monday', 'Tuesday','Wednesday','Thursday','Friday','Saturday' ],
+          datasets: [{ 
+            label: 'Calories',
+            data: [2030, 1988, 2033,1865,2133,1977,2231] ,
+            backgroundColor: '#f87979',
+          }]
+        },
+        chartOptions: {
+          responsive: true
+        }
+      }
+    }
+  }
+  </script>
