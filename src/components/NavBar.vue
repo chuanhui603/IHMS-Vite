@@ -67,10 +67,11 @@ const memberLogOut = () => {
                         <small class="fa fa-search text-body"></small>
                     </a>
 
-                    <a href="#" v-if="isLogin" class="btn-sm-square bg-white rounded-circle ms-3"> <small
-                            class="fa fa-user text-body"></small></a>
+                    <a href="https://localhost:7127/Members/MemberEdit/6" v-if="isLogin" class="btn-sm-square bg-white rounded-circle ms-3"> <small
+                            class="fa fa-user text-body"></small>
+                        </a>
 
-                    <a class="btn-sm-square bg-white rounded-circle ms-3" href="http://localhost:5174/BuyPoint">
+                    <a class="btn-sm-square bg-white rounded-circle ms-3" v-if="isLogin">
                         <RouterLink to="/BuyPoint" small class="fa fa-shopping-bag text-body"></RouterLink>
                     </a>
 
