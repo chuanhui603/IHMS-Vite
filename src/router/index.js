@@ -17,7 +17,6 @@ import MessageBoardDetail from '../views/MessageBoardDetail.vue';
 import CustomService from '../views/CustomService.vue';
 import CustomServiceList from '../views/CustomServiceList.vue'; 
 import CustomServiceReply from '../views/CustomServiceReply.vue';
-import AIquestion from '../views/AIquestion.vue';
 import ArticleList from '../views/ArticleList.vue'
 import ArticleDetail from '../views/ArticleDetail.vue';
 
@@ -87,11 +86,7 @@ const router = createRouter({
       component: testmember,
       props: true,
     },
-    {
-      path: '/ai-question',
-      name: 'AIquestion',
-      component: AIquestion,
-    },
+
     {
       path: '/Login',
       name: 'Login',

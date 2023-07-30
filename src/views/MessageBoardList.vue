@@ -2,25 +2,30 @@
     <div class="container" style="margin-top: 100px;">
         <div class="message-board-container">
             <div class="category-sidebar">
-                <h3>分類</h3>
-                <ul>
-                    <li><button @click="selectCategory('全部文章')" class="btn"
-                            :class="{ 'btn-primary': selectedCategory === '全部文章', 'btn-default': selectedCategory !== '全部文章' }">查看全部文章</button>
-                    </li>
-                    <li><button @click="selectCategory('飲食')" class="btn"
-                            :class="{ 'btn-primary': selectedCategory === '飲食', 'btn-default': selectedCategory !== '飲食' }">飲食</button>
-                    </li>
-                    <li><button @click="selectCategory('閒聊')" class="btn"
-                            :class="{ 'btn-primary': selectedCategory === '閒聊', 'btn-default': selectedCategory !== '閒聊' }">閒聊</button>
-                    </li>
-                    <li><button @click="selectCategory('器材')" class="btn"
-                            :class="{ 'btn-primary': selectedCategory === '器材', 'btn-default': selectedCategory !== '器材' }">器材</button>
-                    </li>
-                    <li><button @click="selectCategory('場地')" class="btn"
-                            :class="{ 'btn-primary': selectedCategory === '場地', 'btn-default': selectedCategory !== '場地' }">場地</button>
-                    </li>
-                </ul>
-            </div>
+            <h3>分類</h3>
+            <ul>
+                <li>
+                    <button @click="selectCategory('全部文章')" class="btn btn-outline-secondary category-button"
+                            :class="{ 'btn-primary': selectedCategory === '全部文章', 'btn-outline-secondary': selectedCategory !== '全部文章' }">查看全部文章</button>
+                </li>
+                <li>
+                    <button @click="selectCategory('飲食')" class="btn btn-outline-secondary category-button"
+                            :class="{ 'btn-primary': selectedCategory === '飲食', 'btn-outline-secondary': selectedCategory !== '飲食' }">飲食</button>
+                </li>
+                <li>
+                    <button @click="selectCategory('閒聊')" class="btn btn-outline-secondary category-button"
+                            :class="{ 'btn-primary': selectedCategory === '閒聊', 'btn-outline-secondary': selectedCategory !== '閒聊' }">閒聊</button>
+                </li>
+                <li>
+                    <button @click="selectCategory('器材')" class="btn btn-outline-secondary category-button"
+                            :class="{ 'btn-primary': selectedCategory === '器材', 'btn-outline-secondary': selectedCategory !== '器材' }">器材</button>
+                </li>
+                <li>
+                    <button @click="selectCategory('場地')" class="btn btn-outline-secondary category-button"
+                            :class="{ 'btn-primary': selectedCategory === '場地', 'btn-outline-secondary': selectedCategory !== '場地' }">場地</button>
+                </li>
+            </ul>
+        </div>
 
             <div class="content">
                 <div class="header-section">
@@ -128,7 +133,24 @@ export default {
 };
 </script>
   
-<style>
+<style scoped>
+.my-btn-selected {
+    background-color: #007bff;  
+    border-color: #007bff;     
+    color: #fff;              
+}
+.my-btn-unselected {
+    background-color: #28a745; 
+    border-color: #28a745;     
+    color: #fff;               
+}
+.my-btn-unselected:hover {
+    background-color: #218838;  
+    color: #fff;                
+}
+.category-button {
+    margin-bottom: 10px; /* 增加按鈕之間的垂直距離 */
+}
 .message-board-container {
     display: flex;
     margin-top: 100px;
@@ -160,15 +182,7 @@ export default {
     text-align: right;
 }
 
-.btn {
-    margin: 5px 0;
-    display: block;
-}
 
-.btn-default {
-    background-color: #f8f9fa;
-    color: #212529;
-}
 
 .publish-button {
     max-width: 150px;
@@ -180,8 +194,8 @@ export default {
     justify-content: space-between;
     align-items: center;
     /* 使元素在垂直方向上居中對齊 */
-
 }
+
 .message-info {
     display: flex;
     justify-content: space-between;
@@ -194,7 +208,6 @@ export default {
 .message-title {
     margin-right: 10px; /* or any value you prefer */
 }
-
 .meta {
     text-align: right;
     flex-shrink: 0;
