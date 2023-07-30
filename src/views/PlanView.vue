@@ -1,37 +1,81 @@
 <script setup>
 import plansidebar from '../components/PlansideBar.vue'
-
-const loadProducts = async (e)=>{
-    console.log(e)
-     const res = await fetch(`https://localhost:7127/api/Plans/${e}`)
-     const datas = await res.json()    
-      console.log(datas)
-
-   }
-
-
-    
+import plandetail from '../views/PlanDetail.vue'
+import listview from '../views/ListView.vue'
+import { useRouter } from 'vue-router'
+import { ref } from 'vue'
+const isPlans = ref(false)
+const router = useRouter()
+// 在組件中註冊事件監聽器
+const { memberId } = JSON.parse(localStorage.getItem('currentMember'))
+const planitems = ref()
+const pId = ref()
+const sportdate = ref('')
+//讀取前五筆資料
+// const loadPlansTopFive = async () => {
+//     const res = await fetch(`https://localhost:7127/api/plans/member/${memberId}/5`)
+//     const datas = await res.json()
+//     plans.value = datas
+// }
+const loadPlans = async () => {
+    const api_URL = `https://localhost:7127/api/plans/member/${memberId}`
+    const res = await fetch(api_URL)
+    const datas = await res.json()
+    sessionStorage.setItem("plans", JSON.stringify(datas));
+    planitems = await sessionStorage.getItem("plans")
+    const { planId } = planitems
+    pId = planId
+}
+(async () => {
+    await loadPlans()
+    await loadsportdate()
+})()
+const loadsportdate = async () => {
+    const api_URL = `https://localhost:7127/api/plans/sport/${pId}`
+    const res = await fetch(api_URL)
+    const datas = await res.json()
+    sportdate.value = datas
+}
 
 </script>
     
 <template>
-    <div class="container-xxl" style="height: 100vh;background-color: var(--secondary);margin-top: 79px;">
+    <div class="container-xxl mb-2" style="margin-top: 79px;">
         <!-- 內容  -->
-        <div class="row" >
+        <div class="row ">
             <!-- sidebar -->
-           <plansidebar></plansidebar>
-            <div class="col-lg-9" style="background-color: var(--primary)">
-                <button type="button" @click="loadProducts(1)">AJAX測試</button>
+            <div class="col-lg-3" style="height: 100vh;border:1px solid;position:sticky; top:79px">
+                <plansidebar></plansidebar>
+            </div>
+
+            <div class="col-lg-9 ">
+                <div class="row">
+                    <div v-if="isPlans">
+                        <el-empty>
+                            <el-button type="primary">Button</el-button>
+                        </el-empty>
+                    </div>
+                    <plandetail v-else></plandetail>
+                </div>
+                <div class="row">
+                    <listview></listview>
+                </div>
             </div>
         </div>
     </div>
+
 </template>
 
 <style scoped>
-.col-lg-3{
-    width:20%;
+.chart {
+    width: 70%;
 }
-.col-lg-9{
-    width:80%;
+
+.col-lg-3 {
+    width: 20%;
+}
+
+.col-lg-9 {
+    width: 80%;
 }
 </style>

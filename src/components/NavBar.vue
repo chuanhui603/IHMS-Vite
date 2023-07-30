@@ -42,7 +42,7 @@ const memberLogOut =() =>{
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">會員專區</a>
                             <div class="dropdown-menu m-0">
-                                <RouterLink to="/plan/chart" class="dropdown-item">計畫總覽</RouterLink>
+                                <RouterLink to="/plan" class="dropdown-item">計畫總覽</RouterLink>
                                 <RouterLink to="/orders" class="dropdown-item">購買紀錄</RouterLink>
                                 <RouterLink to="/PointRecord" class="dropdown-item">點數紀錄</RouterLink>
                                 <a href="404.html" class="dropdown-item">會員設定</a>
@@ -65,8 +65,13 @@ const memberLogOut =() =>{
                         
                         <a href="#" v-if="isLogin"  class="btn-sm-square bg-white rounded-circle ms-3" > <small class="fa fa-user text-body"></small></a>
                            
+<<<<<<< HEAD
                         <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
                             <RouterLink to="/BuyPoint" small class="fa fa-shopping-bag text-body"></RouterLink>
+=======
+                        <a class="btn-sm-square bg-white rounded-circle ms-3" href="#">
+                            <small class="fa fa-shopping-bag text-body"></small>
+>>>>>>> plan
                         </a>
 
                         <!--登入前展示 登入後隱藏 -->

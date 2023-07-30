@@ -11,7 +11,10 @@
 
                                     <h2 class="fw-bold mb-2 text-uppercase">登入</h2>
                                     <p class="text-white-50 mb-5">請輸入您的帳號與密碼!</p>
+<<<<<<< HEAD
 
+=======
+>>>>>>> plan
                                     <div class="form-outline form-white mb-4">
                                         <input type="text" id="Account" v-model="LoginData.Account"
                                             class="form-control form-control-lg" />
