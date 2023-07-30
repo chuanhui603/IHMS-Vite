@@ -41,6 +41,7 @@ const memberLogOut =() =>{
                         <RouterLink to="/" class="nav-item nav-link active">首頁</RouterLink>
                         <RouterLink to="/announcements" class="nav-item nav-link active">公告</RouterLink>
                     <RouterLink to="/MessageBoardList" class="nav-item nav-link active">討論區</RouterLink>
+                    <RouterLink to="/ArticleList" class="nav-item nav-link active">相關文章</RouterLink>
                     <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">客服</a>
                             <div class="dropdown-menu m-0">
