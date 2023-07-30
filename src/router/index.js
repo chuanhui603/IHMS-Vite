@@ -14,7 +14,13 @@ import AnnouncementView from '../views/AnnouncementView.vue';
 import MessageBoardList from '../views/MessageBoardList.vue';
 import MessageBoardRelease from '../views/MessageBoardRelese.vue';
 import MessageBoardDetail from '../views/MessageBoardDetail.vue';
+import CustomService from '../views/CustomService.vue';
+import CustomServiceList from '../views/CustomServiceList.vue'; 
+import CustomServiceReply from '../views/CustomServiceReply.vue';
 import AIquestion from '../views/AIquestion.vue';
+import ArticleList from '../views/ArticleList.vue'
+import ArticleDetail from '../views/ArticleDetail.vue';
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -100,7 +106,33 @@ const router = createRouter({
       path: '/BuyPoint',
       name: 'BuyPoint',   
       component: BuyPoint 
-    },   
-  ]
-})       
+    },
+    {   
+      path: '/custom-service',
+      name: 'CustomService',
+      component: CustomService,
+    },
+    {
+      path: '/custom-service-List',
+      name: 'CustomServiceList',
+      component: CustomServiceList,
+    },
+    {
+      path: '/customerService/:id',
+      name: 'CustomServiceReply',
+      component: CustomServiceReply,
+      props: true,
+    },
+    {
+      path: '/ArticleList',
+      name: 'ArticleList',
+      component: ArticleList
+    },
+    {
+      path: '/article/:id', 
+      name: 'ArticleDetail',
+      component: ArticleDetail,
+      props: true 
+    },
+  ]})      
 export default router
