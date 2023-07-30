@@ -65,13 +65,8 @@ const memberLogOut =() =>{
                         
                         <a href="#" v-if="isLogin"  class="btn-sm-square bg-white rounded-circle ms-3" > <small class="fa fa-user text-body"></small></a>
                            
-<<<<<<< HEAD
                         <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
                             <RouterLink to="/BuyPoint" small class="fa fa-shopping-bag text-body"></RouterLink>
-=======
-                        <a class="btn-sm-square bg-white rounded-circle ms-3" href="#">
-                            <small class="fa fa-shopping-bag text-body"></small>
->>>>>>> plan
                         </a>
 
                         <!--登入前展示 登入後隱藏 -->

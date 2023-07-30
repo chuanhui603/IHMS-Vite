@@ -59,14 +59,7 @@ const router = createRouter({
       path: '/BuyPoint',
       name: 'BuyPoint',   
       component: BuyPoint 
-    },
-    {
-      path:'/login',
-      name: 'login',
-      component: login
-    }
-    
-    
+    },   
   ]
 })       
 export default router
