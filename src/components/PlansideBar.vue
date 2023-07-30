@@ -67,8 +67,8 @@ const listsearch = async (sportid) => {
     <div class="nav nav-pills">
         <div class="planmenu">
             <div class="memberimg">
-                <img src="../img/testimonial-1.jpg" alt="hahaha">
-                <p><a href="">Judy Lin</a></p>
+                <img src="../img/cock.jpg" alt="hahaha">
+                <p><a href="#">Judy Lin</a></p>
             </div>
             <div class="row m-3 ">
                 <div class="col-7 offset-lg-2 text-center menutitle" style="padding-left: 5px;">

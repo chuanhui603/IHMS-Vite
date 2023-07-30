@@ -58,6 +58,11 @@ const router = createRouter({
       path: '/orders',
       name: 'orders',
       component: Orders,
+      beforeEnter:(to, from) => {
+        if(!localStorage.getItem('currentMember')){
+          return {name:'login'}
+        }          
+        },
     },
       { path: '/announcements/:announcementId',
       name: 'AnnouncementView',
@@ -95,12 +100,22 @@ const router = createRouter({
     {
       path: '/PointRecord',
       name: 'PointRecord',
-      component: PointRecord
+      component: PointRecord,
+      beforeEnter:(to, from) => {
+        if(!localStorage.getItem('currentMember')){
+          return {name:'login'}
+        }          
+        },
     },
     {
       path: '/BuyPoint',
       name: 'BuyPoint',   
-      component: BuyPoint 
+      component: BuyPoint,
+      beforeEnter:(to, from) => {
+        if(!localStorage.getItem('currentMember')){
+          return {name:'login'}
+        }          
+        },
     },
     {   
       path: '/custom-service',
