@@ -43,7 +43,7 @@ router.afterEach(() => {
         <router-view></router-view>           
 
         <!-- 尾頁 Start -->
-        <div class="container-fluid bg-dark footer p-3 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container-fluid bg-dark footer p-3 ">
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 text-center text-md-start mt-3 mb-md-0">

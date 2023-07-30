@@ -37,7 +37,7 @@ const memberLogOut = () => {
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav p-4 p-lg-0">
-                    <RouterLink to="/" class="nav-item nav-link active">首頁</RouterLink>
+                    <RouterLink to="/" class="nav-item nav-link">首頁</RouterLink>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">會員專區</a>
                         <div class="dropdown-menu m-0">
@@ -47,19 +47,11 @@ const memberLogOut = () => {
                             <a href="404.html" class="dropdown-item">會員設定</a>
                         </div>
                     </div>
+                    <a href="https://localhost:7127/Student/CoachList" class="nav-link">課程總覽</a>
+                    <RouterLink to="/announcements" class="nav-item nav-link">公告</RouterLink>
+                    <RouterLink to="/MessageBoardList" class="nav-item nav-link">討論區</RouterLink>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">課程專區</a>
-                        <div class="dropdown-menu m-0">
-                            <a href="blog.html" class="dropdown-item">欄位1</a>
-                            <a href="feature.html" class="dropdown-item">欄位2</a>
-                            <a href="testimonial.html" class="dropdown-item">欄位3</a>
-                        </div>
-                    </div>
-                    <RouterLink to="/announcements" class="nav-item nav-link active">公告</RouterLink>
-                    <RouterLink to="/ArticleList" class="nav-item nav-link active">相關文章</RouterLink>
-                    <RouterLink to="/MessageBoardList" class="nav-item nav-link active">討論區</RouterLink>
-                    <div class="nav-item dropdown">
-                        <div class="nav-item dropdown">                           
+                        <div class="nav-item dropdown">
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">客服</a>
                                 <div class="dropdown-menu m-0">
@@ -78,7 +70,7 @@ const memberLogOut = () => {
                     <a href="#" v-if="isLogin" class="btn-sm-square bg-white rounded-circle ms-3"> <small
                             class="fa fa-user text-body"></small></a>
 
-                    <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
+                    <a class="btn-sm-square bg-white rounded-circle ms-3" href="http://localhost:5174/BuyPoint">
                         <RouterLink to="/BuyPoint" small class="fa fa-shopping-bag text-body"></RouterLink>
                     </a>
 

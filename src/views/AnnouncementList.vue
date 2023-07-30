@@ -36,10 +36,8 @@
 </template>
 
 
-<style>
-.container {
-  margin-top: 100px;
-}
+<style >
+
 
 .announcement-list {
   list-style-type: none;
