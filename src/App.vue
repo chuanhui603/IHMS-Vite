@@ -12,6 +12,7 @@ new WOW().init()
 <style lang="css" src="./css/style.css"></style>
 <style lang="css" src="wowjs/css/libs/animate.css"></style>
 
+333
 <template>
     <div class="backimg">
          <!-- Spinner start -->
