@@ -8,6 +8,7 @@ const dialogCreateVisible = ref(false)
 const dialogEditVisible = ref(false)
 const search = ref('')
 const sportdatas = ref('')
+const isdoneclass=ref('competed')
 const dialogLoadUpdate = async (Id) => {
     const API_URL = `https://localhost:7127/api/plans/Sportdetail/${Id}`
     const res = await fetch(API_URL)
@@ -26,6 +27,7 @@ const detailDelete = async (id) => {
 const detailComplete = async (id) => {   
         const API_URL = `https://localhost:7127/api/plans/sportdetail/complete/${id}`
         const res = await fetch(API_URL, { method: 'PUT' })  
+        isdoneclass.value = 'uncompeted'
         onload()     
   
 }
@@ -84,8 +86,8 @@ const listsearch = async (sportid) => {
                     <div>
                         <ul class="menulist nav mt-2">
 
-                            <li v-for="{ sname, sportDetailId,isdone,time } in list" :key="sportDetailId" class="mt-2 mb-2">
-                                <el-button color="#626aef"  @click="dialogLoadUpdate(sportDetailId)">
+                            <li v-for="{ sname, sportDetailId,isdone,time } in list" :key="sportDetailId" >
+                                <el-button color="#626aef" :class="isdoneclass"  @click="dialogLoadUpdate(sportDetailId)">
                                     {{ sname }}{{time}}
                                 </el-button>
                                 <div id="changebtn">
@@ -111,6 +113,14 @@ const listsearch = async (sportid) => {
     </el-dialog>
 </template>
 <style scoped>
+
+.competed{
+    background-color: #ccc;
+}
+.uncompeted{
+    background-color: #626aef;
+}
+
 .memberimg {
     display: flex;
     flex-direction: column;
