@@ -1,32 +1,28 @@
 <template>
-  <div class="text-end">
-    <!-- Add the search input field -->
-    <!-- <form @submit.prevent="searchOrders">
-      <input v-model="searchText" placeholder="搜索..." style="margin: 10px;" /> -->
-      <!-- 将 type 改为 "submit"，将按钮与表单关联 -->
-      <!-- <input type="submit" value="查詢" class="btn btn-primary" />
-    </form> -->
+  <div class="text-end">   
     <table class="table table-bordered">
       <thead>
         <tr>          
           <th style="width: 120px;">訂單編號</th>
-          <th style="width: 50px">會員名字</th>
+          <th style="width: 50px">會員id</th>
+          <!-- <th style="width: 50px">會員名字</th> -->
           <th style="width: 80px">訂單價格</th>
           <th style="width: 100px">訂單狀態</th>
+          <!-- <th>已取消原因</th> -->
           <th style="width: 150px">訂單時間</th>
           <th style="width: 180px">明細</th>
           
         </tr>
       </thead>
       <tbody>
-        <tr v-for="{ordernumber,pointstotal, state, createtime, coach, course, member, schedule
+        <tr v-for="{ordernumber,memberId,pointstotal, state, createtime, coach, course, member, schedule
 }
         in orders" :key="orderId">
         
           <!-- <td>{{ orderId }}</td> -->
-          <td>{{ ordernumber }}</td>
-        
-          <td>{{ member.name }}</td>
+          <td>{{ ordernumber }}</td>   
+          <td>{{memberId }}</td>
+           
           <td>{{ pointstotal }}</td>
           <td>{{ state }}</td>
           <!-- <td>{{ reason }}</td> -->
