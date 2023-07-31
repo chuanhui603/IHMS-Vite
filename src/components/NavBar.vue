@@ -1,5 +1,6 @@
 <script setup>
 import { useRouter } from 'vue-router'
+import {ref} from 'vue'
 const router = useRouter()
 const prop = defineProps({
     isLogin: Boolean
@@ -8,6 +9,21 @@ const memberLogOut = () => {
     localStorage.removeItem('currentMember')
     router.push('/')
 }
+const { memberId } = JSON.parse(localStorage.getItem('currentMember'))
+// function searchpoint(params) {
+    
+// }
+const currentPoint = ref();
+   const loadPointRecord = async ()=>{    
+     const res = await fetch(`https://localhost:7127/api/PointRecordsDTO/${memberId}`)
+     const datas = await res.json()
+     currentPoint.value = datas;  
+     console.log(datas)
+   };
+   
+   loadPointRecord();
+   router.beforeEach(loadPointRecord);
+   
 
 </script>
 
@@ -80,7 +96,9 @@ const memberLogOut = () => {
                     <router-link to="/login" v-if="!isLogin" class="ms-3 p-1 text-body">登入</router-link>
                     <router-link to="/" v-if="isLogin" @click="memberLogOut" class="ms-3 p-1 text-body">登出</router-link>
                     <!--登入前隱藏 登入後展示 -->
-                    <div v-if="isLogin" class=" ms-3 p-1">點數: <span>$150.00</span></div>
+                    <div v-if="isLogin" class=" ms-3 p-1">點數: <span>${{currentPoint}}</span></div>
+                    
+
                 </div>
             </div>
         </nav>
