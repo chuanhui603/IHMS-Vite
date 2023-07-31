@@ -1,29 +1,38 @@
 <script setup>
 import { useRouter } from 'vue-router'
-import {ref} from 'vue'
+import { ref } from 'vue'
 const router = useRouter()
 const prop = defineProps({
-    isLogin: Boolean
+    isLogin: Boolean,
 })
+
+
 const memberLogOut = () => {
     localStorage.removeItem('currentMember')
     router.push('/')
 }
-const { memberId } = JSON.parse(localStorage.getItem('currentMember'))
-// function searchpoint(params) {
-    
-// }
+
+const id = ref()
+if (localStorage.getItem('currentMember')) {
+    const { memberId } = JSON.parse(localStorage.getItem('currentMember'))
+    console.log(memberId)
+    id.value = memberId
+}
+
+
 const currentPoint = ref();
-   const loadPointRecord = async ()=>{    
-     const res = await fetch(`https://localhost:7127/api/PointRecordsDTO/${memberId}`)
-     const datas = await res.json()
-     currentPoint.value = datas;  
-     console.log(datas)
-   };
-   
-   loadPointRecord();
-   router.beforeEach(loadPointRecord);
-   
+const loadPointRecord = async () => {
+    if (id) {
+        const res = await fetch(`https://localhost:7127/api/PointRecordsDTO/${id.value}`)
+        const datas = await res.json()
+        currentPoint.value = datas;
+    }
+};
+
+if(localStorage.getItem('currentMember')){
+    router.afterEach(loadPointRecord);
+}
+
 
 </script>
 
@@ -83,9 +92,9 @@ const currentPoint = ref();
                         <small class="fa fa-search text-body"></small>
                     </a>
 
-                    <a href="https://localhost:7127/Members/MemberEdit/6" v-if="isLogin" class="btn-sm-square bg-white rounded-circle ms-3"> <small
-                            class="fa fa-user text-body"></small>
-                        </a>
+                    <a href="https://localhost:7127/Members/MemberEdit/6" v-if="isLogin"
+                        class="btn-sm-square bg-white rounded-circle ms-3"> <small class="fa fa-user text-body"></small>
+                    </a>
 
                     <a class="btn-sm-square bg-white rounded-circle ms-3" v-if="isLogin">
                         <RouterLink to="/BuyPoint" small class="fa fa-shopping-bag text-body"></RouterLink>
@@ -96,8 +105,8 @@ const currentPoint = ref();
                     <router-link to="/login" v-if="!isLogin" class="ms-3 p-1 text-body">登入</router-link>
                     <router-link to="/" v-if="isLogin" @click="memberLogOut" class="ms-3 p-1 text-body">登出</router-link>
                     <!--登入前隱藏 登入後展示 -->
-                    <div v-if="isLogin" class=" ms-3 p-1">點數: <span>${{currentPoint}}</span></div>
-                    
+                    <div v-if="isLogin" class=" ms-3 p-1">點數: <span>${{ currentPoint }}</span></div>
+
 
                 </div>
             </div>

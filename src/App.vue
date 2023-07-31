@@ -38,7 +38,7 @@ router.afterEach(() => {
         </div>
         <!-- Spinner End -->
         <!-- Navbar Start -->
-        <NavBar  :isLogin="isLogin" ></NavBar>
+        <NavBar  :isLogin="isLogin" :memberItems="memberItems"></NavBar>
         <!-- Navbar End -->
         <!-- 內容 -->
         <router-view></router-view>           
