@@ -5,10 +5,10 @@ const router = useRouter()
 const prop = defineProps({
     isLogin: Boolean
 })
-// const memberLogOut = () => {
-//     localStorage.removeItem('currentMember')
-//     router.push('/')
-//  }
+const memberLogOut = () => {
+    localStorage.removeItem('currentMember')
+    router.push('/')
+ }
 // const id  =ref ()
 // if(localStorage.getItem('currentMember')){
 //     const { memberId } = JSON.parse(localStorage.getItem('currentMember'))
