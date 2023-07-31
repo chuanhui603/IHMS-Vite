@@ -3,31 +3,36 @@ import { useRouter } from 'vue-router'
 import { ref } from 'vue'
 const router = useRouter()
 const prop = defineProps({
-    isLogin: Boolean
+    isLogin: Boolean,
 })
+
+
 const memberLogOut = () => {
     localStorage.removeItem('currentMember')
     router.push('/')
 }
 
-// const id = ref()
-
-// if (localStorage.getItem('currentMember')) {
-//     const { memberId } = JSON.parse(localStorage.getItem('currentMember'))
-//     id.value = memberId
-// }
-
-
-// const currentPoint = ref();
-// const loadPointRecord = async () => {
-//     const res = await fetch(`https://localhost:7127/api/PointRecordsDTO/${id.value}`)
-//     const datas = await res.json()
-//     currentPoint.value = datas;
-//     console.log(datas)
-// };
+const id = ref()
+if (localStorage.getItem('currentMember')) {
+    const { memberId } = JSON.parse(localStorage.getItem('currentMember'))
+    console.log(memberId)
+    id.value = memberId
+}
 
 
-// router.beforeEach(loadPointRecord);
+const currentPoint = ref();
+const loadPointRecord = async () => {
+    if (id) {
+        const res = await fetch(`https://localhost:7127/api/PointRecordsDTO/${id.value}`)
+        const datas = await res.json()
+        currentPoint.value = datas;
+    }
+};
+
+if(localStorage.getItem('currentMember')){
+    router.afterEach(loadPointRecord);
+}
+
 
 </script>
 
