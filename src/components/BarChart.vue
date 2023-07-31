@@ -27,7 +27,7 @@
         chartData: {
           labels: [ 'Sunday', 'Monday', 'Tuesday','Wednesday','Thursday','Friday','Saturday' ],
           datasets: [{ 
-            label: 'Calories',
+            label: '卡路里',
             data: [2030, 1988, 2033,1865,2133,1977,2231] ,
             backgroundColor: '#f87979',
           }]

@@ -14,7 +14,6 @@
 <script setup >
   import { ref } from 'vue';
 
-  const plans = ref([])
 
   import OrderItems from '../components/OrderItems.vue';
   

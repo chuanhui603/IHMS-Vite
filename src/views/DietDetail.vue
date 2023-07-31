@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from 'vue';
+import { ref } from 'vue';
 import Carousel from '../components/Carousel.vue';
 const prop = defineProps({
     dialogEditVisible:Boolean,
@@ -53,10 +53,6 @@ const imgDelete = (index) => {
     imgUrl.value.splice(index, 1)
 }
 
-
-const imgList = computed(() =>
-    dietdetail.value.Img.map((_, index) => imgUrl.value[index]
-    ));
 
 const onCreate =async () => {
     const formData = new FormData()

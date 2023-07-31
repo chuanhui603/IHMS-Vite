@@ -24,8 +24,7 @@
         in orders" :key="orderId">
         
           <!-- <td>{{ orderId }}</td> -->
-          <td>{{ ordernumber }}</td>
-        
+          <td>{{ ordernumber }}</td>       
           <td>{{ member.name }}</td>
           <td>{{ pointstotal }}</td>
           <td>{{ state }}</td>

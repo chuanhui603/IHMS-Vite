@@ -10,7 +10,7 @@ const search = ref('')
 const sportdatas = ref('')
 const dialogLoadUpdate = async (Id) => {
     const API_URL = `https://localhost:7127/api/plans/Sportdetail/${Id}`
-    const res = await fetch(API_URL, { method: 'Get' })
+    const res = await fetch(API_URL)
     sportdatas.value = await res.json()
     dialogEditVisible.value = true
 }

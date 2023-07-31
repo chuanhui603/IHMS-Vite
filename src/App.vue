@@ -3,11 +3,20 @@ import 'bootstrap/dist/js/bootstrap.min.js'
 import './js/main.js'
 import './js/test.js'
 import NavBar from './components/NavBar.vue'
-import {ref} from 'vue'
+import {ref,provide,nextTick} from 'vue'
 import {useRouter} from 'vue-router'
 const router = useRouter()
 const isLogin =ref(false);
 const memberItems=ref({})  
+const isRouterAlive = ref(true);
+
+const reload = async () =>{
+    isRouterAlive.value = true
+    await nextTick(()=>{
+        isRouterAlive.value = false
+    })
+}
+provide('reload',{ reload })
 const isLoginCheck=()=>{
     if(localStorage.getItem('currentMember')){
         memberItems.value = localStorage.getItem('currentMember')
@@ -41,7 +50,7 @@ router.afterEach(() => {
         <NavBar  :isLogin="isLogin" :memberItems="memberItems"></NavBar>
         <!-- Navbar End -->
         <!-- 內容 -->
-        <router-view></router-view>           
+        <router-view v-if="isRouterAlive"></router-view>           
 
         <!-- 尾頁 Start -->
         <div class="container-fluid bg-dark footer p-3 ">

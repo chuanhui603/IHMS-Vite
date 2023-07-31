@@ -22,14 +22,16 @@ const loadPlans = async () => {
     const res = await fetch(api_URL)
     const datas = await res.json()
     sessionStorage.setItem("plans", JSON.stringify(datas));
-    planitems = await sessionStorage.getItem("plans")
+    if(sessionStorage.getItem("plans")){
+        planitems = sessionStorage.getItem("plans")
+    }
     const { planId } = planitems
     pId = planId
 }
-(async () => {
-    await loadPlans()
-    await loadsportdate()
-})()
+
+     loadPlans()
+    //  loadsportdate()
+
 const loadsportdate = async () => {
     const api_URL = `https://localhost:7127/api/plans/sport/${pId}`
     const res = await fetch(api_URL)
