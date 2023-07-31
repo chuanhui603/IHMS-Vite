@@ -1,7 +1,7 @@
 <script setup>
 import plansidebar from '../components/PlansideBar.vue'
 import plandetail from '../views/PlanDetail.vue'
-import listview from '../views/ListView.vue'
+import planlistview from '../views/PlanListView.vue'
 import { useRouter } from 'vue-router'
 import { ref } from 'vue'
 const isPlans = ref(false)
@@ -60,7 +60,7 @@ const loadsportdate = async () => {
                     <plandetail v-else></plandetail>
                 </div>
                 <div class="row">
-                    <listview></listview>
+                    <planlistview></planlistview>
                 </div>
             </div>
         </div>

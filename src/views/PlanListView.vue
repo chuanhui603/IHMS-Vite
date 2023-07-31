@@ -7,7 +7,7 @@
     </div>
 
     <el-table :data="dietData" height="400" style="width: 100%;" v-if="isDiet">
-        <el-table-column fixed prop="name" label="食物名稱" width="150" />
+        <el-table-column fixed prop="dname" label="食物名稱" width="150" />
         <el-table-column prop="type" label="種類" width="120" />
         <el-table-column prop="calories" label="熱量" width="120" />
         <el-table-column prop="registerdate" label="紀錄時間" width="120" />
@@ -19,13 +19,13 @@
         </el-table-column>
     </el-table>
     <el-table :data="sportData" height="400" style="width: 100%;" v-else>
-        <el-table-column fixed prop="name" label="運動名稱" width="150" />
+        <el-table-column fixed prop="sname" label="運動名稱" width="150" />
         <el-table-column prop="type" label="分類" width="120" />
-        <el-table-column prop="alltime" label="運動時間" width="120" />
+        <el-table-column prop="timelong" label="運動時間" width="120" />
         <el-table-column prop="sets" label="組數" width="120" />
-        <el-table-column prop="times" label="次數" width="120" />
+        <el-table-column prop="frequency" label="次數" width="120" />
         <el-table-column prop="calories" label="消耗熱量" width="120" />
-        <el-table-column prop="sportdate" label="運動日期" width="120" />
+        <el-table-column prop="time" label="運動日期" width="120" />
         <el-table-column prop="registerdate" label="紀錄時間" width="120" />
         <el-table-column prop="isdone" label="完成確認" width="120" />
         <el-table-column fixed="right" label="編輯" width="120">
@@ -59,11 +59,11 @@ const dietLoad = async () => {
 const sportLoad = async () => {
     const res = await fetch(`https://localhost:7127/api/plans/sportdetail/list/1`)
     const datas = await res.json()
-    if(res.ok){
+    if (res.ok) {
         sportData.value = datas
-    console.log(sportData.value)
+        console.log(sportData.value)
     }
-  
+
 
 }
 const dietData = ref([

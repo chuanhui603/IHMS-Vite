@@ -56,7 +56,7 @@ foodtypeUpdate()
     <div class="row mt-5">
       <div class="col-lg-6">
         <div class="chart">
-          <doghnutsChart></doghnutsChart>
+          <doghnutsChart :data="foodtype"></doghnutsChart>
         </div>
       </div>
       <div class="col-lg-6">
