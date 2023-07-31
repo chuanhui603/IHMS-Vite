@@ -5,29 +5,29 @@ const router = useRouter()
 const prop = defineProps({
     isLogin: Boolean
 })
-const memberLogOut = () => {
-    localStorage.removeItem('currentMember')
-    router.push('/')
-}
-const id  =ref ()
-if(localStorage.getItem('currentMember')){
-    const { memberId } = JSON.parse(localStorage.getItem('currentMember'))
-    id = memberId
-}
+// const memberLogOut = () => {
+//     localStorage.removeItem('currentMember')
+//     router.push('/')
+//  }
+// const id  =ref ()
+// if(localStorage.getItem('currentMember')){
+//     const { memberId } = JSON.parse(localStorage.getItem('currentMember'))
+//     id = memberId
+// }
 
 // function searchpoint(params) {
     
 // }
-const currentPoint = ref();
-   const loadPointRecord = async ()=>{    
-     const res = await fetch(`https://localhost:7127/api/PointRecordsDTO/${id}`)
-     const datas = await res.json()
-     currentPoint.value = datas;  
-     console.log(datas)
-   };
+// const currentPoint = ref();
+//    const loadPointRecord = async ()=>{    
+//      const res = await fetch(`https://localhost:7127/api/PointRecordsDTO/${id}`)
+//      const datas = await res.json()
+//      currentPoint.value = datas;  
+//      console.log(datas)
+//    };
    
-   loadPointRecord();
-   router.beforeEach(loadPointRecord);
+//    loadPointRecord();
+//    router.beforeEach(loadPointRecord);
    
 
 </script>
