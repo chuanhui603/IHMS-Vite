@@ -9,13 +9,18 @@ const memberLogOut = () => {
     localStorage.removeItem('currentMember')
     router.push('/')
 }
-const { memberId } = JSON.parse(localStorage.getItem('currentMember'))
+const id  =ref ()
+if(localStorage.getItem('currentMember')){
+    const { memberId } = JSON.parse(localStorage.getItem('currentMember'))
+    id = memberId
+}
+
 // function searchpoint(params) {
     
 // }
 const currentPoint = ref();
    const loadPointRecord = async ()=>{    
-     const res = await fetch(`https://localhost:7127/api/PointRecordsDTO/${memberId}`)
+     const res = await fetch(`https://localhost:7127/api/PointRecordsDTO/${id}`)
      const datas = await res.json()
      currentPoint.value = datas;  
      console.log(datas)
