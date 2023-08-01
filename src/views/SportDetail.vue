@@ -52,7 +52,7 @@ const prop = defineProps({
         dialogEditVisible: Boolean,
         datas: Object
 })
-const { datas } = prop
+
 const emit = defineEmits();
 const dialogEditUpdate = () => {
         emit('dialogEditUpdate', false); // Send the new value to the parent component     
@@ -73,9 +73,8 @@ const sportdetail = ref({
         type: "",
 
 })
-if(datas.sportDetailId){
-        sportdetail.value = datas
-}
+sportdetail.value = prop.datas
+console.log(sportdetail.value)
 const onCreate = async () => {
         const formData = new FormData()
         formData.append('SportId', sportdetail.value.sportId)

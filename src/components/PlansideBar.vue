@@ -6,16 +6,21 @@ import SportDetail from '../views/SportDetail.vue'
 //設定跳出視窗
 const dialogCreateVisible = ref(false)
 const dialogEditVisible = ref(false)
+const DetailId =ref(0)
 const search = ref('')
 const sportdatas = ref('')
 const isdoneclass=ref('competed')
 const dialogLoadUpdate = async (Id) => {
     const API_URL = `https://localhost:7127/api/plans/Sportdetail/${Id}`
     const res = await fetch(API_URL)
-    sportdatas.value = await res.json()
-    dialogEditVisible.value = true
+    if(res.ok){
+        sportdatas.value = res.json()  
+        console.log(sportdatas.value) 
+        dialogEditVisible.value = true  
+    }  
 }
-
+DetailId.value = sportdatas.value.sportDetailId
+console.log(DetailId.value)
 const detailDelete = async (id) => {
     const check = confirm(`確定刪除行程?`)
     if (check) {
@@ -69,7 +74,7 @@ const listsearch = async (sportid) => {
     <div class="nav nav-pills">
         <div class="planmenu">
             <div class="memberimg">
-                <img src="../img/cock.jpg" alt="hahaha">
+                <img src="../img/testimonial-1.jpg" alt="hahaha">
                 <p><a href="#">Judy Lin</a></p>
             </div>
             <div class="row m-3 ">
@@ -86,7 +91,7 @@ const listsearch = async (sportid) => {
                     <div>
                         <ul class="menulist nav mt-2">
 
-                            <li v-for="{ sname, sportDetailId,isdone,time } in list" :key="sportDetailId" >
+                            <li v-for="{ sname, sportDetailId,time } in list" :key="sportDetailId" >
                                 <el-button color="#626aef" :class="isdoneclass"  @click="dialogLoadUpdate(sportDetailId)">
                                     {{ sname }}{{time}}
                                 </el-button>
@@ -103,7 +108,7 @@ const listsearch = async (sportid) => {
         </div>
     </div>
     <el-dialog v-model="dialogEditVisible" title="更改設定" width="30%">
-                                <SportDetail :datas="sportdatas" :dialogEditVisible="dialogEditVisible"
+                                <SportDetail :id="DetailId" :dialogEditVisible="dialogEditVisible"
                                     @dialogEditUpdate="dialogEditUpdate(value)">
                                 </SportDetail>
                             </el-dialog>
