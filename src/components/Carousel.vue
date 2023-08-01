@@ -1,8 +1,9 @@
 <template>
   <el-carousel :interval="5000" type="card"  height="300px">
-    <el-carousel-item v-for="(image, index) in imgList" :key="index">
+    <el-carousel-item v-for="(image, index) in imgList" :key="index"
+    change=" ">
       <a @click="imgDelete(index)"><el-icon><Close /></el-icon></a>
-      <el-image style="width: 100%; height: 100%" :src="imgUrl[index]" :alt="prop.imgList[index].name" fit="contain"/>  
+      <el-image style="width: 100%; height: 100%" :src="imgUrl[index]" :alt="imgList[index].name" fit="contain"/>  
     </el-carousel-item>
   </el-carousel>
 </template>
@@ -10,26 +11,17 @@
 <script setup>
 import {ref} from 'vue'
 const prop = defineProps({
-  imgList: Array
+  imgList: Array,
+  imgUrl:Array
 })
+
 console.log(prop.imgList)
 const imgUrl = ref([])
-const imgUrlAdd = ()=>{
-  for (let i = 0; i < prop.imgList.length; i++) {
-        const file =  prop.imgList[i];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = (event) => {
-                imgUrl.value.push(event.target.result);
-            };
-            reader.readAsDataURL(file);
-        }
-    }
-console.log(imgUrl)
-}
-imgUrlAdd()
+imgUrl.value = prop.imgUrl
+console.log(imgUrl.value)
 
-const emit = defineEmits(['img-delete'])
+
+const emit = defineEmits(['img-delete'],['changeUpdate'])
 const imgDelete =(index)=>{
   emit("img-delete",index);
 }

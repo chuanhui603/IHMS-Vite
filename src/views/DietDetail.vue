@@ -2,15 +2,16 @@
 import { ref } from 'vue';
 import Carousel from '../components/Carousel.vue';
 const prop = defineProps({
-    dialogEditVisible:Boolean,
-    dietdetailId:Number
+    dialogEditVisible: Boolean,
+    dietdetailId: Number,
+   
 })
-const {dietdetailId} = prop
+const { dietdetailId } = prop
 const emit = defineEmits();
 const dialogEditUpdate = () => {
-  emit('dialogEditUpdate', false); // Send the new value to the parent component
+    emit('dialogEditUpdate', false); // Send the new value to the parent component
 };
-
+const imgUpload = ref(false)
 const date = new Date()
 let imgUrl = ref([])
 //回傳資料
@@ -34,6 +35,7 @@ const dietdetail = ref({
 
 
 const ImgAdd = (e) => {
+    imgUpload.value = false
     dietdetail.value.Img.push(...e.target.files)
     for (let i = 0; i < dietdetail.value.Img.length; i++) {
         const file = e.target.files[i];
@@ -45,6 +47,7 @@ const ImgAdd = (e) => {
             reader.readAsDataURL(file);
         }
     }
+    imgUpload.value = true
 }
 
 
@@ -54,7 +57,7 @@ const imgDelete = (index) => {
 }
 
 
-const onCreate =async () => {
+const onCreate = async () => {
     const formData = new FormData()
     formData.append('DietId', dietdetail.value.DietId)
     formData.append('Dname', dietdetail.value.Dname)
@@ -70,10 +73,10 @@ const onCreate =async () => {
         method: 'POST',
         body: formData,
     })
-    .catch(err => {
-        console.log(err);
-    })
-    if(res.ok){
+        .catch(err => {
+            console.log(err);
+        })
+    if (res.ok) {
         dialogEditUpdate()
     }
 }
@@ -96,16 +99,20 @@ const onEdit = async () => {
         body: formData,
 
     })
-    .catch(err => {
-        console.log(err);
-    })
-    if(res.ok){
+        .catch(err => {
+            console.log(err);
+        })
+    if (res.ok) {
         dialogEditUpdate()
     }
 }
 
-const cancelReturn =()=>{
+const cancelReturn = () => {
     dialogEditUpdate()
+}
+
+const changeUpdate = () => {
+
 }
 </script>
 <template>
@@ -134,7 +141,7 @@ const cancelReturn =()=>{
             <input type="file" @change="ImgAdd" multiple>
         </el-form-item>
         <div v-if="dietdetail.Img.length > 0">
-            <Carousel :imgList="dietdetail.Img" @img-delete="imgDelete"></Carousel>
+            <Carousel  @change="changeUpdate" :imgList="dietdetail.Img" @img-delete="imgDelete" :imgUrl="imgUrl"></Carousel>
         </div>
         <div class="btnset">
             <el-button v-if="dietdetailId" @click="onEdit" class="mt-4">修改</el-button>
