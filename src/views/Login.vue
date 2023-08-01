@@ -74,7 +74,10 @@ const Login = async () => {
             // 將會員資訊存入 localStorage
             localStorage.setItem('currentMember', JSON.stringify(member));
             // 回到首頁    
-            Router.push('/')
+            if(localStorage.getItem('currentMember')){
+                Router.push('/')
+            }
+           
         } else {
             // 登入失敗
             alert('帳號或密碼不正確，請重新登入！');

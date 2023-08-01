@@ -23,7 +23,7 @@
               <label for="total" class="form-label">總數量：</label>
               <input type="text" id="total" class="form-control" :value="totalQuantity" readonly>
             </div>
-            <button type="submit" class="btn btn-primary certain" @click="submitForm" >提交</button>
+            <button type="submit" class="btn btn-primary certain"  >提交</button>
           </form>
         </div>
       </div>
@@ -32,7 +32,8 @@
   
   <script setup>
   import { ref, computed } from 'vue';
-  
+  import { useRouter } from 'vue-router';
+  const router = useRouter()
   // 購買點數表單的組件
   const quantity = ref(1);
   const currentPoints = ref(150); // 假設目前的點數為 $150
@@ -40,12 +41,37 @@
   // 計算屬性用來計算總數量
   const totalQuantity = computed(() => 500 * quantity.value);
 
-  function submitForm() {
-  // 可以在這裡處理表單提交後的操作
-  // 使用context.emit發送自定義事件 'updatePoints'，並將新的點數傳遞給父組件
-  const newPoints = currentPoints + totalQuantity.value;
-  context.emit('updatePoints', newPoints);
+  async function submitForm() {
+  try {
+    // 假設您有一個名為formData的物件，包含要提交的資料
+    // const formData = {
+    //   quantity: quantity.value, // 使用者輸入的數量
+    //   totalQuantity: totalQuantity.value, // 計算後的總數量
+    // };
+
+    const formData = ref({
+      Count:quantity,
+      MemberId:6,
+      
+})
+    
+    // 使用fetch API將資料提交到後端API
+    const response = await fetch('https://localhost:7127/api/PointRecordsDTO', {
+      method: 'POST', // 或 'PUT' 或其他HTTP請求方法，根據您的需求
+      headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(formData.value),// 將資料轉換為JSON格式並放入body中
+    });
+    router.push('/orders')
+  
+  } catch (error) {
+    // 處理其他錯誤情況
+    // 在這裡您可以處理其他可能的錯誤，例如網絡錯誤等
+  }
 }
+
+ 
   </script>
   
   <style scoped>
@@ -56,6 +82,7 @@
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin-bottom: 30px;
+    
   }
   
   .coin-img {

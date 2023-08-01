@@ -4,9 +4,9 @@
       <div class="row">           
         <div class="col-13">
           <PointRecordItem :PointRecords="PointRecords"></PointRecordItem> 
-        </div>  
-           
+        </div>             
       </div>
+
     
     </div>
 </template>

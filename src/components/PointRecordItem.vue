@@ -13,7 +13,7 @@
         <tr v-for="{pointrecordId, count, memberId, bankNumber,createtime} in PointRecords" :key="PointrecordId">
                     
             <td>{{ pointrecordId }}</td>
-            <td>{{ count}}</td>
+            <td>{{ count*500}}</td>
             <td>{{ memberId}}</td>
             <td>{{ bankNumber}}</td>
             <td>{{ createtime}}</td>

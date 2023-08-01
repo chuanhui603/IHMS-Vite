@@ -3,11 +3,20 @@ import 'bootstrap/dist/js/bootstrap.min.js'
 import './js/main.js'
 import './js/test.js'
 import NavBar from './components/NavBar.vue'
-import {ref} from 'vue'
+import {ref,provide,nextTick} from 'vue'
 import {useRouter} from 'vue-router'
 const router = useRouter()
 const isLogin =ref(false);
 const memberItems=ref({})  
+const isRouterAlive = ref(true);
+
+const reload = async () =>{
+    isRouterAlive.value = true
+    await nextTick(()=>{
+        isRouterAlive.value = false
+    })
+}
+provide('reload',{ reload })
 const isLoginCheck=()=>{
     if(localStorage.getItem('currentMember')){
         memberItems.value = localStorage.getItem('currentMember')
@@ -28,6 +37,7 @@ router.afterEach(() => {
 <style lang="css" src="./css/style.css"></style>
 <style lang="css" src="wowjs/css/libs/animate.css"></style>
 
+333
 <template>
     <div class="backimg">
          <!-- Spinner start -->
@@ -37,10 +47,10 @@ router.afterEach(() => {
         </div>
         <!-- Spinner End -->
         <!-- Navbar Start -->
-        <NavBar  :isLogin="isLogin" ></NavBar>
+        <NavBar  :isLogin="isLogin" :memberItems="memberItems"></NavBar>
         <!-- Navbar End -->
         <!-- 內容 -->
-        <router-view></router-view>           
+        <router-view v-if="isRouterAlive"></router-view>           
 
         <!-- 尾頁 Start -->
         <div class="container-fluid bg-dark footer p-3 ">

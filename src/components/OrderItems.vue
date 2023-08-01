@@ -1,17 +1,11 @@
 <template>
-  <div class="text-end">
-    <!-- Add the search input field -->
-    <form @submit.prevent="searchOrders">
-      <input v-model="searchText" placeholder="搜索..." style="margin: 10px;" />
-      <!-- 将 type 改为 "submit"，将按钮与表单关联 -->
-      <input type="submit" value="查詢" class="btn btn-primary" />
-    </form>
+  <div class="text-end">   
     <table class="table table-bordered">
       <thead>
-        <tr>
-          <!-- <th style="width: 50px">訂單ID</th> -->
+        <tr>          
           <th style="width: 120px;">訂單編號</th>
           <th style="width: 50px">會員id</th>
+          <!-- <th style="width: 50px">會員名字</th> -->
           <th style="width: 80px">訂單價格</th>
           <th style="width: 100px">訂單狀態</th>
           <!-- <th>已取消原因</th> -->
@@ -21,12 +15,14 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="{ordernumber, memberId,pointstotal, state, createtime, coach, course, member, schedule}
+        <tr v-for="{ordernumber,memberId,pointstotal, state, createtime, coach, course, member, schedule
+}
         in orders" :key="orderId">
         
           <!-- <td>{{ orderId }}</td> -->
-          <td>{{ ordernumber }}</td>
-          <td>{{ memberId }}</td>
+          <td>{{ ordernumber }}</td>   
+          <td>{{memberId }}</td>
+           
           <td>{{ pointstotal }}</td>
           <td>{{ state }}</td>
           <!-- <td>{{ reason }}</td> -->
@@ -43,18 +39,19 @@
 
             <!-- 呈現課程名稱 -->
             <ul>
-              <li v-for="c in course">課程名稱: {{ c.coursename }}</li>
+              <li v-for="c in course">課程名稱: {{ c.courseName }}</li>
             </ul>
 
             <!-- 呈現課程時間 -->
             <ul>
-              <li v-for="s in schedule">課程時間: {{ s.startTime }}</li>
+              <li >課程時間: {{ schedule.courseTime }}</li>
             </ul>
 
              <!-- 呈現課程費用 -->
              <ul>
-              <li v-for="s in schedule">課程費用: {{ s.point}}</li>
+              <li v-for="c in course">課程費用: {{ c.courseTotal}}</li>
             </ul>
+
           </td>      
           
         </tr>
@@ -73,27 +70,27 @@
 
   const searchText = ref('');
 
-  const searchOrders = () => {
-  // 已经在 computed 中定义了 filteredOrders，无需额外的操作，搜索结果会自动更新
-  };
+  // const searchOrders = () => {
+  // // 已经在 computed 中定义了 filteredOrders，无需额外的操作，搜索结果会自动更新
+  // };
 
-  const filteredOrders = computed(() => {
-    const searchQuery = searchText.value.toLowerCase().trim();
-    if (!searchQuery) {
-      return prop.orders; // 如果搜索文本为空，则返回所有订单。
-    }
+  // const filteredOrders = computed(() => {
+  //   const searchQuery = searchTexreturn prop.orders.filter((order) => {
+  //     return (
+  //       order.ordernumber.toLowerCase().includes(searchQuery) ||
+  //       order.memberId.toString().includes(searchQuery) ||
+  //       course.coursename.toString().includes(searchQuery) 
+
+  //       // 如果需要，可以添加更多属性进行搜索
+  //       // order.anyOtherProperty.toLowerCase().includes(searchQuery)
+  //      ) ;
+  //   });
+  // });t.value.toLowerCase().trim();
+  //   if (!searchQuery) {
+  //     return prop.orders; // 如果搜索文本为空，则返回所有订单。
+  //   }
     // 根据搜索文本過濾订单
-    return prop.orders.filter((order) => {
-      return (
-        order.ordernumber.toLowerCase().includes(searchQuery) ||
-        order.memberId.toString().includes(searchQuery) ||
-        course.coursename.toString().includes(searchQuery) 
-
-        // 如果需要，可以添加更多属性进行搜索
-        // order.anyOtherProperty.toLowerCase().includes(searchQuery)
-       ) ;
-    });
-  });
+  //   
   // console.log(orders)
 //   console.log(prop)
 //   console.log(prop.orders)

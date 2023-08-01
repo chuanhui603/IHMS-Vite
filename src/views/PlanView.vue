@@ -1,7 +1,7 @@
 <script setup>
 import plansidebar from '../components/PlansideBar.vue'
 import plandetail from '../views/PlanDetail.vue'
-import listview from '../views/ListView.vue'
+import planlistview from '../views/PlanListView.vue'
 import { useRouter } from 'vue-router'
 import { ref } from 'vue'
 const isPlans = ref(false)
@@ -22,14 +22,16 @@ const loadPlans = async () => {
     const res = await fetch(api_URL)
     const datas = await res.json()
     sessionStorage.setItem("plans", JSON.stringify(datas));
-    planitems = await sessionStorage.getItem("plans")
+    if(sessionStorage.getItem("plans")){
+        planitems = sessionStorage.getItem("plans")
+    }
     const { planId } = planitems
     pId = planId
 }
-(async () => {
-    await loadPlans()
-    await loadsportdate()
-})()
+
+     loadPlans()
+    //  loadsportdate()
+
 const loadsportdate = async () => {
     const api_URL = `https://localhost:7127/api/plans/sport/${pId}`
     const res = await fetch(api_URL)
@@ -58,7 +60,7 @@ const loadsportdate = async () => {
                     <plandetail v-else></plandetail>
                 </div>
                 <div class="row">
-                    <listview></listview>
+                    <planlistview></planlistview>
                 </div>
             </div>
         </div>

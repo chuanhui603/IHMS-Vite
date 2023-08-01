@@ -21,8 +21,18 @@ const pageSwich = (e) => {
     }
 
 }
-const dialogEditUpdate = (value) => {
+const dialogEditUpdate = async (value) => {
     planDialogEditVisible.value = value
+    const API_URL = 'https://localhost:7127/api/Plans'
+    const res = await fetch(API_URL, {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(newPlan.value),
+    
+
+    })
 }
 </script>
 
