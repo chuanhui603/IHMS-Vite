@@ -5,21 +5,23 @@
             <el-button :icon="Edit" @click="pageSwich(false)">運動</el-button>
         </el-button-group>
     </div>
-
-    <el-table :data="dietData" height="400" style="width: 100%;" v-if="isDiet">
+    
+    <el-table :data="dietData" height="400" style="width: 100%;" v-if="isDiet">      
         <el-table-column fixed prop="dname" label="食物名稱" width="150" />
+        <el-table-column v-if="false" prop="dietDetailId" label="食物名稱" width="150" />
         <el-table-column prop="type" label="種類" width="120" />
         <el-table-column prop="calories" label="熱量" width="120" />
         <el-table-column prop="registerdate" label="紀錄時間" width="120" />
-        <el-table-column fixed="right" label="編輯" width="120">
+        <!-- <el-table-column fixed="right" label="編輯" width="120">
             <template #default>
-                <el-button link type="primary" size="small">Edit</el-button>
+                <el-button prop="dietDetailId" @click="isDietEdit =true" link type="primary" size="small">Edit</el-button>
                 <el-button link type="primary" size="small" @click="handleClick">Delete</el-button>
             </template>
-        </el-table-column>
+        </el-table-column> -->
     </el-table>
-    <el-table :data="sportData" height="400" style="width: 100%;" v-else>
+    <el-table :data="sportData" height="400" style="width: 100%;" v-else>    
         <el-table-column fixed prop="sname" label="運動名稱" width="150" />
+        <el-table-column v-if="false" prop="sportDetailId" label="運動名稱" width="150" />
         <el-table-column prop="type" label="分類" width="120" />
         <el-table-column prop="timelong" label="運動時間" width="120" />
         <el-table-column prop="sets" label="組數" width="120" />
@@ -28,16 +30,32 @@
         <el-table-column prop="time" label="運動日期" width="120" />
         <el-table-column prop="registerdate" label="紀錄時間" width="120" />
         <el-table-column prop="isdone" label="完成確認" width="120" />
-        <el-table-column fixed="right" label="編輯" width="120">
+        <!-- <el-table-column fixed="right" label="編輯" width="120">
             <template #default>
-                <el-button link type="primary" size="small">Edit</el-button>
+                <el-button  @click="dietEdit" link type="primary" size="small">Edit</el-button>
                 <el-button link type="primary" size="small" @click="handleClick">Delete</el-button>
             </template>
-        </el-table-column>
+        </el-table-column> -->
     </el-table>
+
+    <el-dialog v-model="isDietEdit" title="修改飲食" width="30%">
+        <DietDetail :DetailId="DetailId" @dialogEditUpdate="dietDialogEditUpdate(value)">
+        </DietDetail>
+    </el-dialog>
+    <el-dialog v-model="isSportEdit" title="修改飲食" width="30%">
+        <SportDetail :datas="sportdetaildatas" @dialogEditUpdate="sportDialogEditUpdate(value)">
+        </SportDetail>
+    </el-dialog>
+
+
 </template>
 <script  setup>
 import { ref } from 'vue'
+import DietDetail from '../views/DietDetail.vue'
+import SportDetail from '../views/SportDetail.vue'
+const isDietEdit =ref(false)
+const isSportEdit =ref(false)
+const sportdetaildatas =ref()
 const handleClick = () => {
     console.log('click')
 }
@@ -56,6 +74,12 @@ const dietLoad = async () => {
     }
 
 }
+const dietEdit = (e) => {
+    console.log(e.target)
+    isDietEdit.value = true
+    
+}
+
 const sportLoad = async () => {
     const res = await fetch(`https://localhost:7127/api/plans/sportdetail/list/1`)
     const datas = await res.json()
@@ -63,9 +87,16 @@ const sportLoad = async () => {
         sportData.value = datas
         console.log(sportData.value)
     }
-
-
 }
+
+//跳出視窗匯入資料
+const dialogLoadUpdate = async (Id) => {
+    const API_URL = `https://localhost:7127/api/plans/Sportdetail/${Id}`
+    const res = await fetch(API_URL)
+    sportdetaildatas.value = await res.json()
+    dialogEditVisible.value = true
+}
+
 const dietData = ref([
     {
         name: '雞排',
@@ -154,5 +185,6 @@ const sportData = ref([
         isdone: 'True',
     },
 ])
+sportLoad()
 </script>
 <style></style>

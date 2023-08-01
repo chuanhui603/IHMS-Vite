@@ -3,7 +3,26 @@
     --primary: #3CB815;
     --secondary: #F65005;
     --light: #F7F8FC;
-    --dark: #111111;
+    --dark: #444444;
+}
+
+.white-shadow{
+    box-shadow: 0 0.5rem 1rem rgba(2400, 240, 240, 100) !important
+}
+
+.goldcolor{
+color:#F5D15D
+}
+
+.darkcolor{
+color: var(--dark);
+}
+ 
+.lightcolor{
+color: #F4F4F4;
+}
+.graycolor{
+   color:  #b9b9b9;
 }
 
 .back-to-top {
@@ -22,6 +41,10 @@
 .py-6 {
     padding-top: 6rem;
     padding-bottom: 6rem;
+}
+
+.blackbg{
+background-color: #252525;
 }
 
 .bg-icon {
@@ -105,7 +128,7 @@
 
 .navbar .navbar-nav .nav-link {
     padding: 25px 15px;
-    color: #555555;
+    color: #F4F4F4;
     font-weight: 500;
     outline: none;
 }
