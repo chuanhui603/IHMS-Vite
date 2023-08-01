@@ -4,52 +4,46 @@
       <thead>
         <tr>          
           <th style="width: 120px;">訂單編號</th>
-          <th style="width: 50px">會員id</th>
-          <!-- <th style="width: 50px">會員名字</th> -->
+          <th style="width: 50px">會員名字</th>
+          <th style="width: 50px">教練名字</th>
           <th style="width: 80px">訂單價格</th>
           <th style="width: 100px">訂單狀態</th>
-          <!-- <th>已取消原因</th> -->
           <th style="width: 150px">訂單時間</th>
-          <th style="width: 180px">明細</th>
+          <th style="width: 180px">課程內容</th>
           
         </tr>
       </thead>
       <tbody>
-        <tr v-for="{ordernumber,memberId,pointstotal, state, createtime, coach, course, member, schedule
-}
-        in orders" :key="orderId">
+        <tr v-for="{ordernumber,pointstotal, state,memberName, createtime, coachName
+, courseTotal,courseName,courseTime}
+        in member" :key="orderId">
         
           <!-- <td>{{ orderId }}</td> -->
           <td>{{ ordernumber }}</td>   
-          <td>{{memberId }}</td>
-           
+          <td><ul>
+              <li >{{memberName}} </li>
+            </ul>
+          </td>
+          <td>{{ coachName }}</td>
           <td>{{ pointstotal }}</td>
           <td>{{ state }}</td>
           <!-- <td>{{ reason }}</td> -->
           <td>{{ createtime }}</td>           
                    
           <td style="weight:50px">
-            <!-- 呈現教練資料 -->
+      
             <ul>
-              <li v-for="c in coach">教練ID: {{ c.memberId}} </li>
-            </ul>
-            <ul>
-              <li v-for="m in member">教練名字: {{ m.name}} </li>
-            </ul>
-
-            <!-- 呈現課程名稱 -->
-            <ul>
-              <li v-for="c in course">課程名稱: {{ c.courseName }}</li>
+              <li >課程名稱: {{ courseName }}</li>
             </ul>
 
             <!-- 呈現課程時間 -->
             <ul>
-              <li >課程時間: {{ schedule.courseTime }}</li>
+              <li >課程時間: {{ courseTime }}</li>
             </ul>
 
              <!-- 呈現課程費用 -->
              <ul>
-              <li v-for="c in course">課程費用: {{ c.courseTotal}}</li>
+              <li >課程費用: {{ courseTotal}}</li>
             </ul>
 
           </td>      
@@ -61,14 +55,13 @@
 </template>
   
   <script setup>
-  import { defineProps , ref, computed} from 'vue';     
+  import { defineProps , ref} from 'vue';     
   
  
   const prop = defineProps({    
-      orders: Array, // 聲明 orders 的類型
+      member: Array, // 聲明 orders 的類型
   });
 
-  const searchText = ref('');
 
   // const searchOrders = () => {
   // // 已经在 computed 中定义了 filteredOrders，无需额外的操作，搜索结果会自动更新
