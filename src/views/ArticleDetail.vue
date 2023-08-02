@@ -1,5 +1,5 @@
 <template>
-    <div class="container" style="margin-top: 100px;background-color: #fff">
+    <div class="container" style="margin-top: 79px;background-color: #fff">
       <div class="card" v-if="article">
         <div class="card-body">
             <h5 class="card-title">標題:{{ article.title }}</h5>

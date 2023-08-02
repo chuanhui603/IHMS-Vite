@@ -9,13 +9,13 @@ const dialogEditVisible = ref(false)
 const search = ref('')
 const sportdatas = ref('')
 const isdoneclass = ref('competed')
-//跳出視窗匯入資料
 const dialogLoadUpdate = async (Id) => {
     const API_URL = `https://localhost:7127/api/plans/Sportdetail/${Id}`
     const res = await fetch(API_URL)
     sportdatas.value = await res.json()
     dialogEditVisible.value = true
 }
+
 
 const detailDelete = async (id) => {
     const check = confirm(`確定刪除行程?`)
@@ -35,8 +35,9 @@ const detailComplete = async (id) => {
 const dialogEditUpdate = async (bool) => {
     dialogEditVisible.value = bool
     onload()
-    console.log(sportdatas.value)
+  
 }
+
 const dialogCreateUpdate = (bool) => {
     dialogCreateVisible.value = bool
     onload()
@@ -87,17 +88,16 @@ const listsearch = async (sportid) => {
                 <el-scrollbar height="400px">
                     <div>
                         <ul class="menulist nav mt-2">
-
-                            <li v-for="{ sname, sportDetailId, time } in list" :key="sportDetailId">
-                                <el-button color="#626aef" :class="isdoneclass" @click="dialogLoadUpdate(sportDetailId)">
-                                    {{ sname }}{{ time }}
+                            <li class="menuitem" v-for="{ sname, sportDetailId, time } in list" :key="sportDetailId">
+                                <el-button class="competebtn" type="primary" @click="detailDelete(sportDetailId)"
+                                    :icon="CloseBold" />
+                                <el-button class="inputbtn" color="#626aef" :class="isdoneclass"
+                                    @click="dialogLoadUpdate(sportDetailId)">
+                                    {{ sname }}<span>{{ time }}</span>
                                 </el-button>
-                                <div id="changebtn">
-                                    <el-button type="primary" @click="detailComplete(sportDetailId)" :icon="Select" />
-                                    <el-button type="primary" @click="detailDelete(sportDetailId)" :icon="CloseBold" />
-                                </div>
+                                <el-button class="deletebtn" type="primary" @click="detailComplete(sportDetailId)"
+                                    :icon="Select" />
                             </li>
-
                         </ul>
                     </div>
                 </el-scrollbar>
@@ -116,6 +116,15 @@ const listsearch = async (sportid) => {
     </el-dialog>
 </template>
 <style scoped>
+.menuitem {
+    display: flex;
+    justify-content: center;
+}
+
+.el-button {
+    margin: 0;
+}
+
 .competed {
     background-color: #ccc;
 }
@@ -173,13 +182,29 @@ const listsearch = async (sportid) => {
 }
 
 .menulist li {
-    width: 100%;
     text-align: center;
-    border-radius: 8%;
 }
 
-.menulist li button {
-    width: 100%;
+.el-button {
+    border: 0;
+    border-radius: 0;
+}
+
+.inputbtn {
+    text-align: center;
+    width: 7rem;
+}
+
+.competebtn {
+    border-top-left-radius: 10%;
+    border-bottom-left-radius: 10%;
+    width: 15%;
+}
+
+.deletebtn {
+    border-top-right-radius: 10%;
+    border-bottom-right-radius: 10%;
+    width: 15%;
 }
 
 .linkBox {
@@ -190,10 +215,4 @@ const listsearch = async (sportid) => {
 #changebtn {
     display: flex;
     justify-content: center;
-}
-
-#changebtn button {
-    width: 15%;
-    border-radius: 100%;
-}
-</style>
+}</style>

@@ -8,8 +8,8 @@
                 </el-form-item>
                 <el-form-item label="運動名稱">
                         <el-input v-model="sportdetail.sname" />
-                </el-form-item>             
-                <el-form-item v-if="sportdetail.type === '健身'" label="次數">
+                </el-form-item>
+                <el-form-item v-if="sportdetail.type == '健身'" label="次數">
                         <el-input v-model="sportdetail.frequency" style="width: 15%;" />
                 </el-form-item>
                 <el-form-item v-else label="時長">
@@ -25,9 +25,9 @@
                         </el-col>
                         <el-col :span="11">
                                 <el-select v-model="sportdetail.time" placeholder="請選擇時間">
-                                        <el-option label="早上" value="morning" />
-                                        <el-option label="下午" value="afternoom" />
-                                        <el-option label="晚上" value="evening" />
+                                        <el-option label="早上" value="早上" />
+                                        <el-option label="下午" value="下午" />
+                                        <el-option label="晚上" value="晚上" />
                                 </el-select>
                         </el-col>
                 </el-form-item>
@@ -42,21 +42,20 @@
         
 <script setup>
 import { ref } from 'vue';
-import { useRouter } from 'vue-router';
 
 //彈出視窗設定
 const prop = defineProps({
-    
-        datas: Object
+        sportdatas: Object
 })
-console.log(prop.datas)
+
+const sportdatas = ref(prop.sportdatas || {});
+console.log(sportdatas.value)
 const emit = defineEmits();
 const dialogEditUpdate = () => {
-        emit('dialogEditUpdate', false); // Send the new value to the parent component     
+        emit('dialogEditUpdate', false);     
 };
-const router = useRouter()
+
 //sportdetail資料表設定
-const data = ref()
 const sportdetail = ref({
         frequency: 0,
         isdone: false,
@@ -68,9 +67,9 @@ const sportdetail = ref({
         time: "",
         timelong: 0,
         type: "",
-
 })
-sportdetail.value = prop.datas
+
+sportdetail.value = sportdatas.value
 console.log(sportdetail.value)
 const onCreate = async () => {
         const formData = new FormData()
@@ -81,22 +80,18 @@ const onCreate = async () => {
         formData.append('Frequency', sportdetail.value.frequency)
         formData.append('Time', sportdetail.value.time)
         formData.append('Sets', sportdetail.value.sets)
-    
         const API_URL = `https://localhost:7127/api/plans/sportdetail`
         const res = await fetch(API_URL, {
                 method: 'POST',
                 body: formData,
         }).catch(err => {
                 console.log(err);
-        }
-        )
+        })
         dialogEditUpdate()
-
 }
 
 
 const onEdit = async () => {
-
         const formData = new FormData()
         formData.append('SportDetailId', sportdetail.value.sportDetailId)
         formData.append('SportId', sportdetail.value.sportId)
@@ -111,8 +106,7 @@ const onEdit = async () => {
                 body: formData,
         }).catch(err => {
                 console.log(err);
-        }
-        )
+        })
         dialogEditUpdate()
 
 }

@@ -13,18 +13,18 @@
                                     <p class="text-white-50 mb-5">請輸入您的帳號與密碼!</p>
                                     <div class="form-outline form-white mb-4">
                                         <input type="text" id="Account" v-model="LoginData.Account"
-                                            class="form-control form-control-lg" />
+                                            class="form-control form-control-lg" @input="deletemsg"/>
                                         <label class="form-label" for="Account">帳號</label>
                                     </div>
 
                                     <div class="form-outline form-white mb-4">
                                         <input type="password" id="Password" v-model="LoginData.Password"
-                                            class="form-control form-control-lg" />
+                                            class="form-control form-control-lg" @input="deletemsg"/>
                                         <label class="form-label" for="Password">密碼</label>
                                     </div>
+                                    <p v-if="isinput==true" style="color: red;">請輸入帳號與密碼</p>
 
-
-                                    <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">忘記了密碼?</a></p>
+                                    <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#">忘記了密碼?</a></p>
 
                                     <button class="btn btn-outline-light btn-lg px-5" type="submit"
                                         @click="Login">Login</button>
@@ -38,7 +38,8 @@
                                 </div>
 
                                 <div>
-                                    <p class="mb-0">還沒有帳號嗎? <a href="https://localhost:7127/Members/SignIn" class="text-white-50 fw-bold">註冊</a></p>
+                                    <p class="mb-0">還沒有帳號嗎? <a clichref="https://localhost:7127/Members/SignIn"
+                                            class="text-white-50 fw-bold">註冊</a></p>
                                 </div>
                             </div>
                         </div>
@@ -49,16 +50,29 @@
     </header>
 </template>
 <script setup>
+import {ref} from 'vue'
 import { useRouter } from 'vue-router'
-const LoginData = 
-    {
-        Account: '',
-        Password: ''
-    }
+const isinput=ref(false)
+const LoginData ={
+    Account: '',
+    Password: ''
+}
 
+const deletemsg=()=>{
+    if(LoginData.Account!=""){
+        isinput.value=false
+    }
+    if(LoginData.Password!=""){
+        isinput.value=false
+    }
+}
 const Router = useRouter()
 const Login = async () => {
-    try {
+    if (LoginData.Account == '' || LoginData.Password == '') {
+        isinput.value=true
+    }
+    else{
+        try {
         const baseAddress = `https://localhost:7127/api/Members/Login`;
         //const baseAddress = `http://4.216.224.225:81/api/Members/Login`;
         const res = await fetch(baseAddress, {
@@ -68,17 +82,17 @@ const Login = async () => {
             },
             body: JSON.stringify(LoginData),
         });
-        if (res.ok) { 
+        if (res.ok) {
             const member = await res.json();
             // 登入成功
             alert(`歡迎來到IHMS健康管理平台，${member.name}！`);
             // 將會員資訊存入 localStorage
             localStorage.setItem('currentMember', JSON.stringify(member));
             // 回到首頁    
-            if(localStorage.getItem('currentMember')){
+            if (localStorage.getItem('currentMember')) {
                 Router.push('/')
             }
-           
+
         } else {
             // 登入失敗
             alert('帳號或密碼不正確，請重新登入！');
@@ -86,6 +100,7 @@ const Login = async () => {
     } catch (error) {
         alert('發生錯誤，請稍後再試！');
     }
+    }  
 }
 </script>
 <style></style>

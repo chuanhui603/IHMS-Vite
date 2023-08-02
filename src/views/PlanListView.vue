@@ -42,10 +42,10 @@
         <DietDetail :DetailId="DetailId" @dialogEditUpdate="dietDialogEditUpdate(value)">
         </DietDetail>
     </el-dialog>
-    <el-dialog v-model="isSportEdit" title="修改飲食" width="30%">
+    <!-- <el-dialog v-model="isSportEdit" title="修改" width="30%">
         <SportDetail :datas="sportdetaildatas" @dialogEditUpdate="sportDialogEditUpdate(value)">
         </SportDetail>
-    </el-dialog>
+    </el-dialog> -->
 
 
 </template>

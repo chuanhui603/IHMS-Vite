@@ -23,24 +23,24 @@ const loadPlans = async () => {
     const datas = await res.json()
     sessionStorage.setItem("plans", JSON.stringify(datas));
     if(sessionStorage.getItem("plans")){
-        planitems = sessionStorage.getItem("plans")
+        planitems.value = sessionStorage.getItem("plans")
     } 
     const { planId } = planitems
-    pId = planId
+    pId.value = planId
 }
      loadPlans()
     //  loadsportdate()
-const loadsportdate = async () => {
-    const api_URL = `https://localhost:7127/api/plans/sport/${pId}`
-    const res = await fetch(api_URL)
-    const datas = await res.json()
-    sportdate.value = datas
-}
+// const loadsportdate = async () => {
+//     const api_URL = `https://localhost:7127/api/plans/sport/${pId}`
+//     const res = await fetch(api_URL)
+//     const datas = await res.json()
+//     sportdate.value = datas
+// }
 
 </script>
     
 <template>
-    <div class="container-xxl mb-2" style="margin-top: 79px;  background-color: #fff">
+    <div class="container-xxl mb-2" style="margin-top: 79px;  background-color: #fff; box-shadow: 0 0 12px rgba(255,255,255,0.6)">
         <!-- 內容  -->
         <div class="row ">
             <!-- sidebar -->
