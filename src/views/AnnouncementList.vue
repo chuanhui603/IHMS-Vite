@@ -1,5 +1,5 @@
 <template>
-  <div class="container" style="margin-top: 79px; background-color: #fff" >
+  <div class="container" style="margin-top: 100px;background-color: #fff">
     <h1>公告列表</h1>
     <br>
     <ul class="announcement-list">
@@ -125,7 +125,7 @@ export default {
   methods: {
     async fetchAnnouncements() {
       try {
-        const response = await axios.get('https://localhost:7127/api/announcements');
+        const response = await axios.get('http://4.216.224.225:81/api/announcements');
         console.log(response.data); // 使用 console.log 確認回應資料
         this.announcements = response.data;
       } catch (error) {

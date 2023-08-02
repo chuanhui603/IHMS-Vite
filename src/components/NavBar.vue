@@ -74,6 +74,7 @@ if(localStorage.getItem('currentMember')){
                     </div>
                     <a href="https://localhost:7127/Student/CoachList" class="nav-link">課程總覽</a>
                     <RouterLink to="/announcements" class="nav-item nav-link">公告</RouterLink>
+                    <RouterLink to="/ArticleList" class="nav-item nav-link">相關文章</RouterLink>
                     <RouterLink to="/MessageBoardList" class="nav-item nav-link">討論區</RouterLink>
                     <div class="nav-item dropdown">
                         <div class="nav-item dropdown">
