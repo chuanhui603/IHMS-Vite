@@ -1,23 +1,33 @@
 <template>
-    <div class="container message-container" style="margin-top: 79px;  background-color: #fff">
-        <h1>{{ message.title }}</h1>
-        <p>分類：{{ message.category }}</p>
+    <div class="container message-container" style="margin-top: 100px;background-color: #fff">
+        <h1 v-if="!isEditing">{{ message.title }}</h1>
+        <input v-else v-model="message.title" type="text" class="form-control" />
+        <p>作者：{{ message.name }}</p>
+        <p v-if="!isEditing">分類：{{ message.category }}</p>
+        <select v-else v-model="message.category" class="form-control">
+            <option v-for="category in ['飲食', '閒聊', '器材', '場地', '健身']" :key="category" :value="category">
+                {{ category }}
+            </option>
+        </select>
         <p>時間：{{ formatDate(message.time) }}</p>
-        <p>內容：{{ message.contents }}</p>
-
+        <p v-if="!isEditing">內容：<span v-html="formatContent(message.contents)"></span></p>
+        <textarea v-else v-model="message.contents" class="form-control"></textarea>
+        <div v-if="memberId === message.member_id" class="edit-button">
+            <button class="btn btn-primary" @click="editMessage">{{ isEditing ? '保存' : '編輯' }}</button>
+        </div>
         <div v-if="images.length > 0">
             <img v-for="(image, index) in images" :key="index" :src="getImageUrl(image)" :alt="'Image ' + index" />
         </div>
     </div>
     <!-- 留言區塊 -->
-    <div class="container comments-section">
+    <div class="container comments-section " style="background-color: #fff">
         <h2>留言</h2>
         <div v-for="(comment, index) in comments" :key="index" class="comment">
             <p>
-                {{ (index + 1) + 'F' }}   作者：{{ comment.authorName }}
-                   <span class="time">{{ formatDate(comment.time) }}</span><!-- 顯示樓層時間 -->
+                {{ (index + 1) + 'F' }} 作者：{{ comment.authorName }}
+                <span class="time">{{ formatDate(comment.time) }}</span><!-- 顯示樓層時間 -->
             </p>
-            <p>{{ comment.contents }}</p>
+            <p v-html="formatContent(comment.contents)"></p>
         </div>
         <h3>新增留言</h3>
         <textarea v-model="newComment"></textarea>
@@ -37,10 +47,14 @@ export default {
             images: [],
             comments: [],
             newComment: '',
-            memberId: null, //新增的屬性
+            memberId: null,
+            isEditing: false, // 新增的屬性
         };
     },
     methods: {
+        formatContent(content) {
+        return content.replace(/\r?\n/g, '<br>');
+    },
         formatDate(datetime) {
             const date = new Date(datetime);
             return date.toLocaleString('en-US', {
@@ -53,9 +67,9 @@ export default {
             });
         },
         getImageUrl(imageName) {
-            console.log(`https://localhost:7127/api/Image/${this.message.message_id}/images/${imageName}`);
+            console.log(`http://4.216.224.225:81/api/Image/${this.message.message_id}/images/${imageName}`);
             if (imageName) {
-                return `https://localhost:7127/api/Image/${this.message.message_id}/images/${imageName}`;
+                return `http://4.216.224.225:81/api/Image/${this.message.message_id}/images/${imageName}`;
             } else {
                 return '';
             }
@@ -75,7 +89,7 @@ export default {
 
                 console.log('Submitting comment:', commentData);
 
-                await axios.post(`https://localhost:7127/api/MessageBoardDetails`, commentData, {
+                await axios.post(`http://4.216.224.225:81/api/MessageBoardDetails`, commentData, {
                     headers: {
                         'Content-Type': 'application/json'
                     }
@@ -89,9 +103,47 @@ export default {
         },
         async fetchComments() {
             try {
-                const response = await axios.get(`https://localhost:7127/api/MessageBoardDetails/${this.message.message_id}`);
-                console.log("Fetch Comments Response: ", response);  // 这一行是新添加的
+                const response = await axios.get(`http://4.216.224.225:81/api/MessageBoardDetails/${this.message.message_id}`);
+                console.log("Fetch Comments Response: ", response);
                 this.comments = response.data;
+            } catch (error) {
+                console.error('獲取留言失敗：', error);
+            }
+        },
+        editMessage() {
+            if (this.isEditing) {
+                this.saveChanges();
+            }
+            this.isEditing = !this.isEditing;
+        },
+        async saveChanges() {
+            try {
+                let messageData = {
+                    message_id: this.message.message_id,  
+                    title: this.message.title,
+                    category: this.message.category,
+                    contents: this.message.contents,
+                    member_id: this.memberId
+                };
+
+                console.log('PUT JSON:', JSON.stringify(messageData, null, 2));  
+
+                await axios.put(`http://4.216.224.225:81/api/MessageBoardDetails/${this.message.message_id}`, messageData, {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                this.fetchMessage();
+            } catch (error) {
+                console.error('更新失敗：', error);
+            }
+        },
+        async fetchMessage() {
+            try {
+                let messageId = this.$route.params.messageId;
+                let response = await axios.get(`http://4.216.224.225:81/api/MessageBoard/${messageId}`);
+                this.message = response.data;
             } catch (error) {
                 console.error('獲取留言失敗：', error);
             }
@@ -107,13 +159,13 @@ export default {
         }
 
         try {
-            let response = await axios.get(`https://localhost:7127/api/MessageBoard/${messageId}`);
+            let response = await axios.get(`http://4.216.224.225:81/api/MessageBoard/${messageId}`);
             console.log("Message response received: ", response);
             this.message = response.data;
 
             if (this.message.message_id) {
                 console.log("Getting images for message with ID: ", this.message.message_id);
-                let imageResponse = await axios.get(`https://localhost:7127/api/Image/${this.message.message_id}/images`);
+                let imageResponse = await axios.get(`http://4.216.224.225:81/api/Image/${this.message.message_id}/images`);
                 console.log("Image response received: ", imageResponse);
                 this.images = imageResponse.data;
                 console.log("Images: ", this.images);

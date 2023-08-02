@@ -1,31 +1,31 @@
 <template>
-    <div class="container" style="margin-top: 79px;  background-color: #fff">
+    <div class="container" style="margin-top: 100px;background-color: #fff">
         <div class="message-board-container">
             <div class="category-sidebar">
-            <h3>分類</h3>
-            <ul>
-                <li>
-                    <button @click="selectCategory('全部文章')" class="btn btn-outline-secondary category-button"
+                <h3>分類</h3>
+                <ul>
+                    <li>
+                        <button @click="selectCategory('全部文章')" class="btn btn-outline-secondary category-button"
                             :class="{ 'btn-primary': selectedCategory === '全部文章', 'btn-outline-secondary': selectedCategory !== '全部文章' }">查看全部文章</button>
-                </li>
-                <li>
-                    <button @click="selectCategory('飲食')" class="btn btn-outline-secondary category-button"
+                    </li>
+                    <li>
+                        <button @click="selectCategory('飲食')" class="btn btn-outline-secondary category-button"
                             :class="{ 'btn-primary': selectedCategory === '飲食', 'btn-outline-secondary': selectedCategory !== '飲食' }">飲食</button>
-                </li>
-                <li>
-                    <button @click="selectCategory('閒聊')" class="btn btn-outline-secondary category-button"
+                    </li>
+                    <li>
+                        <button @click="selectCategory('閒聊')" class="btn btn-outline-secondary category-button"
                             :class="{ 'btn-primary': selectedCategory === '閒聊', 'btn-outline-secondary': selectedCategory !== '閒聊' }">閒聊</button>
-                </li>
-                <li>
-                    <button @click="selectCategory('器材')" class="btn btn-outline-secondary category-button"
+                    </li>
+                    <li>
+                        <button @click="selectCategory('器材')" class="btn btn-outline-secondary category-button"
                             :class="{ 'btn-primary': selectedCategory === '器材', 'btn-outline-secondary': selectedCategory !== '器材' }">器材</button>
-                </li>
-                <li>
-                    <button @click="selectCategory('場地')" class="btn btn-outline-secondary category-button"
-                            :class="{ 'btn-primary': selectedCategory === '場地', 'btn-outline-secondary': selectedCategory !== '場地' }">場地</button>
-                </li>
-            </ul>
-        </div>
+                    </li>
+                    <li>
+                        <button @click="selectCategory('健身')" class="btn btn-outline-secondary category-button"
+                            :class="{ 'btn-primary': selectedCategory === '健身', 'btn-outline-secondary': selectedCategory !== '健身' }">健身</button>
+                    </li>
+                </ul>
+            </div>
 
             <div class="content">
                 <div class="header-section">
@@ -39,20 +39,27 @@
                             <router-link :to="`/message-board/${message.message_id}`" class="message-title">
                                 {{ message.category }}．{{ message.title }}
                             </router-link>
-                            <p>內容預覽：{{ message.contents.slice(0, 50) }}{{ message.contents.length > 50 ? '...' : '' }}</p>
+                            <p>{{ message.contents.slice(0, 50) }}{{ message.contents.length > 50 ? '...' : '' }}</p>
                         </div>
                         <div class="meta">
-                            <p>發布者：{{ message.name }}  日期:{{ formatDate(message.time) }}</p>
+                            <p>{{ message.name }}
+                            <p>{{ formatDate(message.time) }}</p>
+                            </p>
                         </div>
                     </div>
                 </div>
-
                 <!-- Bootstrap 分頁 -->
-                <nav>
-                    <ul class="pagination">
+                <nav class="text-center">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item" :class="{ 'disabled': currentPage === 1 }">
+                            <a class="page-link" @click="changePage(currentPage - 1)"><i class="bi bi-arrow-left"></i></a>
+                        </li>
                         <li class="page-item" :class="{ 'active': currentPage === page }" v-for="page in totalPages"
                             :key="page">
                             <a class="page-link" @click="changePage(page)">{{ page }}</a>
+                        </li>
+                        <li class="page-item" :class="{ 'disabled': currentPage === totalPages }">
+                            <a class="page-link" @click="changePage(currentPage + 1)"><i class="bi bi-arrow-right"></i></a>
                         </li>
                     </ul>
                 </nav>
@@ -122,7 +129,7 @@ export default {
     created() {
         // 使用 axios 發送 GET 請求取得留言板資料
         axios
-            .get('https://localhost:7127/api/MessageBoard')
+            .get('http://4.216.224.225:81/api/MessageBoard')
             .then((response) => {
                 this.messages = response.data;
             })
@@ -135,33 +142,36 @@ export default {
   
 <style scoped>
 .my-btn-selected {
-    background-color: #007bff;  
-    border-color: #007bff;     
-    color: #fff;              
+    background-color: #007bff;
+    border-color: #007bff;
+    color: #fff;
 }
+
 .my-btn-unselected {
-    background-color: #28a745; 
-    border-color: #28a745;     
-    color: #fff;               
+    background-color: #28a745;
+    border-color: #28a745;
+    color: #fff;
 }
+
 .my-btn-unselected:hover {
-    background-color: #218838;  
-    color: #fff;                
+    background-color: #218838;
+    color: #fff;
 }
+
 .category-button {
-    margin-bottom: 10px; /* 增加按鈕之間的垂直距離 */
+    margin-bottom: 10px;
+    /* 增加按鈕之間的垂直距離 */
 }
+
 .message-board-container {
     display: flex;
-    margin-top: 80px;
-    padding-top: 20px;
+    margin-top: 100px;
 }
 
 .message-divider {
     border: none;
     border-top: 1px dashed #ccc;
     margin: 10px 0;
-    
 }
 
 .category-sidebar {
@@ -208,12 +218,14 @@ export default {
 }
 
 .message-title {
-    margin-right: 10px; /* or any value you prefer */
+    margin-right: 10px;
+    /* or any value you prefer */
 }
+
 .meta {
     text-align: right;
     flex-shrink: 0;
-    padding-left: 20px; /* for a little spacing, adjust to your preference */
-}
-</style>
+    padding-left: 20px;
+    /* for a little spacing, adjust to your preference */
+}</style>
   

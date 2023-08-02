@@ -1,5 +1,5 @@
 <template>
-    <div class="container" style="margin-top: 79px;  background-color: #fff">
+    <div class="container" style="margin-top: 100px;background-color: #fff">
         <h1>回報客服</h1>
         <form @submit.prevent="submitRequest">
             <div class="form-group">
@@ -47,7 +47,7 @@ export default {
             console.log('submitRequest 被調用了，member_id 的值為：', this.request.member_id);
             console.log('將要傳送給後端的 JSON：', JSON.stringify(this.request));
             try {
-                await axios.post('https://localhost:7127/api/CustomService', this.request, {
+                await axios.post('http://4.216.224.225:81/api/CustomService', this.request, {
                     headers: {
                         'Content-Type': 'application/json'
                     }

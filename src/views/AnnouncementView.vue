@@ -1,5 +1,5 @@
 <template>
-    <div class="container" style="margin-top: 79px;  background-color: #fff">
+    <div class="container" style="margin-top: 100px;background-color: #fff">
       <h1>{{ announcement.title }}</h1>
       <p>{{ formatTime(announcement.time) }}</p>
       <p>{{ announcement.contents }}</p>
@@ -23,7 +23,7 @@
     methods: {
       async fetchAnnouncement() {
         try {
-          const response = await axios.get(`https://localhost:7127/api/announcements/${this.announcementId}`);
+          const response = await axios.get(`http://4.216.224.225:81/api/announcements/${this.announcementId}`);
           this.announcement = response.data;
         } catch (error) {
           console.error(error);
@@ -35,7 +35,7 @@
       },
       getImageUrl(image) {
         if (image) {
-          return `https://localhost:7127/api/image/${image}`;
+          return `http://4.216.224.225:81/api/image/${image}`;
         } else {
           return ''; // 如果沒有圖片，返回空字串或預設圖片的 URL
         }

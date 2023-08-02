@@ -1,5 +1,5 @@
 <template>
-    <div class="container" style="margin-top: 79px;  background-color: #fff">
+    <div class="container" style="margin-top: 100px;background-color: #fff">
         <h1>客服回報列表</h1>
         <br>
         <ul class="customerService-list">
@@ -55,7 +55,7 @@ export default {
     methods: {
         async fetchCustomerServiceReports() {
             try {
-                const response = await axios.get('https://localhost:7127/api/CustomService');  // Update API path
+                const response = await axios.get('http://4.216.224.225:81/api/CustomService');  // Update API path
                 console.log('Response data:', response.data);
                 this.reports = response.data;
             } catch (error) {

@@ -1,5 +1,5 @@
 <template>
-    <div class="container" style="margin-top: 79px;  background-color: #fff">
+    <div class="container" style="margin-top: 100px;background-color: #fff">
         <h1>發布留言板</h1>
         <form @submit.prevent="submitMessage">
             <div class="form-group">
@@ -16,7 +16,7 @@
                     <option value="飲食">飲食</option>
                     <option value="閒聊">閒聊</option>
                     <option value="器材">器材</option>
-                    <option value="場地">場地</option>
+                    <option value="健身">健身</option>
                 </select>
             </div>
             <div class="form-group">
@@ -55,7 +55,7 @@ export default {
     created() {
 
         const currentMember = JSON.parse(localStorage.getItem('currentMember'));
-        console.log(currentMember); // 這將在控制台打印當前會員的資訊
+        console.log(currentMember); 
         if (currentMember && currentMember.memberId) {
             this.message.member_id = currentMember.memberId;
         } else {
@@ -74,7 +74,7 @@ export default {
             for (let image of selectedImages) {
                 if (!validImageTypes.includes(image.type)) {
                     alert('檔案格式必須為 GIF, JPEG, or PNG');
-                    this.$refs.images.value = null;  // 清空檔案選擇器
+                    this.$refs.images.value = null;  
                     return;
                 }
             }
@@ -94,7 +94,7 @@ export default {
                     formData.append('images', image);
                 });
 
-                await axios.post('https://localhost:7127/api/MessageBoard/CreateMessage', formData, {
+                await axios.post('http://4.216.224.225:81/api/MessageBoard/CreateMessage', formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }
