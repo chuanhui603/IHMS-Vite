@@ -50,7 +50,9 @@ router.afterEach(() => {
         <NavBar  :isLogin="isLogin" :memberItems="memberItems"></NavBar>
         <!-- Navbar End -->
         <!-- 內容 -->
-        <router-view v-if="isRouterAlive"></router-view>           
+      
+            <router-view v-if="isRouterAlive"></router-view>   
+                
 
         <!-- 尾頁 Start -->
         <div class="container-fluid bg-dark footer p-3 ">

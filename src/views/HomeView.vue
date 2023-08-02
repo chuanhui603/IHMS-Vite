@@ -49,7 +49,7 @@ const dairyProducts=[
 <template>
         
         <!-- Carousel Start -->
-        <div class="container-fluid p-0 mb-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container-fluid p-0 mb-5  wow fadeIn" data-wow-delay="0.1s">
             <div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
@@ -103,8 +103,6 @@ const dairyProducts=[
                         <div class="section-header text-start mb-5 wow fadeInUp" data-wow-delay="0.1s"
                             style="max-width: 500px;">
                             <h1 class="display-5 mb-3 graycolor">熱量一覽</h1>
-                            <p>Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed rebum vero dolor
-                                duo.</p>
                         </div>
                     </div>
                     <div class="col-lg-6 text-start text-lg-end wow slideInRight" data-wow-delay="0.1s">
@@ -144,7 +142,8 @@ const dairyProducts=[
                                 </div>
                             </div>
                             <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
-                                <a class="btn btn-primary rounded-pill py-3 px-5" href="">瀏覽更多資訊</a>
+                                <!-- <a class="btn btn-primary rounded-pill py-3 px-5" href="">瀏覽更多資訊</a> -->
+                                <el-button type="info" class="rounded-pill py-3 px-5" style="height: 50px;" plain>瀏覽更多資訊</el-button>
                             </div>
                         </div>
                     </div>
@@ -191,7 +190,8 @@ const dairyProducts=[
                                 </div>
                             </div>
                             <div class="col-12 text-center">
-                                <a class="btn btn-primary rounded-pill py-3 px-5" href="">瀏覽更多資訊</a>
+                         
+                                <!-- <a class="btn btn- rounded-pill py-3 px-5" href=""></a> -->
                             </div>
                         </div>
                     </div>
@@ -206,7 +206,7 @@ const dairyProducts=[
                 <div class="section-header text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s"
                     style="max-width: 500px;">
                     <h1 class="display-5 mb-3 graycolor">最新 討論</h1>
-                    <p>Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed rebum vero dolor duo.</p>
+                   
                 </div>
                 <div class="row g-4">
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s" v-for="blog in 3">
@@ -228,5 +228,7 @@ const dairyProducts=[
 </template>
     
 <style>
-    
+    .p-absolute{
+        position: absolute;
+    }
 </style>

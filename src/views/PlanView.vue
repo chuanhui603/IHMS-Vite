@@ -40,7 +40,7 @@ const loadsportdate = async () => {
 </script>
     
 <template>
-    <div class="container-xxl mb-2" style="margin-top: 79px;">
+    <div class="container-xxl mb-2" style="margin-top: 79px;  background-color: #fff">
         <!-- 內容  -->
         <div class="row ">
             <!-- sidebar -->

@@ -1,5 +1,5 @@
 <template>
-    <div class="container" style="margin-top: 100px;">
+    <div class="container" style="margin-top: 79px;  background-color: #fff">
       <h1>點數紀錄</h1><br>      
       <div class="row">           
         <div class="col-13">

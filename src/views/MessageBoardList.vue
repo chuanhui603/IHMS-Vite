@@ -1,5 +1,5 @@
 <template>
-    <div class="container" style="margin-top: 100px;">
+    <div class="container" style="margin-top: 79px;  background-color: #fff">
         <div class="message-board-container">
             <div class="category-sidebar">
             <h3>分類</h3>

@@ -1,5 +1,5 @@
 <template>
-    <div class="container" style="margin-top: 100px;">
+    <div class="container" style="margin-top: 79px;  background-color: #fff">
         <h1>回報客服</h1>
         <form @submit.prevent="submitRequest">
             <div class="form-group">
