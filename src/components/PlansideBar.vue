@@ -12,7 +12,7 @@ const isdoneclass = ref('competed')
 const dialogLoadUpdate = async (Id) => {
     const API_URL = `https://localhost:7127/api/plans/Sportdetail/${Id}`
     const res = await fetch(API_URL)
-    sportdatas.value = await res.json()
+    sportdatas.value = res.json()
     dialogEditVisible.value = true
 }
 
@@ -196,15 +196,31 @@ const listsearch = async (sportid) => {
 }
 
 .competebtn {
-    border-top-left-radius: 10%;
-    border-bottom-left-radius: 10%;
+  
     width: 15%;
 }
 
 .deletebtn {
-    border-top-right-radius: 10%;
-    border-bottom-right-radius: 10%;
+   
     width: 15%;
+}
+.menulist li:first-child .competebtn{
+    border-top-left-radius: 10%;
+    
+}
+.menulist li:last-child .competebtn{
+    border-bottom-left-radius: 10%;
+    
+}
+.menulist li:first-child .deletebtn{
+    border-top-right-radius: 10%;
+   
+    
+}
+.menulist li:last-child .deletebtn{
+
+    border-bottom-right-radius: 10%;
+    
 }
 
 .linkBox {

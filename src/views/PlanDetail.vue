@@ -46,7 +46,7 @@ const dialogEditUpdate = async (value) => {
                 </el-button-group>
             </div>
             <div class="col-lg-2 offset-lg-2">
-                <el-button id="editBtn" :icon="DeleteFilled" @click="planDialogEditVisible = true">更改設定</el-button>
+                <el-button id="editBtn" :icon="DeleteFilled" @click="planDialogEditVisible = true">熱量計算</el-button>
             </div>
         </div>
         <div v-if="isoverview" id="Chart">
@@ -56,7 +56,7 @@ const dialogEditUpdate = async (value) => {
             <Calender></Calender>
         </div>
     </div>
-    <el-dialog v-model="planDialogEditVisible" title="更改設定" width="30%">
+    <el-dialog v-model="planDialogEditVisible" title="計算熱量" width="30%">
         <PlanCreate :dialogEditVisible="planDialogEditVisible" @dialogEditUpdate="dialogEditUpdate(value)"></PlanCreate>
     </el-dialog>
 </template>
