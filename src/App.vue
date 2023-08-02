@@ -79,3 +79,6 @@ router.afterEach(() => {
     </div>
 </template>
 
+<style>
+   
+</style>

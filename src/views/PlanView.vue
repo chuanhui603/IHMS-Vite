@@ -48,7 +48,7 @@ const loadsportdate = async () => {
                 <plansidebar></plansidebar>
             </div>
 
-            <div class="col-lg-9 ">
+            <div class="col-lg-9 " style="padding-top: 10px;">
                 <div class="row">
                     <div v-if="isPlans">
                         <el-empty>
