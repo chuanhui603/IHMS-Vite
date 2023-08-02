@@ -59,8 +59,7 @@ const dairyProducts=[
                                 <div class="row justify-content-start">
                                     <div class="col-lg-7">
                                         <h1 class="display-2 lightcolor mb-5 animated slideInDown">擁有更好的體態</h1>
-                                        <a href="" class="btn btn-outline-warning rounded-pill py-sm-3 px-sm-5">開始計畫</a>
-                                        <a href="" class="btn btn-outline-secondary rounded-pill py-sm-3 px-sm-5 ms-3">查詢計畫</a>
+                                        <a href="" style="margin-left: 20%;" class=" btn btn-outline-warning rounded-pill py-sm-3 px-sm-5">開始計畫</a>                                      
                                     </div>
                                 </div>
                             </div>
