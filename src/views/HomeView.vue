@@ -1,14 +1,14 @@
 <script setup >
 import { ref } from 'vue'
 const wholeGrains = [
-    { name: "大麥", calories: 100,image:'../img/大麥.jpg' },
-    { name: "小麥", calories: 120,image:'../img/小麥.jpg' },
-    { name: "糙米", calories: 110,image:'../img/糙米.jpg' },
-    { name: "燕麥片", calories: 90,image:'../img/燕麥.jpg' },
-    { name: "玉米", calories: 80 ,image:'../img/玉米.jpg'},
-    { name: "蕎麥", calories: 95 ,imgae:'../img/蕎麥麵.jpg'},
-    { name: "黑麥", calories: 115,imgae:'../img/黑麥.jpg' },
-    { name: "高梁", calories: 105,imgae:'../img/高粱.jpg' },
+    { name: "大麥", calories: 100, image: '/大麥.jpg' },
+    { name: "小麥", calories: 120, image: '/小麥.jpg' },
+    { name: "糙米", calories: 110, image: '/糙米.jpg' },
+    { name: "燕麥片", calories: 90, image: '/燕麥.jpg' },
+    { name: "玉米", calories: 80, image: '/玉米.jpg' },
+    { name: "蕎麥", calories: 95, imgae: '/蕎麥麵.jpg' },
+    { name: "黑麥", calories: 115, imgae: '/黑麥.jpg' },
+    { name: "高梁", calories: 105, imgae: '/高粱.jpg' },
 ]
 const proteinFoods = [
     { name: "豆腐", calories: 50 },
@@ -43,13 +43,13 @@ const pageChange = (value) => {
     } else if (value == 'proteinFoods') {
         iswholeGrains.value = false
         isproteinFoods.value = true
-        isMeat.value = false
+        isdairyProducts.value = false
     } else {
         iswholeGrains.value = false
         isproteinFoods.value = false
         isdairyProducts.value = true
     }
-    console.log(iswholeGrains.value, isproteinFoods.value, isMeat.value)
+    console.log(iswholeGrains.value, isproteinFoods.value, isdairyProducts.value)
 }
 
 </script>
@@ -103,12 +103,12 @@ const pageChange = (value) => {
 
     <!-- Product Start -->
     <div class="container-fluid blackbg">
-        <div class="container-xxl py-5 " style="background-color: aliceblue;">
+        <div class="container-xxl py-5 container-Shadow"
+            style="background-color: aliceblue; box-shadow: 0 0 12px rgba(255,255,255,0.6)">
             <div class="container">
                 <div class="row g-0 gx-5 align-items-end">
                     <div class="col-lg-6">
-                        <div class="section-header text-start mb-5 wow fadeInUp" data-wow-delay="0.1s"
-                            style="max-width: 500px;">
+                        <div class=" text-start mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
                             <h1 class="display-5 mb-3 graycolor">熱量一覽</h1>
                         </div>
                     </div>
@@ -126,26 +126,23 @@ const pageChange = (value) => {
                     </div>
                 </div>
                 <div class="tab-content">
-                    <div id="tab-1" v-if="iswholeGrains" class="tab-pane fade show p-0 active">
+                    <div v-if="iswholeGrains" class="fade show p-0 ">
                         <div class="row g-4">
-                            <div class="col-xl-3 col-lg-4  col-md-6 wow fadeInUp" style="border: 1px solid white;"
-                                data-wow-delay="0.1s" v-for="{ name, calories,image } in wholeGrains">
+                            <div class="col-xl-3 col-lg-4  col-md-6 container-Shadow wow fadeInUp"
+                                style=" box-shadow: 0 0 12px rgba(0,0,0,0.3) " data-wow-delay="0.1s"
+                                v-for="{ name, calories, image } in wholeGrains" :key="name">
                                 <div class="product-item">
                                     <div class="position-relative bg-light overflow-hidden">
-                                        <img class="img-fluid w-100" :src="image">
+                                        <img class="img-fluid w-100 " style="height: 200px;" :src="image">
 
                                     </div>
                                     <div class="text-center p-4">
-                                        <p class="d-block h5 mb-2 graycolor" href="">{{ name }}</p>
-                                        <span class="graycolor me-1">{{ calories }}</span>
+                                        <p class="d-block h5 mb-2 graycolor" style="font-size: 28px; color: burlywood;">{{ name }}</p>
+                                        <span class="graycolor me-1" >熱量消耗: <span style="font-size: 32px;color: red;">{{ calories }}</span> 卡路里</span>
 
                                     </div>
 
                                 </div>
-                            </div>
-                            <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
-                                <!-- <a class="btn btn-primary rounded-pill py-3 px-5" href="">瀏覽更多資訊</a> -->
-
                             </div>
                         </div>
                     </div>
@@ -160,7 +157,7 @@ const pageChange = (value) => {
                                     </div>
                                     <div class="text-center p-4">
                                         <a class="d-block graycolor h5 mb-2" href="">{{ name }}</a>
-                                        <span class="graycolor text-decoration-line-through">{{ calories }}</span>
+                                        <span class="graycolor text-decoration-line-through">熱量消耗: {{ calories }} 卡路里</span>
                                     </div>
 
                                 </div>
@@ -198,10 +195,9 @@ const pageChange = (value) => {
     <!-- Product End -->
 
     <!-- Blog Start -->
-    <div class="container-xxl py-5">
-        <div class="container bg-white">
-            <div class="section-header text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s"
-                style="max-width: 500px;">
+    <div class="container-xxl py-5" style="background-color: aliceblue; box-shadow: 0 0 12px rgba(255,255,255,0.6)">
+        <div class="container ">
+            <div class="pt-3 text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
                 <h1 class="display-5 mb-3 graycolor">最新 討論</h1>
 
             </div>

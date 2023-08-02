@@ -7,8 +7,17 @@
     --font-style:"Font Awesome 5 Free";
 }
 
+.img-shadow{
+    -webkit-filter: drop-shadow(12px 12px 7px rgba(0, 0, 0, 0.7));
+    filter: drop-shadow(12px 12px 7px rgba(0, 0, 0, 0.7))
+}
+
 .backimg{
     background: url(../img/bg-icon.png) center center repeat;
+}
+
+.container-Shadow{
+    box-shadow: 12px 12px 7px rgba(0, 0, 0, 0.7)
 }
 
 .back-to-top {
