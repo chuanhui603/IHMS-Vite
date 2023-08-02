@@ -6,7 +6,7 @@
           <th style="width: 120px;">訂單編號</th>
           <th style="width: 50px">會員名字</th>
           <th style="width: 50px">教練名字</th>
-          <th style="width: 80px">訂單價格</th>
+          <th style="width: 80px">課程費用</th>
           <th style="width: 100px">訂單狀態</th>
           <th style="width: 150px">訂單時間</th>
           <th style="width: 180px">課程內容</th>
@@ -20,14 +20,10 @@
         
           <!-- <td>{{ orderId }}</td> -->
           <td>{{ ordernumber }}</td>   
-          <td><ul>
-              <li >{{memberName}} </li>
-            </ul>
-          </td>
+          <td>{{ memberName }}</td>
           <td>{{ coachName }}</td>
-          <td>{{ pointstotal }}</td>
+          <td>{{ courseTotal }}</td>
           <td>{{ state }}</td>
-          <!-- <td>{{ reason }}</td> -->
           <td>{{ createtime }}</td>           
                    
           <td style="weight:50px">
@@ -39,13 +35,7 @@
             <!-- 呈現課程時間 -->
             <ul>
               <li >課程時間: {{ courseTime }}</li>
-            </ul>
-
-             <!-- 呈現課程費用 -->
-             <ul>
-              <li >課程費用: {{ courseTotal}}</li>
-            </ul>
-
+            </ul>         
           </td>      
           
         </tr>
