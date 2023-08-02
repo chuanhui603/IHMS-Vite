@@ -1,5 +1,5 @@
 <template>
-    <div class="container" style="margin-top: 100px;">
+    <div class="container" style="margin-top: 79px;  background-color: #fff">
         <div class="customerService-reply-container">
             <h1>客服回報詳情</h1>
             <div class="customerService-reply-details">

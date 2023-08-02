@@ -11,27 +11,20 @@
         }, 100);
     };
     spinner();
-
-
-        // Initiate the wowjs
-        new WOW().init();
-
-
-
     // Fixed Navbar
     window.addEventListener('scroll', function () {
         if (window.innerWidth < 992) {
             if (window.scrollY > 45) {
-                document.querySelector('.fixed-top').classList.add('bg-white', 'shadow');
+                document.querySelector('.fixed-top').classList.add('blackbg', 'shadow');
             } else {
-                document.querySelector('.fixed-top').classList.remove('bg-white', 'shadow');
+                document.querySelector('.fixed-top').classList.remove('blackbg', 'shadow');
             }
         } else {
             if (window.scrollY > 45) {
-                document.querySelector('.fixed-top').classList.add('bg-white', 'shadow');
+                document.querySelector('.fixed-top').classList.add('blackbg', 'shadow');
                 document.querySelector('.fixed-top').style.top = '0';
             } else {
-                document.querySelector('.fixed-top').classList.remove('bg-white', 'shadow');
+                document.querySelector('.fixed-top').classList.remove('blackbg', 'shadow');
                 document.querySelector('.fixed-top').style.top = '0';
             }
         }

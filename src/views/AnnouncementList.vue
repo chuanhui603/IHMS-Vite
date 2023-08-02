@@ -1,5 +1,5 @@
 <template>
-  <div class="container" style="margin-top: 100px;">
+  <div class="container" style="margin-top: 79px; background-color: #fff" >
     <h1>公告列表</h1>
     <br>
     <ul class="announcement-list">

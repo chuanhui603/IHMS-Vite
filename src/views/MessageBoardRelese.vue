@@ -1,5 +1,5 @@
 <template>
-    <div class="container" style="margin-top: 100px;">
+    <div class="container" style="margin-top: 79px;  background-color: #fff">
         <h1>發布留言板</h1>
         <form @submit.prevent="submitMessage">
             <div class="form-group">

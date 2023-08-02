@@ -20,16 +20,16 @@
     window.addEventListener('scroll', function () {
         if (window.innerWidth < 992) {
             if (window.scrollY > 45) {
-                document.querySelector('.fixed-top').classList.add('bg-white', 'shadow');
+                document.querySelector('.fixed-top').classList.add('blackbg', 'white-shadow');
             } else {
-                document.querySelector('.fixed-top').classList.remove('bg-white', 'shadow');
+                document.querySelector('.fixed-top').classList.remove('white-shadow');
             }
         } else {
             if (window.scrollY > 45) {
-                document.querySelector('.fixed-top').classList.add('bg-white', 'shadow');
+                document.querySelector('.fixed-top').classList.add('blackbg', 'white-shadow');
                 document.querySelector('.fixed-top').style.top = '0';
             } else {
-                document.querySelector('.fixed-top').classList.remove('bg-white', 'shadow');
+                document.querySelector('.fixed-top').classList.remove('white-shadow');
                 document.querySelector('.fixed-top').style.top = '0';
             }
         }

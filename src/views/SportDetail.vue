@@ -8,11 +8,8 @@
                 </el-form-item>
                 <el-form-item label="運動名稱">
                         <el-input v-model="sportdetail.sname" />
-                </el-form-item>
-                <el-form-item v-if="sportdetail.type == '健身'" label="組數">
-                        <el-input v-model="sportdetail.sets" style="width: 15%;" />
-                </el-form-item>
-                <el-form-item v-if="sportdetail.type == '健身'" label="次數">
+                </el-form-item>             
+                <el-form-item v-if="sportdetail.type === '健身'" label="次數">
                         <el-input v-model="sportdetail.frequency" style="width: 15%;" />
                 </el-form-item>
                 <el-form-item v-else label="時長">
@@ -49,10 +46,10 @@ import { useRouter } from 'vue-router';
 
 //彈出視窗設定
 const prop = defineProps({
-        dialogEditVisible: Boolean,
+    
         datas: Object
 })
-
+console.log(prop.datas)
 const emit = defineEmits();
 const dialogEditUpdate = () => {
         emit('dialogEditUpdate', false); // Send the new value to the parent component     

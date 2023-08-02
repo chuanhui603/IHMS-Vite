@@ -6,35 +6,31 @@ import SportDetail from '../views/SportDetail.vue'
 //設定跳出視窗
 const dialogCreateVisible = ref(false)
 const dialogEditVisible = ref(false)
-const DetailId =ref(0)
 const search = ref('')
 const sportdatas = ref('')
-const isdoneclass=ref('competed')
+const isdoneclass = ref('competed')
+//跳出視窗匯入資料
 const dialogLoadUpdate = async (Id) => {
     const API_URL = `https://localhost:7127/api/plans/Sportdetail/${Id}`
     const res = await fetch(API_URL)
-    if(res.ok){
-        sportdatas.value = res.json()  
-        console.log(sportdatas.value) 
-        dialogEditVisible.value = true  
-    }  
+    sportdatas.value = await res.json()
+    dialogEditVisible.value = true
 }
-DetailId.value = sportdatas.value.sportDetailId
-console.log(DetailId.value)
+
 const detailDelete = async (id) => {
     const check = confirm(`確定刪除行程?`)
     if (check) {
         const API_URL = `https://localhost:7127/api/plans/sportdetail/delete/${id}`
-        const res = await fetch(API_URL, { method: 'Delete' })  
-        onload()     
+        const res = await fetch(API_URL, { method: 'Delete' })
+        onload()
     }
 }
-const detailComplete = async (id) => {   
-        const API_URL = `https://localhost:7127/api/plans/sportdetail/complete/${id}`
-        const res = await fetch(API_URL, { method: 'PUT' })  
-        isdoneclass.value = 'uncompeted'
-        onload()     
-  
+const detailComplete = async (id) => {
+    const API_URL = `https://localhost:7127/api/plans/sportdetail/complete/${id}`
+    const res = await fetch(API_URL, { method: 'PUT' })
+    isdoneclass.value = 'uncompeted'
+    onload()
+
 }
 const dialogEditUpdate = async (bool) => {
     dialogEditVisible.value = bool
@@ -43,6 +39,7 @@ const dialogEditUpdate = async (bool) => {
 }
 const dialogCreateUpdate = (bool) => {
     dialogCreateVisible.value = bool
+    onload()
 }
 
 //讀取事件
@@ -74,7 +71,7 @@ const listsearch = async (sportid) => {
     <div class="nav nav-pills">
         <div class="planmenu">
             <div class="memberimg">
-                <img src="../img/testimonial-1.jpg" alt="hahaha">
+                <img src="../img/cock.jpg" alt="hahaha">
                 <p><a href="#">Judy Lin</a></p>
             </div>
             <div class="row m-3 ">
@@ -91,38 +88,39 @@ const listsearch = async (sportid) => {
                     <div>
                         <ul class="menulist nav mt-2">
 
-                            <li v-for="{ sname, sportDetailId,time } in list" :key="sportDetailId" >
-                                <el-button color="#626aef" :class="isdoneclass"  @click="dialogLoadUpdate(sportDetailId)">
-                                    {{ sname }}{{time}}
+                            <li v-for="{ sname, sportDetailId, time } in list" :key="sportDetailId">
+                                <el-button color="#626aef" :class="isdoneclass" @click="dialogLoadUpdate(sportDetailId)">
+                                    {{ sname }}{{ time }}
                                 </el-button>
                                 <div id="changebtn">
                                     <el-button type="primary" @click="detailComplete(sportDetailId)" :icon="Select" />
                                     <el-button type="primary" @click="detailDelete(sportDetailId)" :icon="CloseBold" />
                                 </div>
                             </li>
-                          
+
                         </ul>
                     </div>
                 </el-scrollbar>
             </div>
         </div>
     </div>
+
     <el-dialog v-model="dialogEditVisible" title="更改設定" width="30%">
-                                <SportDetail :id="DetailId" :dialogEditVisible="dialogEditVisible"
-                                    @dialogEditUpdate="dialogEditUpdate(value)">
-                                </SportDetail>
-                            </el-dialog>
+        <SportDetail :datas="sportdatas" :dialogEditVisible="dialogEditVisible" @dialogEditUpdate="dialogEditUpdate(value)">
+        </SportDetail>
+    </el-dialog>
+
     <el-dialog v-model="dialogCreateVisible" title="更改設定" width="30%">
-        <SportDetail :dialogEditVisible="dialogCreateVisible" @dialogEditUpdate="dialogCreateUpdate(value)">
+        <SportDetail :dialogCreateVisible="dialogCreateVisible" @dialogEditUpdate="dialogCreateUpdate(value)">
         </SportDetail>
     </el-dialog>
 </template>
 <style scoped>
-
-.competed{
+.competed {
     background-color: #ccc;
 }
-.uncompeted{
+
+.uncompeted {
     background-color: #626aef;
 }
 

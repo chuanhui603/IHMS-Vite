@@ -1,5 +1,5 @@
 <template>
-    <div class="container message-container" style="margin-top: 100px;">
+    <div class="container message-container" style="margin-top: 79px;  background-color: #fff">
         <h1>{{ message.title }}</h1>
         <p>分類：{{ message.category }}</p>
         <p>時間：{{ formatDate(message.time) }}</p>

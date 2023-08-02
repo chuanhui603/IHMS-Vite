@@ -1,5 +1,5 @@
 <template>
-    <div class="container" style="margin-top: 100px;">
+    <div class="container" style="margin-top: 79px;  background-color: #fff">
         <div class="container mt-5">
             <h1 class="mb-4">所有文章</h1>
             <div class="row">

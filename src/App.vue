@@ -39,7 +39,7 @@ router.afterEach(() => {
 
 333
 <template>
-    <div class="backimg">
+    <div class="blackbg">
          <!-- Spinner start -->
         <div id="spinner"
             class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -50,7 +50,9 @@ router.afterEach(() => {
         <NavBar  :isLogin="isLogin" :memberItems="memberItems"></NavBar>
         <!-- Navbar End -->
         <!-- 內容 -->
-        <router-view v-if="isRouterAlive"></router-view>           
+      
+            <router-view v-if="isRouterAlive"></router-view>   
+                
 
         <!-- 尾頁 Start -->
         <div class="container-fluid bg-dark footer p-3 ">

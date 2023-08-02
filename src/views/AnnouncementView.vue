@@ -1,5 +1,5 @@
 <template>
-    <div class="container" style="margin-top: 100px;">
+    <div class="container" style="margin-top: 79px;  background-color: #fff">
       <h1>{{ announcement.title }}</h1>
       <p>{{ formatTime(announcement.time) }}</p>
       <p>{{ announcement.contents }}</p>

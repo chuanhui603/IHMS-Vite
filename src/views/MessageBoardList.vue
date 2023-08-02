@@ -1,5 +1,5 @@
 <template>
-    <div class="container" style="margin-top: 100px;">
+    <div class="container" style="margin-top: 79px;  background-color: #fff">
         <div class="message-board-container">
             <div class="category-sidebar">
             <h3>分類</h3>
@@ -153,13 +153,15 @@ export default {
 }
 .message-board-container {
     display: flex;
-    margin-top: 100px;
+    margin-top: 80px;
+    padding-top: 20px;
 }
 
 .message-divider {
     border: none;
     border-top: 1px dashed #ccc;
     margin: 10px 0;
+    
 }
 
 .category-sidebar {

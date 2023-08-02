@@ -25,6 +25,9 @@ const emit = defineEmits(['img-delete'],['changeUpdate'])
 const imgDelete =(index)=>{
   emit("img-delete",index);
 }
+const changeUpdate =(index)=>{
+  emit("changeUpdate",index)
+}
 </script>
 
 <style scoped>
@@ -39,11 +42,15 @@ const imgDelete =(index)=>{
   text-align: center;
 }
 
-.el-carousel__item a{
+.el-carousel__item a:first-child{
   float: right;
   font-size: 20px;
 }
 
+.el-carousel__item a{
+  float: left;
+  font-size: 20px;
+}
 .el-carousel__item:nth-child(2n) {
   background-color: #99a9bf;
 }

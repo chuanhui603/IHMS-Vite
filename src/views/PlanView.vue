@@ -3,7 +3,7 @@ import plansidebar from '../components/PlansideBar.vue'
 import plandetail from '../views/PlanDetail.vue'
 import planlistview from '../views/PlanListView.vue'
 import { useRouter } from 'vue-router'
-import { ref } from 'vue'
+import { ref,onMounted } from 'vue'
 const isPlans = ref(false)
 const router = useRouter()
 // 在組件中註冊事件監聽器
@@ -24,14 +24,12 @@ const loadPlans = async () => {
     sessionStorage.setItem("plans", JSON.stringify(datas));
     if(sessionStorage.getItem("plans")){
         planitems = sessionStorage.getItem("plans")
-    }
+    } 
     const { planId } = planitems
     pId = planId
 }
-
      loadPlans()
     //  loadsportdate()
-
 const loadsportdate = async () => {
     const api_URL = `https://localhost:7127/api/plans/sport/${pId}`
     const res = await fetch(api_URL)
@@ -42,7 +40,7 @@ const loadsportdate = async () => {
 </script>
     
 <template>
-    <div class="container-xxl mb-2" style="margin-top: 79px;">
+    <div class="container-xxl mb-2" style="margin-top: 79px;  background-color: #fff">
         <!-- 內容  -->
         <div class="row ">
             <!-- sidebar -->
