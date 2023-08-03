@@ -110,10 +110,10 @@ const listsearch = async (sportid) => {
         </SportDetail>
     </el-dialog>
 
-    <el-dialog v-model="dialogCreateVisible" title="更改設定" width="30%">
+    <!-- <el-dialog v-model="dialogCreateVisible" title="更改設定" width="30%">
         <SportDetail :dialogCreateVisible="dialogCreateVisible" @dialogEditUpdate="dialogCreateUpdate(value)">
         </SportDetail>
-    </el-dialog>
+    </el-dialog> -->
 </template>
 <style scoped>
 .menuitem {

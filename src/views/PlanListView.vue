@@ -51,6 +51,7 @@
 </template>
 <script  setup>
 import { ref } from 'vue'
+import { Edit } from '@element-plus/icons-vue';
 import DietDetail from '../views/DietDetail.vue'
 import SportDetail from '../views/SportDetail.vue'
 const isDietEdit =ref(false)
