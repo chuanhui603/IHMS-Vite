@@ -202,14 +202,33 @@ const pageChange = (value) => {
 
             </div>
             <div class="row g-4">
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s" v-for="  blog   in   3  ">
-                    <img class="img-fluid" src="../img/blog-1.jpg" alt="">
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <img class="img-fluid" src="../img/rice.jpg" alt="">
                     <div class="bg-light p-4">
-                        <a class="d-block h5 lh-base mb-4" href="">How to cultivate organic fruits and vegetables in own
-                            firm</a>
+                        <a class="d-block h5 lh-base mb-4" href="">糙米飯比較硬、不好吃？其實是妳煮錯了！營養師教你「糙米飯」美味3秘訣：洗完米後「這動作」是關鍵</a>
                         <div class="text-muted border-top pt-4">
                             <small class="me-3"><i class="fa fa-user text-primary me-2"></i>Admin</small>
-                            <small class="me-3"><i class="fa fa-calendar text-primary me-2"></i>01 Jan, 2045</small>
+                            <small class="me-3"><i class="fa fa-calendar text-primary me-2"></i>04 Aug, 2023</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <img class="img-fluid" src="../img/food.jpg" alt="">
+                    <div class="bg-light p-4">
+                        <a class="d-block h5 lh-base mb-4" href="">1個月瘦3公斤？研究：隔日斷食助減肥還能降壞膽固醇</a>
+                        <div class="text-muted border-top pt-4">
+                            <small class="me-3"><i class="fa fa-user text-primary me-2"></i>Admin</small>
+                            <small class="me-3"><i class="fa fa-calendar text-primary me-2"></i>03 Aug, 2023</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <img class="img-fluid" src="../img/food2.jpg" alt="">
+                    <div class="bg-light p-4">
+                        <a class="d-block h5 lh-base mb-4" href="">這些食物超傷皮膚少吃！醫：尤其甜食，易使真皮層退化</a>
+                        <div class="text-muted border-top pt-4">
+                            <small class="me-3"><i class="fa fa-user text-primary me-2"></i>Admin</small>
+                            <small class="me-3"><i class="fa fa-calendar text-primary me-2"></i>02 Aug, 2023</small>
                         </div>
                     </div>
                 </div>

@@ -23,7 +23,7 @@
     methods: {
       async fetchAnnouncement() {
         try {
-          const response = await axios.get(`http://4.216.224.225:81/api/announcements/${this.announcementId}`);
+          const response = await axios.get(`https://backstage.ihms.club:8080/api/announcements/${this.announcementId}`);
           this.announcement = response.data;
         } catch (error) {
           console.error(error);
@@ -35,7 +35,7 @@
       },
       getImageUrl(image) {
         if (image) {
-          return `http://4.216.224.225:81/api/image/${image}`;
+          return `https://backstage.ihms.club:8080/api/image/${image}`;
         } else {
           return ''; // 如果沒有圖片，返回空字串或預設圖片的 URL
         }
