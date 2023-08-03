@@ -16,15 +16,18 @@
   import { ref } from 'vue';
   import PointRecordItem from '../components/PointRecordItem.vue';
 
-
-  const MemberId = ref()
+  const { memberId } = JSON.parse(localStorage.getItem('currentMember'))
+  
+  
   const PointRecords = ref([]);
    const loadPointRecord = async ()=>{ 
-    if(MemberId.value) {
-      const res = await fetch(`https://localhost:7127/api/PointRecordsDTO/${MemberId.value}`)
+    
+    if(memberId) {
+      const res = await fetch(`https://localhost:7127/api/PointRecordsDTO/${memberId}`)
+      
       const datas = await res.json()
       PointRecords.value = datas;  
-      console.log(datas)
+      
     }  
      
    };

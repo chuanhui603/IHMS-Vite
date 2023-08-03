@@ -14,7 +14,7 @@
             <td>{{ pointrecordId }}</td>
             <td>{{ count*500}}</td>
             <td>{{ bankNumber}}</td>
-            <td>{{ createtime}}</td>
+            <td>{{ formatDate(createtime)}}</td>
         </tr>
         </tbody>
     </table>
@@ -25,6 +25,18 @@
         PointRecords: Array
         
     });
+
+    const formatDate = (timestamp) => {
+    const options = {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true,
+    };
+    return new Intl.DateTimeFormat('zh-TW', options).format(new Date(timestamp));
+};
     // console.log(prop);
     
 </script>

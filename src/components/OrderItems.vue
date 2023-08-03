@@ -24,7 +24,7 @@
           <td>{{ coachName }}</td>
           <td>{{ courseTotal }}</td>
           <td>{{ state }}</td>
-          <td>{{ createtime }}</td>           
+          <td>{{ formatDate(createtime) }}</td>        
                    
           <td style="weight:50px">
       
@@ -52,6 +52,18 @@
       member: Array, // 聲明 orders 的類型
   });
 
+  const formatDate = (timestamp) => {
+    const options = {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true,
+    };
+    return new Intl.DateTimeFormat('zh-TW', options).format(new Date(timestamp));
+  };
+  
 
   // const searchOrders = () => {
   // // 已经在 computed 中定义了 filteredOrders，无需额外的操作，搜索结果会自动更新
