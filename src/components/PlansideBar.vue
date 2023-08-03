@@ -10,12 +10,17 @@ const search = ref('')
 const sportdatas = ref('')
 const isdoneclass = ref('uncompeted')
 const dialogLoadUpdate = async (Id) => {
+   dialogCreateVisible.value =false
     const API_URL = `https://localhost:7127/api/plans/Sportdetail/${Id}`
     const res = await fetch(API_URL)
     sportdatas.value = res.json()
     dialogEditVisible.value = true    
 }
 
+const dialogCreate =()=>{
+    dialogEditVisible.value=false
+    dialogCreateVisible.value=true
+}
 
 const detailDelete = async (id) => {
     const check = confirm(`確定刪除行程?`)
@@ -33,12 +38,14 @@ const detailComplete = async (id) => {
 
 }
 const dialogEditUpdate = async (bool) => {
+    dialogEditVisible.value =bool
     dialogEditVisible.value = bool
     onload()
   
 }
 
 const dialogCreateUpdate = (bool) => {
+    dialogEditVisible.value =bool
     dialogCreateVisible.value = bool
     onload()
 }
@@ -80,7 +87,7 @@ const listsearch = async (sportid) => {
                     <p>今日 行程</p>
                 </div>
                 <div class="col-1 menubtn">
-                    <el-button :icon="Edit" @click="dialogEditVisible = true"></el-button>
+                    <el-button :icon="Edit" @click="dialogCreate"></el-button>
                 </div>
                 <div class="menusearch">
                     <el-input type="text" v-model="search" placeholder="search" @input="listsearch"/>
@@ -110,10 +117,10 @@ const listsearch = async (sportid) => {
         </SportDetail>
     </el-dialog>
 
-    <!-- <el-dialog v-model="dialogCreateVisible" title="更改設定" width="30%">
+    <el-dialog v-model="dialogCreateVisible" title="更改設定" width="30%">
         <SportDetail :dialogCreateVisible="dialogCreateVisible" @dialogEditUpdate="dialogCreateUpdate(value)">
         </SportDetail>
-    </el-dialog> -->
+    </el-dialog>
 </template>
 <style scoped>
 .menuitem {

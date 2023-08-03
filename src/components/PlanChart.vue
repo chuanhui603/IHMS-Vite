@@ -25,9 +25,11 @@ const foodtype = ref({
 const coloriesSum = async () => {
   const API_URL = `https://localhost:7127/api/plans/diet/sum/2`
   const res = await fetch(API_URL)
-  sum.value = await res.json()
+  if(res.ok){
+    sum.value = await res.json()
+  }
+  console.log(sum.value)
 }
-coloriesSum()
 
 const coloriescostSum = async () => {
   const API_URL = `https://localhost:7127/api/plans/sportdetail/sum/1`

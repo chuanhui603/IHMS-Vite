@@ -15,7 +15,7 @@
                 <el-form-item v-else label="時長">
                         <el-input v-model="sportdetail.timelong" style="width: 15%;" />
                 </el-form-item>
-                <el-form-item  label="消耗熱量">
+                <el-form-item label="消耗熱量">
                         <el-input v-model="sportdetail.calories" style="width: 15%;" />
                 </el-form-item>
                 <el-form-item label="時間">
@@ -48,9 +48,10 @@ import { ref } from 'vue';
 
 //彈出視窗設定
 const prop = defineProps({
-        sportdatas: Object
+         sportdatas: Object
 })
-console.log(prop.sportdatas)
+
+
 const sportdetail = ref({
         frequency: 0,
         isdone: false,
@@ -64,15 +65,23 @@ const sportdetail = ref({
         type: '',
         calories: 0
 })
-
-
-
+const fetchData = async () => {
+        try {
+                if(prop.sportdatas!=null){
+                 const result = await prop.sportdatas;
+                sportdetail.value = result;
+                }          
+        } catch (error) {
+                console.error('Error fetching data:', error);
+        }
+}
+fetchData()
+console.log(sportdetail.value)
 const emit = defineEmits();
 const dialogEditUpdate = () => {
         emit('dialogEditUpdate', false);
 };
 
-sportdetail.value = prop.sportdatas
 
 //sportdetail資料表設定
 const onCreate = async () => {
@@ -84,6 +93,7 @@ const onCreate = async () => {
         formData.append('Frequency', sportdetail.value.frequency)
         formData.append('Time', sportdetail.value.time)
         formData.append('Sets', sportdetail.value.sets)
+        formData.append('isdon', sportdetail.value.isdone)
         formData.append('calories', sportdetail.value.calories)
         const API_URL = `https://localhost:7127/api/plans/sportdetail`
         const res = await fetch(API_URL, {
