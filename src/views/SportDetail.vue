@@ -15,6 +15,9 @@
                 <el-form-item v-else label="時長">
                         <el-input v-model="sportdetail.timelong" style="width: 15%;" />
                 </el-form-item>
+                <el-form-item v-else label="消耗熱量">
+                        <el-input v-model="sportdetail.colories" style="width: 15%;" />
+                </el-form-item>
                 <el-form-item label="時間">
                         <el-col :span="11">
                                 <el-date-picker v-model="sportdetail.registerdate" type="date" placeholder="Pick a time"
@@ -48,7 +51,7 @@ const prop = defineProps({
         sportdatas: Object
 })
 
-const sportdatas = ref(prop.sportdatas || {});
+const sportdatas = await ref(prop.sportdatas || {});
 console.log(sportdatas.value)
 const emit = defineEmits();
 const dialogEditUpdate = () => {

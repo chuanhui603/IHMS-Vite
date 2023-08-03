@@ -72,7 +72,7 @@ const listsearch = async (sportid) => {
     <div class="nav nav-pills">
         <div class="planmenu">
             <div class="memberimg">
-                <img src="../img/cock.jpg" alt="hahaha">
+                <img src="../img/testimonial-1.jpg" alt="hahaha">
                 <p><a href="#">Judy Lin</a></p>
             </div>
             <div class="row m-3 ">
@@ -83,7 +83,7 @@ const listsearch = async (sportid) => {
                     <el-button :icon="Edit" @click="dialogEditVisible = true"></el-button>
                 </div>
                 <div class="menusearch">
-                    <input type="text" v-model="search" placeholder="search" @input="listsearch">
+                    <el-input type="text" v-model="search" placeholder="search" @input="listsearch">
                 </div>
                 <el-scrollbar height="400px">
                     <div>

@@ -32,7 +32,7 @@ const loadPointRecord = async () => {
 // if (MemberId.value) {
 //     loadPointRecord();
 // }
-if(localStorage.getItem('currentMember')){
+if (localStorage.getItem('currentMember')) {
     router.afterEach(loadPointRecord);
 }
 
@@ -58,7 +58,7 @@ if(localStorage.getItem('currentMember')){
 
         <nav class="navbar navbar-expand-lg navbar-light py-lg-0 px-lg-5 wow fadeIn" data-wow-delay="0.1s">
             <RouterLink to="/" class="navbar-brand ms-4 ms-lg-0">
-               <img src="../img/logo.png" width="78">
+                <img src="../img/logo.png" width="78">
             </RouterLink>
             <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
@@ -67,12 +67,14 @@ if(localStorage.getItem('currentMember')){
                 <div class="navbar-nav p-4 p-lg-0">
                     <RouterLink to="/" class="nav-link">首頁</RouterLink>
                     <div class="nav-item dropdown">
+                       
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">會員專區</a>
                         <div class="dropdown-menu m-0">
                             <RouterLink to="/plan" class="dropdown-item">計畫總覽</RouterLink>
                             <RouterLink to="/orders" class="dropdown-item">購買紀錄</RouterLink>
                             <RouterLink to="/PointRecord" class="dropdown-item">點數紀錄</RouterLink>
-                            <a href="https://localhost:7127/Members/MemberEdit/6" class="dropdown-item">會員設定</a>
+                            <a href="https://localhost:7127/Members/MemberEdit/6" class="dropdown-item">教練專區</a>
+                            <a href=" https://localhost:7127/CoachFront/EditResume" class="dropdown-item">會員設定</a>
                         </div>
                     </div>
                     <a href="https://localhost:7127/Student/CoachList" class="nav-link">課程總覽</a>
@@ -86,7 +88,7 @@ if(localStorage.getItem('currentMember')){
                                 <div class="dropdown-menu m-0">
                                     <RouterLink to="/custom-service" class="dropdown-item">回報客服</RouterLink>
                                     <RouterLink to="/custom-service-List" class="dropdown-item">客服回應</RouterLink>
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -110,7 +112,8 @@ if(localStorage.getItem('currentMember')){
                     <router-link to="/login" v-if="!isLogin" class="ms-3 p-1 graycolor">登入</router-link>
                     <router-link to="/" v-if="isLogin" @click="memberLogOut" class="ms-3 p-1 graycolor">登出</router-link>
                     <!--登入前隱藏 登入後展示 -->
-                    <div v-if="isLogin" class="graycolor ms-3 p-1">點數: <span class="goldcolor">${{ currentPoint }}</span></div>
+                    <div v-if="isLogin" class="graycolor ms-3 p-1">點數: <span class="goldcolor">${{ currentPoint }}</span>
+                    </div>
 
 
                 </div>
