@@ -18,6 +18,7 @@ const TDEE = ref(0)
 const { planId } = newPlan.value
 const onCreate = async () => {
     const API_URL = 'https://localhost:7127/api/Plans'
+    console.log(JSON.stringify(newPlan.value))
     const res = await fetch(API_URL, {
         method: 'POST',
         headers: {
@@ -65,7 +66,7 @@ const comformation = ref({
 
 const comformationUpdate = () => {
 
-    BMR.value = (newPlan.value.gender == 'male' ? (10 * newPlan.value.height + 6.25 * newPlan.value.height - 5 * newPlan.value.age) + 5 : (10 * newPlan.value.height + 6.25 * newPlan.value.height - 5 * newPlan.value.age) - 161).toFixed(0)
+    BMR.value = (newPlan.value.gender == 'male' ? (13.75*newPlan.value.weight) +(5.003*newPlan.value.height)-(6.755*newPlan.value.age)+66.5:(9.563*newPlan.value.weight)+(1.850*newPlan.value.height)-(4.676*newPlan.value.age)+655).toFixed(0)
 
     switch (newPlan.value.times) {
         case 'never':

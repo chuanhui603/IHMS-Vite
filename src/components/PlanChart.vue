@@ -40,21 +40,21 @@ coloriesSum()
 coloriescostSum()
 
 const foodtypeUpdate = () => {
-  if (bmr.value < 2000 && bmr.value > 1500) {
+  if (bmr.value < 1800 && bmr.value > 1000) {
     foodtype.value.Cereals = 3
     foodtype.value.eggMeat = 5
     foodtype.value.fruit = 2
     foodtype.value.milk = 1.5
     foodtype.value.vegetable = 3
     foodtype.value.oil = 5
-  } else if (bmr.value < 2500 && bmr.value > 2000) {
+  } else if (bmr.value < 2300 && bmr.value > 1800) {
     foodtype.value.Cereals = 3.5
     foodtype.value.eggMeat = 6
     foodtype.value.fruit = 3.5
     foodtype.value.milk = 1.5
     foodtype.value.vegetable = 4
     foodtype.value.oil = 6
-  } else if (bmr.value < 3000 && bmr.value > 2500) {
+  } else if (bmr.value < 3000 && bmr.value > 2300) {
     foodtype.value.Cereals = 4
     foodtype.value.eggMeat = 8
     foodtype.value.fruit = 4
