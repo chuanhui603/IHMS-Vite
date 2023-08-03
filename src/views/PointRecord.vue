@@ -15,14 +15,20 @@
 
   import { ref } from 'vue';
   import PointRecordItem from '../components/PointRecordItem.vue';
-  
+
+
+  const MemberId = ref()
   const PointRecords = ref([]);
-   const loadPointRecord = async ()=>{    
-     const res = await fetch(`https://localhost:7127/api/PointRecordsDTO`)
-     const datas = await res.json()
-     PointRecords.value = datas;  
-     console.log(datas)
+   const loadPointRecord = async ()=>{ 
+    if(MemberId.value) {
+      const res = await fetch(`https://localhost:7127/api/PointRecordsDTO/${MemberId.value}`)
+      const datas = await res.json()
+      PointRecords.value = datas;  
+      console.log(datas)
+    }  
+     
    };
+   
    
    loadPointRecord();
 

@@ -23,12 +23,15 @@ if (localStorage.getItem('currentMember')) {
 const currentPoint = ref();
 const loadPointRecord = async () => {
     if (MemberId) {
-        const res = await fetch(`https://localhost:7127/api/PointRecordsDTO/${MemberId.value}`)
+        const res = await fetch(`https://localhost:7127/api/PointRecordsDTO/sum/${MemberId.value}`)
         const datas = await res.json()
         currentPoint.value = datas;
     }
 };
 
+// if (MemberId.value) {
+//     loadPointRecord();
+// }
 if(localStorage.getItem('currentMember')){
     router.afterEach(loadPointRecord);
 }
@@ -83,6 +86,7 @@ if(localStorage.getItem('currentMember')){
                                 <div class="dropdown-menu m-0">
                                     <RouterLink to="/custom-service" class="dropdown-item">回報客服</RouterLink>
                                     <RouterLink to="/custom-service-List" class="dropdown-item">客服回應</RouterLink>
+                                    
                                 </div>
                             </div>
                         </div>
