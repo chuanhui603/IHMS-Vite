@@ -63,7 +63,7 @@
         },
         body: JSON.stringify(formData.value),// 將資料轉換為JSON格式並放入body中
     });
-    router.push('/orders')
+    router.push('/PointRecord')
   
   } catch (error) {
     // 處理其他錯誤情況
