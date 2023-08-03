@@ -5,7 +5,7 @@
         <div class="col-md-6">
           <div class="coin-card">
             
-            <img src="IHMS-VUE-模板/img/coin.jpg" class="coin-img" alt="Coin Image">
+            <img src="../img/coin.jpg" class="coin-img" alt="Coin Image">
             <!-- <img src="src/img/coin_image.jpg" class="coin-img" alt="Coin Image"> -->
             <div class="coin-amount">500元 / 張</div>
             

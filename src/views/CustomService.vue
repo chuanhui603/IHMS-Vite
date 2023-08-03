@@ -47,7 +47,7 @@ export default {
             console.log('submitRequest 被調用了，member_id 的值為：', this.request.member_id);
             console.log('將要傳送給後端的 JSON：', JSON.stringify(this.request));
             try {
-                await axios.post('http://4.216.224.225:81/api/CustomService', this.request, {
+                await axios.post('https://backstage.ihms.club:8080/api/CustomService', this.request, {
                     headers: {
                         'Content-Type': 'application/json'
                     }

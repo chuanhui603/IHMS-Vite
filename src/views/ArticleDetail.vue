@@ -6,7 +6,7 @@
             <p class="card-text" v-html="formatText(article.contents)"></p>
         </div>
         <div v-for="(img, index) in article.images" :key="index">
-          <img :src="'http://4.216.224.225:81' + img" class="card-img-top" alt="Article image">
+          <img :src="'https://backstage.ihms.club:8080' + img" class="card-img-top" alt="Article image">
         </div>
       </div>
     </div>
@@ -23,7 +23,7 @@ export default {
   },
   async mounted() {
     try {
-      const response = await axios.get(`http://4.216.224.225:81/api/article/${this.$route.params.id}`);
+      const response = await axios.get(`https://backstage.ihms.club:8080/api/article/${this.$route.params.id}`);
       this.article = response.data;
     } catch (err) {
       console.error(err);

@@ -14,7 +14,9 @@
         <textarea v-else v-model="message.contents" class="form-control"></textarea>
         <div v-if="memberId === message.member_id" class="edit-button">
             <button class="btn btn-primary" @click="editMessage">{{ isEditing ? '保存' : '編輯' }}</button>
+            <button class="btn btn-danger button-margin-left" @click="deleteMessage">{{ '刪除' }}</button>
         </div>
+
         <div v-if="images.length > 0">
             <img v-for="(image, index) in images" :key="index" :src="getImageUrl(image)" :alt="'Image ' + index" />
         </div>
@@ -53,8 +55,8 @@ export default {
     },
     methods: {
         formatContent(content) {
-        return content.replace(/\r?\n/g, '<br>');
-    },
+            return content.replace(/\r?\n/g, '<br>');
+        },
         formatDate(datetime) {
             const date = new Date(datetime);
             return date.toLocaleString('en-US', {
@@ -67,9 +69,9 @@ export default {
             });
         },
         getImageUrl(imageName) {
-            console.log(`http://4.216.224.225:81/api/Image/${this.message.message_id}/images/${imageName}`);
+            console.log(`https://backstage.ihms.club:8080/api/Image/${this.message.message_id}/images/${imageName}`);
             if (imageName) {
-                return `http://4.216.224.225:81/api/Image/${this.message.message_id}/images/${imageName}`;
+                return `https://backstage.ihms.club:8080/api/Image/${this.message.message_id}/images/${imageName}`;
             } else {
                 return '';
             }
@@ -89,7 +91,7 @@ export default {
 
                 console.log('Submitting comment:', commentData);
 
-                await axios.post(`http://4.216.224.225:81/api/MessageBoardDetails`, commentData, {
+                await axios.post(`https://backstage.ihms.club:8080/api/MessageBoardDetails`, commentData, {
                     headers: {
                         'Content-Type': 'application/json'
                     }
@@ -103,7 +105,7 @@ export default {
         },
         async fetchComments() {
             try {
-                const response = await axios.get(`http://4.216.224.225:81/api/MessageBoardDetails/${this.message.message_id}`);
+                const response = await axios.get(`https://backstage.ihms.club:8080/api/MessageBoardDetails/${this.message.message_id}`);
                 console.log("Fetch Comments Response: ", response);
                 this.comments = response.data;
             } catch (error) {
@@ -116,19 +118,22 @@ export default {
             }
             this.isEditing = !this.isEditing;
         },
+        deleteMessage() {
+            confirm("確定要刪除嗎?")
+        },
         async saveChanges() {
             try {
                 let messageData = {
-                    message_id: this.message.message_id,  
+                    message_id: this.message.message_id,
                     title: this.message.title,
                     category: this.message.category,
                     contents: this.message.contents,
                     member_id: this.memberId
                 };
 
-                console.log('PUT JSON:', JSON.stringify(messageData, null, 2));  
+                console.log('PUT JSON:', JSON.stringify(messageData, null, 2));
 
-                await axios.put(`http://4.216.224.225:81/api/MessageBoardDetails/${this.message.message_id}`, messageData, {
+                await axios.put(`https://backstage.ihms.club:8080/api/MessageBoardDetails/${this.message.message_id}`, messageData, {
                     headers: {
                         'Content-Type': 'application/json'
                     }
@@ -142,7 +147,7 @@ export default {
         async fetchMessage() {
             try {
                 let messageId = this.$route.params.messageId;
-                let response = await axios.get(`http://4.216.224.225:81/api/MessageBoard/${messageId}`);
+                let response = await axios.get(`https://backstage.ihms.club:8080/api/MessageBoard/${messageId}`);
                 this.message = response.data;
             } catch (error) {
                 console.error('獲取留言失敗：', error);
@@ -159,13 +164,13 @@ export default {
         }
 
         try {
-            let response = await axios.get(`http://4.216.224.225:81/api/MessageBoard/${messageId}`);
+            let response = await axios.get(`https://backstage.ihms.club:8080/api/MessageBoard/${messageId}`);
             console.log("Message response received: ", response);
             this.message = response.data;
 
             if (this.message.message_id) {
                 console.log("Getting images for message with ID: ", this.message.message_id);
-                let imageResponse = await axios.get(`http://4.216.224.225:81/api/Image/${this.message.message_id}/images`);
+                let imageResponse = await axios.get(`https://backstage.ihms.club:8080/api/Image/${this.message.message_id}/images`);
                 console.log("Image response received: ", imageResponse);
                 this.images = imageResponse.data;
                 console.log("Images: ", this.images);
@@ -180,6 +185,9 @@ export default {
 </script>
   
 <style scoped>
+.button-margin-left {
+    margin-left: 10px;  
+}
 .message-container {
     border: 1px solid #ddd;
     padding: 20px;

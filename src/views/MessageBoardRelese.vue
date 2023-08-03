@@ -94,7 +94,7 @@ export default {
                     formData.append('images', image);
                 });
 
-                await axios.post('http://4.216.224.225:81/api/MessageBoard/CreateMessage', formData, {
+                await axios.post('https://backstage.ihms.club:8080/api/MessageBoard/CreateMessage', formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }

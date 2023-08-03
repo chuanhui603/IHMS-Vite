@@ -33,7 +33,7 @@ export default {
         async fetchReportDetails() {
             const { id } = this.$route.params;
             try {
-                const response = await axios.get(`http://4.216.224.225:81/api/CustomService/${id}`);
+                const response = await axios.get(`https://backstage.ihms.club:8080/api/CustomService/${id}`);
                 console.log('Response data:', response.data);
                 this.report = response.data;
             } catch (error) {
