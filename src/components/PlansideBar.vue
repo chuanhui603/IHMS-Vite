@@ -8,12 +8,12 @@ const dialogCreateVisible = ref(false)
 const dialogEditVisible = ref(false)
 const search = ref('')
 const sportdatas = ref('')
-const isdoneclass = ref('competed')
+const isdoneclass = ref('uncompeted')
 const dialogLoadUpdate = async (Id) => {
     const API_URL = `https://localhost:7127/api/plans/Sportdetail/${Id}`
     const res = await fetch(API_URL)
     sportdatas.value = res.json()
-    dialogEditVisible.value = true
+    dialogEditVisible.value = true    
 }
 
 
@@ -28,7 +28,7 @@ const detailDelete = async (id) => {
 const detailComplete = async (id) => {
     const API_URL = `https://localhost:7127/api/plans/sportdetail/complete/${id}`
     const res = await fetch(API_URL, { method: 'PUT' })
-    isdoneclass.value = 'uncompeted'
+    isdoneclass.value = 'competed'
     onload()
 
 }
@@ -49,7 +49,7 @@ const onload = async (sportid) => {
     const res = await fetch(`https://localhost:7127/api/plans/sportdetail/list/1`)
     const datas = await res.json()
     list.value = datas
-    console.log(list.value)
+
 }
 onload()
 
@@ -83,17 +83,17 @@ const listsearch = async (sportid) => {
                     <el-button :icon="Edit" @click="dialogEditVisible = true"></el-button>
                 </div>
                 <div class="menusearch">
-                    <el-input type="text" v-model="search" placeholder="search" @input="listsearch">
+                    <el-input type="text" v-model="search" placeholder="search" @input="listsearch"/>
                 </div>
                 <el-scrollbar height="400px">
                     <div>
                         <ul class="menulist nav mt-2">
-                            <li class="menuitem" v-for="{ sname, sportDetailId, time } in list" :key="sportDetailId">
+                            <li class="menuitem" v-for="{ sname, sportDetailId, time,isdone } in list" :key="sportDetailId">
                                 <el-button class="competebtn" type="primary" @click="detailDelete(sportDetailId)"
                                     :icon="CloseBold" />
-                                <el-button class="inputbtn" color="#626aef" :class="isdoneclass"
+                                <el-button class="inputbtn" color="#626aef" :class="isdone?'competed':'umcompeted'"
                                     @click="dialogLoadUpdate(sportDetailId)">
-                                    {{ sname }}<span>{{ time }}</span>
+                                    {{ sname }}<span style="color:cornflowerblue">{{ time }}</span>
                                 </el-button>
                                 <el-button class="deletebtn" type="primary" @click="detailComplete(sportDetailId)"
                                     :icon="Select" />
@@ -106,14 +106,14 @@ const listsearch = async (sportid) => {
     </div>
 
     <el-dialog v-model="dialogEditVisible" title="更改設定" width="30%">
-        <SportDetail :datas="sportdatas" :dialogEditVisible="dialogEditVisible" @dialogEditUpdate="dialogEditUpdate(value)">
+        <SportDetail :sportdatas="sportdatas" @dialogEditUpdate="dialogEditUpdate(value)">
         </SportDetail>
     </el-dialog>
 
-    <el-dialog v-model="dialogCreateVisible" title="更改設定" width="30%">
+    <!-- <el-dialog v-model="dialogCreateVisible" title="更改設定" width="30%">
         <SportDetail :dialogCreateVisible="dialogCreateVisible" @dialogEditUpdate="dialogCreateUpdate(value)">
         </SportDetail>
-    </el-dialog>
+    </el-dialog> -->
 </template>
 <style scoped>
 .menuitem {

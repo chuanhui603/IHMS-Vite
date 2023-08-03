@@ -6,7 +6,7 @@ const wholeGrains = [
     { name: "糙米", calories: 110, image: '/糙米.jpg' },
     { name: "燕麥片", calories: 90, image: '/燕麥.jpg' },
     { name: "玉米", calories: 80, image: '/玉米.jpg' },
-    { name: "蕎麥", calories: 95, imgae: '/蕎麥麵.jpg' },
+    { name: "蕎麥麵", calories: 95, imgae: '/蕎麥麵.jpg' },
     { name: "黑麥", calories: 115, imgae: '/黑麥.jpg' },
     { name: "高梁", calories: 105, imgae: '/高粱.jpg' },
 ]

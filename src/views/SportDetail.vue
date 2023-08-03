@@ -15,8 +15,8 @@
                 <el-form-item v-else label="時長">
                         <el-input v-model="sportdetail.timelong" style="width: 15%;" />
                 </el-form-item>
-                <el-form-item v-else label="消耗熱量">
-                        <el-input v-model="sportdetail.colories" style="width: 15%;" />
+                <el-form-item  label="消耗熱量">
+                        <el-input v-model="sportdetail.calories" style="width: 15%;" />
                 </el-form-item>
                 <el-form-item label="時間">
                         <el-col :span="11">
@@ -50,30 +50,31 @@ import { ref } from 'vue';
 const prop = defineProps({
         sportdatas: Object
 })
-
-const sportdatas = await ref(prop.sportdatas || {});
-console.log(sportdatas.value)
-const emit = defineEmits();
-const dialogEditUpdate = () => {
-        emit('dialogEditUpdate', false);     
-};
-
-//sportdetail資料表設定
+console.log(prop.sportdatas)
 const sportdetail = ref({
         frequency: 0,
         isdone: false,
         registerdate: new Date(),
         sets: 0,
-        sname: "",
+        sname: '',
         sportDetailId: 0,
         sportId: 0,
-        time: "",
+        time: '',
         timelong: 0,
-        type: "",
+        type: '',
+        calories: 0
 })
 
-sportdetail.value = sportdatas.value
-console.log(sportdetail.value)
+
+
+const emit = defineEmits();
+const dialogEditUpdate = () => {
+        emit('dialogEditUpdate', false);
+};
+
+sportdetail.value = prop.sportdatas
+
+//sportdetail資料表設定
 const onCreate = async () => {
         const formData = new FormData()
         formData.append('SportId', sportdetail.value.sportId)
@@ -83,6 +84,7 @@ const onCreate = async () => {
         formData.append('Frequency', sportdetail.value.frequency)
         formData.append('Time', sportdetail.value.time)
         formData.append('Sets', sportdetail.value.sets)
+        formData.append('calories', sportdetail.value.calories)
         const API_URL = `https://localhost:7127/api/plans/sportdetail`
         const res = await fetch(API_URL, {
                 method: 'POST',
@@ -103,6 +105,7 @@ const onEdit = async () => {
         formData.append('Timelong', sportdetail.value.timelong)
         formData.append('Frequency', sportdetail.value.frequency)
         formData.append('Time', sportdetail.value.time)
+        formData.append('calories', sportdetail.value.calories)
         const API_URL = `https://localhost:7127/api/plans/sportdetail/edit`
         const res = await fetch(API_URL, {
                 method: 'PUT',
