@@ -6,6 +6,7 @@ import { Edit } from '@element-plus/icons-vue'
 import { ref } from 'vue'
 const dietDialogEditVisible = ref(false)
 const sum = ref(0)
+const cost =ref(0)
 const Plan = ref(JSON.parse(sessionStorage.getItem("plans")))
 const bmr = ref(parseInt(Plan.value.bmr))
 const dialogEditUpdate = (value) => {
@@ -25,10 +26,16 @@ const coloriesSum = async () => {
   const API_URL = `https://localhost:7127/api/plans/diet/sum/2`
   const res = await fetch(API_URL)
   sum.value = await res.json()
-
-  console.log(sum.value)
 }
 coloriesSum()
+
+const coloriescostSum = async () => {
+  const API_URL = `https://localhost:7127/api/plans/sportdetail/sum/1`
+  const res = await fetch(API_URL)
+  cost.value = await res.json()
+}
+coloriesSum()
+coloriescostSum()
 
 const foodtypeUpdate = () => {
   if (bmr.value < 2000 && bmr.value > 1500) {
@@ -87,6 +94,9 @@ foodtypeUpdate()
             </div>
             <div class="col-3">
               <el-text style="font-size: 16px;">目前已食熱量<span style="font-size: 28px;">{{ sum }}</span></el-text>
+            </div>
+            <div class="col-3">
+              <el-text style="font-size: 16px;">目前消耗熱量<span style="font-size: 28px;">{{ cost }}</span></el-text>
             </div>
           </div>
 

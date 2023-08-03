@@ -73,9 +73,9 @@ if (localStorage.getItem('currentMember')) {
                             <RouterLink to="/plan" class="dropdown-item">計畫總覽</RouterLink>
                             <RouterLink to="/orders" class="dropdown-item">購買紀錄</RouterLink>
                             <RouterLink to="/PointRecord" class="dropdown-item">點數紀錄</RouterLink>
-                            <a href="https://localhost:7127/Members/MemberEdit/6" class="dropdown-item">教練專區</a>
-                            <a href=" https://localhost:7127/CoachFront/EditResume" class="dropdown-item">會員設定</a>
-                        </div>
+                            <a href="https://localhost:7127/CoachFront/EditResume" class="dropdown-item">教練專區</a>
+                            <a href="https://localhost:7127/Members/MemberEdit/6" class="dropdown-item">會員設定</a>
+                        </div>                    
                     </div>
                     <a href="https://localhost:7127/Student/CoachList" class="nav-link">課程總覽</a>
                     <RouterLink to="/announcements" class="nav-item nav-link">公告</RouterLink>

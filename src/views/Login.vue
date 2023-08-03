@@ -55,7 +55,8 @@ import { useRouter } from 'vue-router'
 const isinput=ref(false)
 const LoginData ={
     Account: '',
-    Password: ''
+    Password: '',
+    Email:''
 }
 
 const deletemsg=()=>{
