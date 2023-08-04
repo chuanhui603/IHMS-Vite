@@ -5,7 +5,9 @@
             <div class="row">
                 <div class="col-lg-6" v-for="article in articles" :key="article.article_id">
                     <div class="card mb-4">
-                        <img :src="'https://backstage.ihms.club:8080' + article.image" class="card-img-top preview-image" alt="Article image">
+                        <div class="image-wrapper">
+                            <img :src="'https://backstage.ihms.club:8080' + article.image" class="card-img-top preview-image" alt="Article image">
+                        </div>
                         <div class="card-body">
                             <h5 class="card-title">{{ article.title }}</h5>
                             <p class="card-text">{{ limitText(article.contents) }}</p>
@@ -59,14 +61,16 @@ export default {
 </script>
 
 <style scoped>
-.preview-image {
-    max-width: 80%;
-    max-height: 600px;
+.image-wrapper {
+    width: 100%; 
+    height: 400px; 
+    overflow: hidden;
 }
+
 .preview-image {
     display: block;
-    margin: auto;
-    max-width: 80%;
-    max-height: 600px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
 }
 </style>

@@ -74,7 +74,7 @@ if (localStorage.getItem('currentMember')) {
                             <RouterLink to="/orders" class="dropdown-item">購買紀錄</RouterLink>
                             <RouterLink to="/PointRecord" class="dropdown-item">點數紀錄</RouterLink>
                             <a href="https://localhost:7127/CoachFront/EditResume" class="dropdown-item">教練專區</a>
-                            <a href="https://localhost:7127/Members/MemberEdit/6" class="dropdown-item">會員設定</a>
+                            <a href="https://localhost:7127/login/edit/6" class="dropdown-item">會員設定</a>
                         </div>                    
                     </div>
                     <a href="https://localhost:7127/Student/CoachList" class="nav-link">課程總覽</a>
@@ -99,7 +99,7 @@ if (localStorage.getItem('currentMember')) {
                         <small class="fa fa-search text-body"></small>
                     </a>
 
-                    <a href="https://localhost:7127/Members/MemberEdit/6" v-if="isLogin"
+                    <a href="https://localhost:7127/login/edit/6" v-if="isLogin"
                         class="btn-sm-square bg-white rounded-circle ms-3"> <small class="fa fa-user text-body"></small>
                     </a>
 

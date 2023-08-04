@@ -9,9 +9,14 @@
                 <el-form-item label="運動名稱">
                         <el-input v-model="sportdetail.sname" />
                 </el-form-item>
-                <el-form-item v-if="sportdetail.type == '健身'" label="次數">
-                        <el-input v-model="sportdetail.frequency" style="width: 15%;" />
+                <div  v-if="sportdetail.type == '健身'">
+                        <el-form-item v-if="sportdetail.type == '健身'" label="組數">
+                        <el-input v-model="sportdetail.sets" style="width: 15%;" />
                 </el-form-item>
+                        <el-form-item label="次數">
+                        <el-input v-model="sportdetail.frequency" style="width: 15%;" />
+                </el-form-item>             
+                </div>                     
                 <el-form-item v-else label="時長">
                         <el-input v-model="sportdetail.timelong" style="width: 15%;" />
                 </el-form-item>
