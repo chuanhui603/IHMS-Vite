@@ -15,14 +15,14 @@
       </thead>
       <tbody>
         <tr v-for="{ordernumber,pointstotal, state,memberName, createtime, coachName
-, courseTotal,courseName,courseTime}
+, coachFee,courseName,courseTime}
         in member" :key="orderId">
         
           <!-- <td>{{ orderId }}</td> -->
           <td>{{ ordernumber }}</td>   
           <td>{{ memberName }}</td>
           <td>{{ coachName }}</td>
-          <td>{{ courseTotal }}</td>
+          <td>{{ coachFee }}</td>
           <td>{{ state }}</td>
           <td>{{ formatDate(createtime) }}</td>        
                    
