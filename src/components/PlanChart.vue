@@ -75,12 +75,12 @@ foodtypeUpdate()
     <div class="row">
       <div class="col-3"> <el-button :icon="Edit" @click="dietDialogEditVisible = true">飲食</el-button></div>
       <div class="col-3">
-        <el-text style="font-size: 16px;">基礎應食熱量</el-text>
+        <el-text style="font-size: 16px; color:black;">基礎應食熱量</el-text>
         <el-text class="targetpie" style="font-size: 28px;">{{ Plan.bmr }}</el-text>
       </div>
 
       <div class="col-3">
-        <el-text style="font-size: 16px;">TDEE應食熱量</el-text>
+        <el-text style="font-size: 16px;color:black;">TDEE應食熱量</el-text>
         <el-text class="targetpie" style="font-size: 28px;">{{ Plan.tdee }}</el-text>
       </div>
     </div>
@@ -105,26 +105,26 @@ foodtypeUpdate()
 
             <div class="col-3">            
               <el-text :class="sum>=Plan.bmr?'competepie':'umcompetepie'" style="font-size: 28px;">{{ sum }}</el-text>
-              <el-text style="font-size: 16px;">目前已食熱量</el-text>
+              <el-text style="font-size: 16px;color:black;">目前已食熱量</el-text>
             </div>
 
             <div class="col-3">             
               <el-text class="umcompetepie" style="font-size: 28px;">{{ cost }}</el-text>
-              <el-text style="font-size: 16px;">運動消耗熱量</el-text>
+              <el-text style="font-size: 16px;color:black;">運動消耗熱量</el-text>
             </div>
           </div>
 
 
-          <div class="col-lg-4 Classification text-center" style="height: 10rem; border: 1px solid;">
-            <div class="row" style="height: 5rem; border: 1px solid;">
+          <div class="col-lg-4 Classification text-center" style="height: 10rem; border-top: 1px solid;border-left: 1px solid;">
+            <div class="row" style="height: 5rem; ">
               <el-text>全榖雜糧類 <span style="font-size: 25px;">{{ foodtype.Cereals }}</span> 碗</el-text>
             </div>
-            <div class="row" style="height: 5rem; border: 1px solid;">
+            <div class="row" style="height: 5rem; border-top: 1px solid;border-bottom: 1px solid;">
               <el-text>油酯與堅果種子類 <span style="font-size: 25px;">{{ foodtype.oil }}</span> 份</el-text>
             </div>
           </div>
           <div class="col-lg-4 Classification text-center">
-            <div class="row" style="height: 5rem; border: 1px solid;">
+            <div class="row" style="height: 5rem; border-top: 1px solid;border-left: 1px solid;">
               <el-text>豆魚蛋肉類 <span style="font-size: 25px;">{{ foodtype.eggMeat }}</span> 份</el-text>
             </div>
             <div class="row " style="height: 5rem; border: 1px solid;">
@@ -135,7 +135,7 @@ foodtypeUpdate()
             <div class="row" style="height: 5rem;border: 1px solid;">
               <el-text>蔬菜類 <span style="font-size: 25px;">{{ foodtype.vegetable }}</span> 份</el-text>
             </div>
-            <div class="row" style="height: 5rem; border: 1px solid;">
+            <div class="row" style="height: 5rem; border-bottom: 1px solid;border-right: 1px solid;">
               <el-text>水果類 <span style="font-size: 25px;">{{ foodtype.fruit }}</span> 份</el-text>
             </div>
           </div>
