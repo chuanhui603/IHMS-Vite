@@ -1,6 +1,6 @@
 <script setup>
 import { useRouter } from 'vue-router'
-import { ref,inject } from 'vue'
+import { ref } from 'vue'
 const prop = defineProps({
     dialogEditVisible: Boolean
 })
@@ -37,8 +37,10 @@ const onEdit = async () => {
             'content-type': 'application/json'
         },
         body: JSON.stringify(newPlan.value),
+       
     })
     if (dialogEditVisible) {
+        sessionStorage.setItem("plans", JSON.stringify(newPlan.value));
         dialogEditUpdate()
     }
     location.reload()

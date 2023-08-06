@@ -75,10 +75,13 @@ foodtypeUpdate()
     <div class="row">
       <div class="col-3"> <el-button :icon="Edit" @click="dietDialogEditVisible = true">飲食</el-button></div>
       <div class="col-3">
-        <el-text style="font-size: 16px;">基礎應食熱量<span style="font-size: 28px;">{{ Plan.bmr }}</span></el-text>
+        <el-text style="font-size: 16px;">基礎應食熱量</el-text>
+        <el-text class="targetpie" style="font-size: 28px;">{{ Plan.bmr }}</el-text>
       </div>
+
       <div class="col-3">
-        <el-text style="font-size: 16px;">TDEE應食熱量<span style="font-size: 28px;">{{ Plan.tdee }}</span></el-text>
+        <el-text style="font-size: 16px;">TDEE應食熱量</el-text>
+        <el-text class="targetpie" style="font-size: 28px;">{{ Plan.tdee }}</el-text>
       </div>
     </div>
     <div class="row mt-5">
@@ -98,14 +101,16 @@ foodtypeUpdate()
       <div class="col-lg-12">
         <div class="row">
 
-          <div class="row ">
+          <div class="row justify-content-center">
 
-            <div class="col-6 text-center">
-              <el-text style="font-size: 16px;">目前已食熱量<span style="font-size: 28px;">{{ sum }}</span></el-text>
+            <div class="col-3">            
+              <el-text :class="sum>=Plan.bmr?'competepie':'umcompetepie'" style="font-size: 28px;">{{ sum }}</el-text>
+              <el-text style="font-size: 16px;">目前已食熱量</el-text>
             </div>
 
-            <div class="col-6 text-center">
-              <el-text style="font-size: 16px;">運動消耗熱量<span style="font-size: 28px;">{{ cost }}</span></el-text>
+            <div class="col-3">             
+              <el-text class="umcompetepie" style="font-size: 28px;">{{ cost }}</el-text>
+              <el-text style="font-size: 16px;">運動消耗熱量</el-text>
             </div>
           </div>
 
@@ -145,4 +150,35 @@ foodtypeUpdate()
   </el-dialog>
 </template>
 
-<style scoped></style>
+<style scoped>
+.targetpie{
+  color: blue;
+  display: block;
+  width: 80px;
+  height: 80px;
+  text-align: center;
+  line-height: 75px;
+  border: 1px solid;
+  border-radius: 100%;
+}
+.competepie{
+  color: green;
+  display: block;
+  width: 80px;
+  height: 80px;
+  text-align: center;
+  line-height: 75px;
+  border: 1px solid;
+  border-radius: 100%;
+}
+.umcompetepie{
+  color: red;
+  display: block;
+  width: 80px;
+  height: 80px;
+  text-align: center;
+  line-height: 75px;
+  border: 1px solid;
+  border-radius: 100%;
+}
+</style>
