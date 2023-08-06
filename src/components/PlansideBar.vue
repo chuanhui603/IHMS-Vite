@@ -76,20 +76,20 @@ const listsearch = async (sportid) => {
 
 <template >
     <!-- 此元件外部最好有row -->
-    <div class="nav nav-pills">
+    <div class="nav nav-pills" > 
         <div class="planmenu">
             <div class="memberimg">
-                <img src="../img/testimonial-1.jpg" alt="hahaha">
-                <p><a href="#">Judy Lin</a></p>
+                <img src="../img/testimonial-1.jpg" style="box-shadow:  4px 4px rgba(0,0,0,0.2);" alt="hahaha">
+                <p class="mt-3"><a href="#" style="color: blue;">Judy Lin</a></p>
             </div>
             <div class="row m-3 ">
                 <div class="col-7 offset-lg-2 text-center menutitle" style="padding-left: 5px;">
                     <p>今日 行程</p>
                 </div>
                 <div class="col-1 menubtn">
-                    <el-button :icon="Edit" @click="dialogCreate"></el-button>
+                    <el-button :icon="Edit" style="border:1px solid #ccc;" @click="dialogCreate"></el-button>
                 </div>
-                <div class="menusearch">
+                <div class="menusearch" style="border-top: 1px solid #ccc;border-bottom: 1px solid #ccc; padding-top: 5px;padding-bottom: 5px;">
                     <el-input type="text" v-model="search" placeholder="search" @input="listsearch"/>
                 </div>
                 <el-scrollbar height="400px">
@@ -100,7 +100,7 @@ const listsearch = async (sportid) => {
                                     :icon="CloseBold" />
                                 <el-button class="inputbtn" color="#626aef" :class="isdone?'competed':'umcompeted'"
                                     @click="dialogLoadUpdate(sportDetailId)">
-                                    {{ sname }}<span style="color:cornflowerblue">{{ time }}</span>
+                                    {{ sname }}<span  :class="isdone?'competed':'spantime'">{{ time }}</span>
                                 </el-button>
                                 <el-button class="deletebtn" type="primary" @click="detailComplete(sportDetailId)"
                                     :icon="Select" />
@@ -134,8 +134,13 @@ const listsearch = async (sportid) => {
 
 .competed {
     background-color: #ccc;
+    color:#fff;
+    text-decoration: line-through;
 }
 
+.spantime{
+    color:cornflowerblue;
+}
 .uncompeted {
     background-color: #626aef;
 }

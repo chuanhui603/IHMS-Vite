@@ -7,7 +7,6 @@ const prop = defineProps({
     dietdetailId: Number,
     DetailId: Number,
 })
-console.log(prop.DetailId)
 const ischecked = ref(false)
 const isinput = ref(false)
 const input = ref([])

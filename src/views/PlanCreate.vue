@@ -10,7 +10,6 @@ const emit = defineEmits();
 const dialogEditUpdate = () => {
     emit('dialogEditUpdate', false); // Send the new value to the parent component
 };
-const reload = inject('reload')
 const router = useRouter()
 const newPlan = ref(JSON.parse(sessionStorage.getItem("plans")))
 const BMR = ref(0)
@@ -42,7 +41,7 @@ const onEdit = async () => {
     if (dialogEditVisible) {
         dialogEditUpdate()
     }
-    reload()
+    location.reload()
 }
 const btnCancel = async () => {
     if (dialogEditVisible) {

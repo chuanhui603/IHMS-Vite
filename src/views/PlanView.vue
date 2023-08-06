@@ -44,7 +44,7 @@ const loadPlans = async () => {
         <!-- 內容  -->
         <div class="row ">
             <!-- sidebar -->
-            <div class="col-lg-3" style="height: 100vh;border:1px solid;position:sticky; top:79px">
+            <div class="col-lg-3 sideBar" >
                 <plansidebar></plansidebar>
             </div>
 
@@ -67,6 +67,15 @@ const loadPlans = async () => {
 </template>
 
 <style scoped>
+.sideBar{
+    height: 100vh;
+    font-family: 'icomoon';
+    position:sticky;
+    top:79px;
+    background-color: rgb(247,247,247);;
+
+    
+}
 .chart {
     width: 70%;
 }

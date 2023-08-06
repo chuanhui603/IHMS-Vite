@@ -1,12 +1,13 @@
 <template >
-    <div>
+    <div class="d-flex justify-content-center">
         <el-button-group>
             <el-button :icon="Edit" @click="pageSwich(true)">飲食</el-button>
             <el-button :icon="Edit" @click="pageSwich(false)">運動</el-button>
         </el-button-group>
     </div>
     
-    <el-table :data="dietData" height="400" style="width: 100%;" v-if="isDiet">      
+
+        <el-table :data="dietData" class="mt-5" height="400" style="width: 100%;" v-if="isDiet">      
         <el-table-column fixed prop="dname" label="食物名稱" width="150" />
         <el-table-column v-if="false" prop="dietDetailId" label="食物名稱" width="150" />
         <el-table-column prop="type" label="種類" width="120" />
@@ -37,11 +38,12 @@
             </template>
         </el-table-column> -->
     </el-table>
+   
 
-    <el-dialog v-model="isDietEdit" title="修改飲食" width="30%">
+    <!-- <el-dialog v-model="isDietEdit" title="修改飲食" width="30%">
         <DietDetail :DetailId="DetailId" @dialogEditUpdate="dietDialogEditUpdate(value)">
         </DietDetail>
-    </el-dialog>
+    </el-dialog> -->
     <!-- <el-dialog v-model="isSportEdit" title="修改" width="30%">
         <SportDetail :datas="sportdetaildatas" @dialogEditUpdate="sportDialogEditUpdate(value)">
         </SportDetail>
@@ -57,9 +59,7 @@ import SportDetail from '../views/SportDetail.vue'
 const isDietEdit =ref(false)
 const isSportEdit =ref(false)
 const sportdetaildatas =ref()
-const handleClick = () => {
-    console.log('click')
-}
+
 const isDiet = ref(true)
 
 const pageSwich = (boolen) => {
@@ -77,8 +77,7 @@ const dietLoad = async () => {
 }
 const dietEdit = (e) => {
     console.log(e.target)
-    isDietEdit.value = true
-    
+    isDietEdit.value = true  
 }
 
 const sportLoad = async () => {
