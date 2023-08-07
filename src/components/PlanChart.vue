@@ -31,7 +31,6 @@ const coloriesSum = async () => {
   if (res.ok) {
     sum.value = await res.json()
   }
-  console.log(sum.value)
 }
 
 const coloriescostSum = async () => {

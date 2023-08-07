@@ -31,7 +31,7 @@
                         <el-input v-model="sportdetail.min" style="width: 15%;" @input="calorieseCal"/>
                         <el-text>分</el-text>
                 </el-form-item>
-                <el-form-item label="消耗熱量">
+                <el-form-item v-if="sportdetail.type == '有氧'" label="消耗熱量">
                         <el-input v-model="sportdetail.calories" style="width: 15%;" />
                 </el-form-item>
                 <el-form-item label="時間">
@@ -118,7 +118,6 @@ const fetchData = async () => {
         }
 }
 fetchData()
-console.log(sportdetail.value)
 const emit = defineEmits();
 const dialogEditUpdate = () => {
         emit('dialogEditUpdate', false);
@@ -153,6 +152,7 @@ const onCreate = async () => {
                         console.log(err);
                 })
                 dialogEditUpdate()
+                location.reload()
         }
 
 }
@@ -184,6 +184,7 @@ const onEdit = async () => {
                         console.log(err);
                 })
                 dialogEditUpdate()
+                location.reload()
         }
 
 

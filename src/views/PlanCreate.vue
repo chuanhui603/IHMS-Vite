@@ -17,7 +17,6 @@ const TDEE = ref(0)
 const { planId } = newPlan.value
 const onCreate = async () => {
     const API_URL = 'https://localhost:7127/api/Plans'
-    console.log(JSON.stringify(newPlan.value))
     const res = await fetch(API_URL, {
         method: 'POST',
         headers: {

@@ -147,12 +147,12 @@ const pageChange = (value) => {
                         </div>
                     </div>
 
-                    <div id="tab-2" v-if="isproteinFoods" class="tab-pane fade show p-0">
+                    <div id="tab-2" v-else-if="isproteinFoods" class="tab-pane fade show p-0">
                         <div class="row g-4">
                             <div class="col-xl-3 col-lg-4 col-md-6" v-for="{ name, calories } in proteinFoods">
                                 <div class="product-item">
                                     <div class="position-relative bg-light overflow-hidden">
-                                        <img class="img-fluid w-100" src="../img/product-1.jpg" alt="">
+                                        <img class="img-fluid w-100" src="../img/product-1.jpg" >
 
                                     </div>
                                     <div class="text-center p-4">
@@ -165,7 +165,7 @@ const pageChange = (value) => {
                         </div>
                     </div>
 
-                    <div id="tab-3" v-if="isdairyProducts" class="tab-pane fade show p-0">
+                    <div id="tab-3" v-else class="tab-pane fade show p-0">
                         <div class="row g-4">
                             <div class="col-xl-3 col-lg-4 col-md-6" v-for="  { name, calories }   in   dairyProducts  ">
                                 <div class="product-item">

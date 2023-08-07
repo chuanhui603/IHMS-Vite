@@ -10,16 +10,16 @@ const search = ref('')
 const sportdatas = ref('')
 const isdoneclass = ref('uncompeted')
 const dialogLoadUpdate = async (Id) => {
-   dialogCreateVisible.value =false
+    dialogCreateVisible.value = false
     const API_URL = `https://localhost:7127/api/plans/Sportdetail/${Id}`
     const res = await fetch(API_URL)
     sportdatas.value = res.json()
-    dialogEditVisible.value = true    
+    dialogEditVisible.value = true
 }
 
-const dialogCreate =()=>{
-    dialogEditVisible.value=false
-    dialogCreateVisible.value=true
+const dialogCreate = () => {
+    dialogEditVisible.value = false
+    dialogCreateVisible.value = true
 }
 
 const detailDelete = async (id) => {
@@ -38,14 +38,14 @@ const detailComplete = async (id) => {
 
 }
 const dialogEditUpdate = async (bool) => {
-    dialogEditVisible.value =bool
+    dialogEditVisible.value = bool
     dialogEditVisible.value = bool
     onload()
-  
+
 }
 
 const dialogCreateUpdate = (bool) => {
-    dialogEditVisible.value =bool
+    dialogEditVisible.value = bool
     dialogCreateVisible.value = bool
     onload()
 }
@@ -76,7 +76,7 @@ const listsearch = async (sportid) => {
 
 <template >
     <!-- 此元件外部最好有row -->
-    <div class="nav nav-pills" > 
+    <div class="nav nav-pills">
         <div class="planmenu">
             <div class="memberimg">
                 <img src="../img/testimonial-1.jpg" style="box-shadow:  4px 4px rgba(0,0,0,0.2);" alt="hahaha">
@@ -89,18 +89,19 @@ const listsearch = async (sportid) => {
                 <div class="col-1 menubtn">
                     <el-button :icon="Edit" style="border:1px solid #ccc;" @click="dialogCreate"></el-button>
                 </div>
-                <div class="menusearch" style="border-top: 1px solid #ccc;border-bottom: 1px solid #ccc; padding-top: 5px;padding-bottom: 5px;">
-                    <el-input type="text" v-model="search" placeholder="search" @input="listsearch"/>
+                <div class="menusearch"
+                    style="border-top: 1px solid #ccc;border-bottom: 1px solid #ccc; padding-top: 5px;padding-bottom: 5px;">
+                    <el-input type="text" v-model="search" placeholder="search" @input="listsearch" />
                 </div>
                 <el-scrollbar height="400px">
                     <div>
                         <ul class="menulist nav mt-2">
-                            <li class="menuitem" v-for="{ sname, sportDetailId, time,isdone } in list" :key="sportDetailId">
+                            <li class="menuitem" v-for="{ sname, sportDetailId, time, isdone } in list" :key="sportDetailId">
                                 <el-button class="competebtn" type="primary" @click="detailDelete(sportDetailId)"
                                     :icon="CloseBold" />
-                                <el-button class="inputbtn" color="#626aef" :class="isdone?'competed':'umcompeted'"
+                                <el-button class="inputbtn" color="#626aef" :class="isdone ? 'competed' : 'umcompeted'"
                                     @click="dialogLoadUpdate(sportDetailId)">
-                                    {{ sname }}<span  :class="isdone?'competed':'spantime'">{{ time }}</span>
+                                    <span :class="isdone ? 'competed' : 'spantime'">{{ time }} </span>{{ sname }}
                                 </el-button>
                                 <el-button class="deletebtn" type="primary" @click="detailComplete(sportDetailId)"
                                     :icon="Select" />
@@ -134,13 +135,14 @@ const listsearch = async (sportid) => {
 
 .competed {
     background-color: #ccc;
-    color:#fff;
+    color: #fff;
     text-decoration: line-through;
 }
 
-.spantime{
-    color:cornflowerblue;
+.spantime {
+    color: rgb(129, 236, 29);
 }
+
 .uncompeted {
     background-color: #626aef;
 }
@@ -208,31 +210,35 @@ const listsearch = async (sportid) => {
 }
 
 .competebtn {
-  
+
     width: 15%;
 }
 
 .deletebtn {
-   
+
     width: 15%;
 }
-.menulist li:first-child .competebtn{
+
+.menulist li:first-child .competebtn {
     border-top-left-radius: 10%;
-    
+
 }
-.menulist li:last-child .competebtn{
+
+.menulist li:last-child .competebtn {
     border-bottom-left-radius: 10%;
-    
+
 }
-.menulist li:first-child .deletebtn{
+
+.menulist li:first-child .deletebtn {
     border-top-right-radius: 10%;
-   
-    
+
+
 }
-.menulist li:last-child .deletebtn{
+
+.menulist li:last-child .deletebtn {
 
     border-bottom-right-radius: 10%;
-    
+
 }
 
 .linkBox {
